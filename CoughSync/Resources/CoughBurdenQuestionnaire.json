@@ -1,0 +1,237 @@
+{
+  "resourceType": "Questionnaire",
+  "title": "Cough Burden Check-In",
+  "id": "coughburden",
+  "name": "CoughBurden",
+  "description": "This survey asseses the cough burden profile.",
+  "resourceType": "Questionnaire",
+  "language": "en-US",
+  "version": "1",
+  "status": "draft",
+  "publisher": "RAND Corp",
+  "meta": {
+    "profile": [
+      "http://spezi.health/fhir/StructureDefinition/sdf-Questionnaire"
+    ],
+    "tag": [
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "en-US",
+        "display": "English"
+      }
+    ]
+  },
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+            "display": "Cough Burden Profile"
+          }
+        ]
+      }
+    }
+  ],
+  "contact": [
+    {}
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "id": "coughburden",
+  "item": [
+    {
+      "linkId": "80dc8153-5b61-4b1c-8dda-e9ebeaa63fc7",
+      "type": "choice",
+      "text": "How Much Does Your Cough Affect You?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "8e37892c-2f54-4912-8be0-6c9124570642",
+            "code": "0",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "0 - No Burden"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "b764ebc3-25de-4f02-c658-d27d6827a850",
+            "code": "1",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "1 - Minimally"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "230770c1-a162-4a52-9afe-f21e34740a5f",
+            "code": "2",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "2 - Mildly"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "2231e817-6b25-4ac3-bc56-6e76199a0494",
+            "code": "3",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "3 - Moderately"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "0826f1f9-ebce-4c36-8f3f-09931c343e3a",
+            "code": "4",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "4 - Significantly"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "f2209262-7690-49e8-8454-639fef4bef99",
+            "code": "5",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "5 - Extremely"
+          }
+        }
+      ],
+      "extension": [
+        {
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "Where 1 represents low and 5 high severity."
+        }
+      ]
+    },
+    {
+      "linkId": "e61212d0-2522-4f3c-faba-73bb9044c357",
+      "type": "choice",
+      "text": "Which of the following factors trigger or worsen your cough? (Select all that apply)",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                "code": "check-box"
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "Select all that apply"
+        }
+      ],
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "e17de663-b884-4eae-8104-18b16cbf5268",
+            "code": "air-pollution",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Air pollution"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "18c88d31-8384-4f44-9f7c-6bfc095b17ac",
+            "code": "cold-weather",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Cold weather"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "f770be51-52eb-47c9-eca5-3b24ceaeb9b6",
+            "code": "dust-or-allergens",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Dust or allergens"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "384dc0d1-36a2-460e-a47f-5eaa70ca5d94",
+            "code": "exercise",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Exercise"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "f1358fe5-6a19-4866-921c-d37e3d531e7a",
+            "code": "pollen",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Pollen"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "8dd2f7e9-d759-4e14-85a3-51bb935ca434",
+            "code": "smoke",
+            "system": "urn:uuid:65e74bde-f47b-4431-8c61-57b63ebd15db",
+            "display": "Smoke"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "c3c06e22-b39e-4948-97a3-84eac152f294",
+      "type": "open-choice",
+      "text": "How has your cough impacted your quality of life? (Select all that apply)",
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "060145ac-5648-47df-f044-45ced094af05",
+            "code": "limitations-in-performing-usual-household-activities",
+            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
+            "display": "Limitations in performing usual household activities"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "7375da5a-8374-484d-8ea7-54a490ebeac1",
+            "code": "limitations-in-engaging-in-strenuous-physical-activities",
+            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
+            "display": "Limitations in engaging in strenuous physical activities"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "cca84c40-bbd6-4058-e4c6-5c24e42a899e",
+            "code": "limitations-in-participating-in-social-interactions",
+            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
+            "display": "Limitations in participating in social interactions"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "512e1a09-7c1f-4cb0-85e6-a74de883cd65",
+            "code": "difficulty-falling-asleep-due-to-coughing",
+            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
+            "display": "Difficulty falling asleep due to coughing"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "870c9fd4-819e-4107-b61a-6c912c619fcd",
+            "code": "sleep-disturbances-caused-by-coughing",
+            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
+            "display": "Sleep disturbances caused by coughing"
+          }
+        }
+      ],
+      "extension": [
+        {
+          "url": "http://helsenorge.no/fhir/StructureDefinition/sdf-sublabel",
+          "valueMarkdown": "Select all that apply"
+        }
+      ]
+    }
+  ]
+}
