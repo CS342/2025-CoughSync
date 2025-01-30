@@ -81,6 +81,30 @@
         }
       }
     },
+    "Cough Burden Check-In" : {
+
+    },
+    "Cough Burden Questionnaire" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cough Burden Questionnaire"
+          }
+        }
+      }
+    },
+    "CoughSync" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spezi\nCoughSync"
+          }
+        }
+      }
+    },
     "Grant Access" : {
       "localizations" : {
         "en" : {
@@ -272,6 +296,7 @@
       }
     },
     "Please fill out the Social Support Questionnaire every day." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -281,22 +306,15 @@
         }
       }
     },
+    "Questionnaires" : {
+
+    },
     "Schedule" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schedule"
-          }
-        }
-      }
-    },
-    "Social Support Questionnaire" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Social Support Questionnaire"
           }
         }
       }
@@ -321,16 +339,6 @@
         }
       }
     },
-    "CoughSync" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi\nCoughSync"
-          }
-        }
-      }
-    },
     "Start Questionnaire" : {
       "localizations" : {
         "en" : {
@@ -350,6 +358,9 @@
           }
         }
       }
+    },
+    "Tell us about your cough burden every week" : {
+
     },
     "The Spezi Framework" : {
       "localizations" : {

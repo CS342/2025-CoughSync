@@ -32,7 +32,7 @@ struct ScheduleView: View {
                     }
                 }
             }
-                .navigationTitle("Schedule")
+                .navigationTitle("Questionnaires")
                 .viewStateAlert(state: $scheduler.viewState)
                 .sheet(item: $presentedEvent) { event in
                     EventView(event)
