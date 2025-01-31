@@ -33,39 +33,42 @@ class SchedulerTests: XCTestCase {
         XCTAssertTrue(app.buttons["Start Questionnaire"].waitForExistence(timeout: 2))
         app.buttons["Start Questionnaire"].tap()
         
-        XCTAssertTrue(app.staticTexts["Social Support"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["In the last 2 weeks, how many times a day have you had coughing bouts?"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars.buttons["Cancel"].exists)
 
-        XCTAssertTrue(app.staticTexts["None of the time"].exists)
-        let noButton = app.staticTexts["None of the time"]
+        XCTAssertTrue(app.staticTexts["7 - None"].exists)
+        let noButton = app.staticTexts["7 - None"]
 
         let nextButton = app.buttons["Next"]
-
-        for _ in 1...4 {
-            XCTAssertFalse(nextButton.isEnabled)
-            noButton.tap()
-            XCTAssertTrue(nextButton.isEnabled)
-            nextButton.tap()
-            usleep(500_000)
-        }
-
-        XCTAssert(app.staticTexts["What is your age?"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.textFields["Tap to answer"].exists)
-        try app.textFields["Tap to answer"].enter(value: "25")
-        app.buttons["Done"].tap()
-
-        XCTAssert(nextButton.isEnabled)
+        XCTAssertFalse(nextButton.isEnabled)
+        noButton.tap()
         nextButton.tap()
-
-        XCTAssert(app.staticTexts["What is your preferred contact method?"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["E-mail"].exists)
-        app.staticTexts["E-mail"].tap()
-
-        XCTAssert(nextButton.isEnabled)
+        
+        XCTAssertTrue(
+            app.staticTexts["In the last 2 weeks, which of the following factors triggered or worsened your cough?"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(app.staticTexts["Air pollution"].exists)
+        let airPollutionButton = app.staticTexts["Air pollution"]
+        airPollutionButton.tap()
         nextButton.tap()
-
-        XCTAssert(app.staticTexts["Thank you for taking the survey!"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.buttons["Done"].exists)
+        
+        XCTAssertTrue(app.staticTexts["In the last 2 weeks, have you had a lot of energy?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
+        let energyButton = app.staticTexts["7 - None of the time"]
+        energyButton.tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(app.staticTexts["In the last 2 weeks, has your cough disturbed your sleep?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
+        let sleepButton = app.staticTexts["7 - None of the time"]
+        sleepButton.tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(app.staticTexts["In the last 2 weeks, my cough has interfered with my job, or other daily tasks."].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
+        let dailyTasksButton = app.staticTexts["7 - None of the time"]
+        dailyTasksButton.tap()
         app.buttons["Done"].tap()
 
         XCTAssert(app.staticTexts["Completed"].waitForExistence(timeout: 0.5))
