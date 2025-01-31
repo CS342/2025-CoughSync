@@ -26,9 +26,9 @@ final class CoughSyncScheduler: Module, DefaultInitializable, EnvironmentAccessi
     func configure() {
         do {
             try scheduler.createOrUpdateTask(
-                id: "cough-burden-questionnaire",
-                title: "Cough Burden Check-In",
-                instructions: "Tell us about your cough burden every week",
+                id: "cough-sync-questionnaire",
+                title: "Cough Sync",
+                instructions: "Tell us about your cough every week.",
                 category: .questionnaire,
                 schedule: .weekly(hour: 8, minute: 0, startingAt: .today)
             ) { context in

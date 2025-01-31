@@ -81,9 +81,6 @@
         }
       }
     },
-    "Cough Burden Check-In" : {
-
-    },
     "Cough Burden Questionnaire" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -94,6 +91,9 @@
           }
         }
       }
+    },
+    "Cough Sync" : {
+
     },
     "CoughSync" : {
       "localizations" : {
@@ -359,7 +359,7 @@
         }
       }
     },
-    "Tell us about your cough burden every week" : {
+    "Tell us about your cough every week." : {
 
     },
     "The Spezi Framework" : {

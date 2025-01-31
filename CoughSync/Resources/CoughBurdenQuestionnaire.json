@@ -1,8 +1,8 @@
 {
   "resourceType": "Questionnaire",
-  "title": "Cough Burden Check-In",
-  "id": "coughburden",
-  "name": "CoughBurden",
+  "title": "Cough Sync",
+  "id": "coughsync",
+  "name": "CoughSync",
   "description": "This survey asseses the cough burden profile.",
   "resourceType": "Questionnaire",
   "language": "en-US",
@@ -49,63 +49,71 @@
     {
       "linkId": "80dc8153-5b61-4b1c-8dda-e9ebeaa63fc7",
       "type": "choice",
-      "text": "How Much Does Your Cough Affect You?",
-      "required": true,
+      "text": "In the last 2 weeks, how many times a day have you had coughing bouts?",
       "answerOption": [
         {
           "valueCoding": {
             "id": "8e37892c-2f54-4912-8be0-6c9124570642",
-            "code": "0",
+            "code": "1---all-of-the-time",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "0 - No Burden"
+            "display": "1 - All of the time"
           }
         },
         {
           "valueCoding": {
             "id": "b764ebc3-25de-4f02-c658-d27d6827a850",
-            "code": "1",
+            "code": "2---most-of-the-time",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "1 - Minimally"
+            "display": "2 - Most of the time"
           }
         },
         {
           "valueCoding": {
             "id": "230770c1-a162-4a52-9afe-f21e34740a5f",
-            "code": "2",
+            "code": "3---several-times-during-the-day",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "2 - Mildly"
+            "display": "3 - Several times during the day"
           }
         },
         {
           "valueCoding": {
             "id": "2231e817-6b25-4ac3-bc56-6e76199a0494",
-            "code": "3",
+            "code": "4---some-times-during-the-day",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "3 - Moderately"
+            "display": "4 - Some times during the day"
           }
         },
         {
           "valueCoding": {
             "id": "0826f1f9-ebce-4c36-8f3f-09931c343e3a",
-            "code": "4",
+            "code": "5---occasionally-through-the-day",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "4 - Significantly"
+            "display": "5 - Occasionally through the day"
           }
         },
         {
           "valueCoding": {
             "id": "f2209262-7690-49e8-8454-639fef4bef99",
-            "code": "5",
+            "code": "6---rarely",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "5 - Extremely"
+            "display": "6 - Rarely"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "f7240412-f1a8-42ea-98cf-8e497c19f856",
+            "code": "7---none",
+            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
+            "display": "7 - None"
           }
         }
-      ]
+      ],
+      "required": true
     },
     {
       "linkId": "e61212d0-2522-4f3c-faba-73bb9044c357",
       "type": "choice",
-      "text": "Which of the following factors trigger or worsen your cough? (Select all that apply)",
+      "text": "In the last 2 weeks, which of the following factors triggered or worsened your cough?",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -171,61 +179,193 @@
       ]
     },
     {
-      "linkId": "c3c06e22-b39e-4948-97a3-84eac152f294",
-      "type": "open-choice",
-      "text": "How has your cough impacted your quality of life?",
+      "linkId": "81ad20e6-d2a7-48c3-866d-5240bf1d6868",
+      "type": "choice",
+      "text": "In the last 2 weeks, have you had a lot of energy?",
+      "required": true,
       "answerOption": [
         {
           "valueCoding": {
-            "id": "060145ac-5648-47df-f044-45ced094af05",
-            "code": "limitations-in-performing-usual-household-activities",
-            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
-            "display": "Limitations in performing usual household activities"
+            "id": "ec30bad0-bed4-4b9d-8b86-769b43884426",
+            "code": "1",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "1 - All of the time"
           }
         },
         {
           "valueCoding": {
-            "id": "7375da5a-8374-484d-8ea7-54a490ebeac1",
-            "code": "limitations-in-engaging-in-strenuous-physical-activities",
-            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
-            "display": "Limitations in engaging in strenuous physical activities"
+            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "code": "2",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "2 - Most of the time"
           }
         },
         {
           "valueCoding": {
-            "id": "cca84c40-bbd6-4058-e4c6-5c24e42a899e",
-            "code": "limitations-in-participating-in-social-interactions",
-            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
-            "display": "Limitations in participating in social interactions"
+            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
+            "code": "3",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "3 - A good bit of the time"
           }
         },
         {
           "valueCoding": {
-            "id": "512e1a09-7c1f-4cb0-85e6-a74de883cd65",
-            "code": "difficulty-falling-asleep-due-to-coughing",
-            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
-            "display": "Difficulty falling asleep due to coughing"
+            "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
+            "code": "4",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "4 - Some of the time"
           }
         },
         {
           "valueCoding": {
-            "id": "870c9fd4-819e-4107-b61a-6c912c619fcd",
-            "code": "sleep-disturbances-caused-by-coughing",
-            "system": "urn:uuid:4fe8dfe1-9d65-456c-e604-436dd10fb8c6",
-            "display": "Sleep disturbances caused by coughing"
+            "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
+            "code": "5",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "5 - A little of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
+            "code": "6",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "6 - Hardly any of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
+            "code": "7",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "7 - None of the time"
           }
         }
-      ],
-      "extension": [
+      ]
+    },
+    {
+      "linkId": "c7495877-a09a-47cb-9968-e9606a06eae2",
+      "type": "choice",
+      "text": "In the last 2 weeks, has your cough disturbed your sleep?",
+      "required": true,
+      "answerOption": [
         {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
-                "code": "check-box"
-              }
-            ]
+          "valueCoding": {
+            "id": "ec30bad0-bed4-4b9d-8b86-769b43884426",
+            "code": "1",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "1 - All of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "code": "2",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "2 - Most of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
+            "code": "3",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "3 - A good bit of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
+            "code": "4",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "4 - Some of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
+            "code": "5",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "5 - A little of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
+            "code": "6",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "6 - Hardly any of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
+            "code": "7",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "7 - None of the time"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "b75315dc-db15-4e0c-8235-82f956b4b211",
+      "type": "choice",
+      "text": "In the last 2 weeks, my cough has interfered with my job, or other daily tasks.",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "ec30bad0-bed4-4b9d-8b86-769b43884426",
+            "code": "1",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "1 - All of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "code": "2",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "2 - Most of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
+            "code": "3",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "3 - A good bit of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
+            "code": "4",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "4 - Some of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
+            "code": "5",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "5 - A little of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
+            "code": "6",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "6 - Hardly any of the time"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
+            "code": "7",
+            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
+            "display": "7 - None of the time"
           }
         }
       ]
