@@ -49,6 +49,8 @@ struct OnboardingFlow: View {
                 Consent()
             #endif
             
+            SoundRecognitionPermissions()
+            
             if HKHealthStore.isHealthDataAvailable() && !healthKitAuthorization {
                 HealthKitPermissions()
             }

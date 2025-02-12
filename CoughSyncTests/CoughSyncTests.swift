@@ -16,3 +16,4 @@ class CoughSyncTests: XCTestCase {
         XCTAssertEqual(Contacts(presentingAccount: .constant(true)).contacts.count, 1)
     }
 }
+
