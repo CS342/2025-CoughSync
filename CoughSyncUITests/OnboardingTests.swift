@@ -63,7 +63,6 @@ extension XCUIApplication {
         repeated skippedIfRepeated: Bool = false
     ) throws {
         try navigateOnboardingFlowWelcome()
-        try navigateOnboardingFlowInterestingModules()
         if staticTexts["Your Account"].waitForExistence(timeout: 2.0) {
             try navigateOnboardingAccount(email: email)
         }
@@ -74,25 +73,44 @@ extension XCUIApplication {
             try navigateOnboardingFlowHealthKitAccess()
             try navigateOnboardingFlowNotification()
         }
+        try navigateOnboardingQuestionnaire()
     }
     
     private func navigateOnboardingFlowWelcome() throws {
-        XCTAssertTrue(staticTexts["Spezi\nCoughSync"].waitForExistence(timeout: 5))
+        XCTAssertTrue(staticTexts["CoughSync"].waitForExistence(timeout: 5))
         
-        XCTAssertTrue(buttons["Learn More"].exists)
-        buttons["Learn More"].tap()
+        XCTAssertTrue(buttons["Get Started"].exists)
+        buttons["Get Started"].tap()
     }
     
-    private func navigateOnboardingFlowInterestingModules() throws {
-        XCTAssertTrue(staticTexts["Interesting Modules"].waitForExistence(timeout: 5))
+    private func navigateOnboardingQuestionnaire() throws {
+        XCTAssertTrue(buttons["Start Questionnaire"].waitForExistence(timeout: 2))
+        buttons["Start Questionnaire"].tap()
         
-        for _ in 1..<4 {
-            XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
-            buttons["Next"].tap()
-        }
+        XCTAssertTrue(staticTexts["Do you sleep with your phone nearby?"].waitForExistence(timeout: 2))
+        staticTexts["Yes"].tap()
         
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
-        buttons["Next"].tap()
+        let nextButton = buttons["Next"]
+        nextButton.tap()
+        
+        XCTAssertTrue(staticTexts["What time do you usually go to sleep?"].waitForExistence(timeout: 2))
+        nextButton.tap()
+        
+        XCTAssertTrue(staticTexts["How many hours do you usually sleep per night?"].waitForExistence(timeout: 2))
+        
+        buttons["Skip"].tap()
+        
+        XCTAssertTrue(staticTexts["Do you frequently wake up at night due to coughing?"].waitForExistence(timeout: 2))
+        staticTexts["No"].tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(staticTexts["Do you have any known respiratory conditions?"].waitForExistence(timeout: 2))
+        staticTexts["No"].tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(staticTexts["Do you smoke or are you exposed to secondhand smoke?"].waitForExistence(timeout: 2))
+        staticTexts["No"].tap()
+        buttons["Done"].tap()
     }
     
     private func navigateOnboardingAccount(email: String) throws {
@@ -124,6 +142,15 @@ extension XCUIApplication {
     
     private func navigateOnboardingFlowConsent() throws {
         XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 2))
+        
+        // First scroll to the bottom to ensure all elements are visible
+        let app = XCUIApplication()
+        let lastElement = buttons["I Consent"]
+        let firstElement = staticTexts["First Name"]
+        
+        while !lastElement.isHittable {
+            app.swipeUp()
+        }
 
         XCTAssertTrue(staticTexts["First Name"].exists)
         try textFields["Enter your first name ..."].enter(value: "Leland")

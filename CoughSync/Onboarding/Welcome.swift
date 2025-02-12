@@ -24,27 +24,19 @@ struct Welcome: View {
                         Image(systemName: "apps.iphone")
                             .accessibilityHidden(true)
                     },
-                    title: "The Spezi Framework",
+                    title: "Coughing Tracking",
                     description: "WELCOME_AREA1_DESCRIPTION"
-                ),
-                OnboardingInformationView.Content(
-                    icon: {
-                        Image(systemName: "shippingbox.fill")
-                            .accessibilityHidden(true)
-                    },
-                    title: "Swift Package Manager",
-                    description: "WELCOME_AREA2_DESCRIPTION"
                 ),
                 OnboardingInformationView.Content(
                     icon: {
                         Image(systemName: "list.bullet.clipboard.fill")
                             .accessibilityHidden(true)
                     },
-                    title: "Spezi Modules",
-                    description: "WELCOME_AREA3_DESCRIPTION"
+                    title: "Well-Being Tracking",
+                    description: "WELCOME_AREA2_DESCRIPTION"
                 )
             ],
-            actionText: "Learn More",
+            actionText: "Get Started",
             action: {
                 onboardingNavigationPath.nextStep()
             }
