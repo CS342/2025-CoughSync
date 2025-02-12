@@ -1,8 +1,9 @@
 //
-//  QuestionnaireType.swift
-//  CoughSync
+// This source file is part of the CoughSync based on the Stanford Spezi Template Application project
 //
-//  Created by Miguel Fuentes on 2/11/25.
+// SPDX-FileCopyrightText: 2025 Stanford University
+//
+// SPDX-License-Identifier: MIT
 //
 
 import Foundation
@@ -10,8 +11,4 @@ import Foundation
 enum QuestionnaireType: String {
     case profile = "Profile"
     case checkIn = "CheckIn"
-    
-    func toFormattedString() -> String {
-        return "\(self.rawValue)questionnaire"
-    }
 }
