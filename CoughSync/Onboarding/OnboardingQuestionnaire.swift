@@ -12,8 +12,6 @@ import SwiftUI
 
 struct OnboardingQuestionnaire: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    @Environment(CoughSyncStandard.self) private var standard
-    @State private var showQuestionnaire = false  // State to control when to show the questionnaire
 
     var body: some View {
         OnboardingView(

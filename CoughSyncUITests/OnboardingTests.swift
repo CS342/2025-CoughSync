@@ -146,7 +146,6 @@ extension XCUIApplication {
         // First scroll to the bottom to ensure all elements are visible
         let app = XCUIApplication()
         let lastElement = buttons["I Consent"]
-        let firstElement = staticTexts["First Name"]
         
         while !lastElement.isHittable {
             app.swipeUp()
