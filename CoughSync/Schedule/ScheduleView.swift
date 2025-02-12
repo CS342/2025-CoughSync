@@ -19,29 +19,56 @@ struct ScheduleView: View {
 
     @State private var presentedEvent: Event?
     @Binding private var presentingAccount: Bool
+    @StateObject private var detector = CoughDetection()
+    @State private var isListening = false
 
     
     var body: some View {
         @Bindable var scheduler = scheduler
 
         NavigationStack {
-            TodayList { event in
-                InstructionsTile(event) {
-                    EventActionButton(event: event, "Start Questionnaire") {
-                        presentedEvent = event
+            VStack {
+                TodayList { event in
+                    InstructionsTile(event) {
+                        EventActionButton(event: event, "Start Questionnaire") {
+                            presentedEvent = event
+                        }
                     }
                 }
-            }
                 .navigationTitle("Questionnaires")
                 .viewStateAlert(state: $scheduler.viewState)
                 .sheet(item: $presentedEvent) { event in
                     EventView(event)
                 }
-                .toolbar {
-                    if account != nil {
-                        AccountButton(isPresented: $presentingAccount)
-                    }
+            }
+            .toolbar {
+                if account != nil {
+                    AccountButton(isPresented: $presentingAccount)
                 }
+            }
+        }
+        VStack {
+            Text("Cough Counter: \(detector.coughCount)")
+                .font(.largeTitle)
+                .padding()
+            
+            List(detector.coughTimeStamps, id: \.self) { timestamp in
+                Text("Cough at \(timestamp, style: .date)")
+            }
+            .frame(height: 300)
+            
+            Button(action: {
+                if isListening {
+                    detector.stopListen()
+                } else {
+                    detector.listen()
+                }
+                isListening.toggle()
+            }) {
+                Text(isListening ? "Stop Listening" : "Start Listening")
+                    .font(.title)
+            }
+            .padding()
         }
     }
     
