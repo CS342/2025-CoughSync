@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665A3F72D5C01C10055D1B2 /* AppIcon.png */; };
-		0665A4292D5C37860055D1B2 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665A4282D5C37640055D1B2 /* Untitled.swift */; };
 		2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */; };
 		2F3D4ABC2A4E7C290068FB2F /* SpeziScheduler in Frameworks */ = {isa = PBXBuildFile; productRef = 2F3D4ABB2A4E7C290068FB2F /* SpeziScheduler */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -96,7 +95,6 @@
 
 /* Begin PBXFileReference section */
 		0665A3F72D5C01C10055D1B2 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
-		0665A4282D5C37640055D1B2 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoughSync.docc; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTestingSetup.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0665A4282D5C37640055D1B2 /* Untitled.swift */,
 				0665A3F72D5C01C10055D1B2 /* AppIcon.png */,
 				49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */,
 				49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */,
@@ -559,7 +556,6 @@
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
-				0665A4292D5C37860055D1B2 /* Untitled.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* HomeView.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
