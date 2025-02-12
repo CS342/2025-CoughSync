@@ -1,7 +1,13 @@
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct CoughChartView: View {
+    struct CoughData: Identifiable {
+        var id = UUID()
+        var date: Date
+        var count: Int
+    }
+
     let coughEvents: [CoughEvent]
     let xName: LocalizedStringResource
     let yName: LocalizedStringResource
@@ -9,12 +15,6 @@ struct CoughChartView: View {
     let isWeekly: Bool
 
     @State private var selectedElement: CoughData?
-
-    struct CoughData: Identifiable {
-        var id = UUID()
-        var date: Date
-        var count: Int
-    }
 
     let calendar = Calendar.current
 
