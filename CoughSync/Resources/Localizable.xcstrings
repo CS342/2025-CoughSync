@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@: %lld coughs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$lld coughs"
+          }
+        }
+      }
+    },
     "ACCOUNT_SETUP_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -92,7 +102,16 @@
         }
       }
     },
+    "Cough Count" : {
+
+    },
     "Cough Sync" : {
+
+    },
+    "Cough Tracker" : {
+
+    },
+    "Cough Tracking" : {
 
     },
     "CoughSync" : {
@@ -104,6 +123,12 @@
           }
         }
       }
+    },
+    "Daily Coughs (Past 7 Days)" : {
+
+    },
+    "Day" : {
+
     },
     "Grant Access" : {
       "localizations" : {
@@ -164,6 +189,9 @@
           }
         }
       }
+    },
+    "Hourly Coughs (Today)" : {
+
     },
     "Interesting Modules" : {
       "localizations" : {
@@ -381,6 +409,12 @@
           }
         }
       }
+    },
+    "Threshold" : {
+
+    },
+    "Time" : {
+
     },
     "Unsupported Event" : {
       "localizations" : {
