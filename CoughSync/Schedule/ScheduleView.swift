@@ -19,7 +19,7 @@ struct ScheduleView: View {
 
     @State private var presentedEvent: Event?
     @Binding private var presentingAccount: Bool
-    @StateObject private var detector = CoughDetection()
+    @State private var detector = CoughDetection()
     @State private var isListening = false
 
     

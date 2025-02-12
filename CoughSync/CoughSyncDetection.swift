@@ -22,18 +22,25 @@ import SwiftUI
 import AVFoundation
 import SoundAnalysis
 
-class CoughDetection: NSObject, ObservableObject, SNResultsObserving {
+@Observable
+@MainActor
+class CoughDetection: NSObject, SNResultsObserving {
     private let audioRecorder = AVAudioEngine()
     private let analyser: SNAudioStreamAnalyzer
     private var request: SNClassifySoundRequest?
     
-    @Published var coughCount = 0
+    var coughCount = 0
     private var coughTime: Date?
-    @Published var coughTimeStamps: [Date] = []
+    var coughTimeStamps: [Date] = []
     
     private let syncQueue = DispatchQueue(label: "com.coughDetection.syncqueue", attributes: .concurrent)
     
     override init() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: .mixWithOthers)
+        } catch {
+            print ("error \(error)")
+        }
         let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)!
         self.analyser = SNAudioStreamAnalyzer(format: format)
         super.init()
@@ -43,7 +50,7 @@ class CoughDetection: NSObject, ObservableObject, SNResultsObserving {
         let inputNode = audioRecorder.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.coughTime = Date()
             self.coughTimeStamps = []
@@ -68,14 +75,14 @@ class CoughDetection: NSObject, ObservableObject, SNResultsObserving {
             
             self.audioRecorder.prepare()
             
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+           // DispatchQueue.main.async {
+               // guard let self = self else { return }
                 do {
                     try self.audioRecorder.start()
                 } catch {
                     print("error with analysis \(error)")
                 }
-            }
+            //}
         } catch {
             print("error \(error)")
         }
@@ -90,7 +97,7 @@ class CoughDetection: NSObject, ObservableObject, SNResultsObserving {
         audioRecorder.inputNode.removeTap(onBus: 0)
     }
                              
-    func request(_ request: SNRequest, didProduce result: SNResult) {
+    nonisolated func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult else { return }
         
         if let bestClassification = result.classifications.first, bestClassification.identifier  == "Cough",
@@ -99,12 +106,10 @@ class CoughDetection: NSObject, ObservableObject, SNResultsObserving {
             syncQueue.async(flags: .barrier) { [weak self] in
                 guard let self = self else { return }
                 
-                self.coughCount += 1
-                let timestamp = Date()
-                self.coughTimeStamps.append(timestamp)
-                
                 DispatchQueue.main.async {
-                    self.objectWillChange.send()
+                    self.coughCount += 1
+                    let timestamp = Date()
+                    self.coughTimeStamps.append(timestamp)
                 }
             }
             
