@@ -1,3 +1,11 @@
+//
+// This source file is part of the CoughSync based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2025 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
 @_spi(TestingSupport) import SpeziAccount
 
 import Foundation
