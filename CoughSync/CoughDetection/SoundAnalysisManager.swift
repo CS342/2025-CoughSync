@@ -54,7 +54,7 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
                 request.overlapFactor = overlapFactor
             }
             
-            self.subject = subject
+            // self.subject = subject
             try startAnalysis((request, observer))
         } catch {
             print("Unable to prepare request with Sound Classifier: \(error.localizedDescription)")
@@ -113,6 +113,7 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
         self.streamAnalyzer = streamAnalyzer
         try streamAnalyzer.add(requestAndObserver.request, withObserver: requestAndObserver.observer)
         retainedObserver = requestAndObserver.observer
+        useObserver()
         self.audioRecorder?.inputNode.installTap(
             onBus: inputBus,
             bufferSize: UInt32(bufferSize),
@@ -128,5 +129,9 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
         } catch {
             print("Unable to start AVAudioEngine: \(error.localizedDescription)")
         }
+    }
+    
+    private func useObserver() {
+        _ = retainedObserver
     }
 }
