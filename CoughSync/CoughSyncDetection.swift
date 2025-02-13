@@ -21,6 +21,7 @@ import SpeziScheduler
 import SwiftUI
 import AVFoundation
 import SoundAnalysis
+import Speech
 
 @Observable
 @MainActor
@@ -28,6 +29,7 @@ class CoughDetection: NSObject, SNResultsObserving {
     private let audioRecorder = AVAudioEngine()
     private let analyser: SNAudioStreamAnalyzer
     private var request: SNClassifySoundRequest?
+   // private var recognitionRequest: SFSpeechRecognitionRequest
     
     var coughCount = 0
     private var coughTime: Date?
@@ -47,8 +49,12 @@ class CoughDetection: NSObject, SNResultsObserving {
     }
                              
     func listen() {
+        print("hello from listen")
         let inputNode = audioRecorder.inputNode
+        //self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         let recordingFormat = inputNode.outputFormat(forBus: 0)
+        if recordingFormat.sampleRate == 0.0 { return }
+        //inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in self.recognitionRequest.append(buffer) }
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -58,6 +64,7 @@ class CoughDetection: NSObject, SNResultsObserving {
         
         
         do {
+            print("hello from request")
             self.request = try SNClassifySoundRequest(mlModel: CoughClassifier().model)
             try self.analyser.add(self.request!, withObserver: self)
             
@@ -78,6 +85,7 @@ class CoughDetection: NSObject, SNResultsObserving {
            // DispatchQueue.main.async {
                // guard let self = self else { return }
                 do {
+                    print("hello from recording")
                     try self.audioRecorder.start()
                 } catch {
                     print("error with analysis \(error)")
@@ -88,17 +96,21 @@ class CoughDetection: NSObject, SNResultsObserving {
         }
     }
 
-    func analyseAudio(buffer: AVAudioBuffer, at time: AVAudioTime) {
-        self.analyser.analyze(buffer, atAudioFramePosition: time.sampleTime)
-    }
+   // func analyseAudio(buffer: AVAudioBuffer, at time: AVAudioTime) {
+   //     self.analyser.analyze(buffer, atAudioFramePosition: time.sampleTime)
+   // }
                              
     func stopListen() {
+        print("hello from stopListen")
         audioRecorder.stop()
         audioRecorder.inputNode.removeTap(onBus: 0)
     }
                              
     nonisolated func request(_ request: SNRequest, didProduce result: SNResult) {
+        print("hi from request")
         guard let result = result as? SNClassificationResult else { return }
+        
+        print("\(result.classifications.first)")
         
         if let bestClassification = result.classifications.first, bestClassification.identifier  == "Cough",
             bestClassification.confidence > 0.8 {
