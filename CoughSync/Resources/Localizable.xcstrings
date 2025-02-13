@@ -102,6 +102,9 @@
         }
       }
     },
+    "Cough Count: %lld" : {
+    
+    },
     "Cough Count" : {
 
     },
@@ -198,6 +201,9 @@
           }
         }
       }
+    },
+    "Identifying Cough..." : {
+    
     },
     "Hourly Coughs (Today)" : {
 
@@ -303,6 +309,9 @@
         }
       }
     },
+    "No Sound Detected" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -394,6 +403,12 @@
         }
       }
     },
+    "Start sound detection" : {
+
+    },
+    "Stop sound detection" : {
+
+    },
     "Swift Package Manager" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -404,6 +419,9 @@
           }
         }
       }
+    },
+    "Tap the microphone to start detecting" : {
+
     },
     "Tell us about your cough every week." : {
 
