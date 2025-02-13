@@ -11,7 +11,7 @@ struct HomeView: View {
     enum Tabs: String {
         case schedule
         case contact
-        case coughTracking  
+        case coughTracking
         case coughDetection
     }
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
@@ -32,7 +32,7 @@ struct HomeView: View {
                 CoughModelView()
             }
             .customizationID("home.coughdetection")
-    
+
 //            Tab("Contacts", systemImage: "person.fill", value: .contact) {
 //                Contacts(presentingAccount: $presentingAccount)
 //            }
@@ -60,12 +60,3 @@ struct HomeView: View {
         }
 }
 #endif
-
-
-
-
-
-
-
-
-

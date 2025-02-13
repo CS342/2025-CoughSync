@@ -35,7 +35,7 @@ class CoughTracker: ObservableObject {
     //            UserDefaults.standard.set(encoded, forKey: storageKey)
     //        }
     //    }
-//    
+//
 //    private func loadCoughEvents() {
 //        if let savedData = UserDefaults.standard.data(forKey: storageKey),
 //           let decoded = try? JSONDecoder().decode([CoughEvent].self, from: savedData) {

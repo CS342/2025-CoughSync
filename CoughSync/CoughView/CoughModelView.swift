@@ -1,5 +1,4 @@
 //
-
 // This source file is part of the CoughSync based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2025 Stanford University
@@ -21,42 +20,60 @@ struct CoughModelView: View {
     var body: some View {
         VStack {
             Spacer()
-            if !viewModel.detectionStarted {
+            detectionStatusView()
+            Spacer()
+            microphoneButton()
+        }
+        .padding()
+    }
+    
+    @ViewBuilder
+    private func detectionStatusView() -> some View {
+        if !viewModel.detectionStarted {
+            VStack(spacing: 10) {
                 ContentUnavailableView(
                     "No Sound Detected",
                     systemImage: "waveform.badge.magnifyingglass",
                     description: Text("Tap the microphone to start detecting")
                 )
-            } else if let predictedSound = viewModel.identifiedSound {
-                VStack(spacing: 10) {
-                    Text(predictedSound.0)
-                        .font(.system(size: 26))
-                    Text("Cough Count: \(viewModel.coughCount)")
-                }
-                .multilineTextAlignment(.center)
-                .padding()
-                .foregroundStyle(.secondary)
-                .background(content: {
-                    RoundedRectangle(cornerRadius: 14).fill(.ultraThinMaterial)
-                })
-            } else {ProgressView("Identifying Cough...")}
-            
-            Spacer()
-            
-            Button(action: {
-                withAnimation {
-                    viewModel.detectionStarted.toggle()
-                }
-                if viewModel.detectionStarted {
-                    viewModel.startListening()
-                } else {
-                    viewModel.stopListening()
-                }
-            }, label: {
-                microphoneImage
-            })
-        } .padding()
+                Text("Cough Count: \(viewModel.coughCount)")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+            }
+        } else if let predictedSound = viewModel.identifiedSound {
+            VStack(spacing: 10) {
+                Text(predictedSound.0)
+                    .font(.system(size: 26))
+                Text("Cough Count: \(viewModel.coughCount)")
+            }
+            .multilineTextAlignment(.center)
+            .padding()
+            .foregroundStyle(.secondary)
+            .background(RoundedRectangle(cornerRadius: 14).fill(.ultraThinMaterial))
+        } else {
+            ProgressView("Identifying Cough...")
+        }
     }
+    
+    private func microphoneButton() -> some View {
+        Button(action: {
+            toggleListening()
+        }, label: {
+            microphoneImage
+        })
+    }
+
+    private func toggleListening() {
+        withAnimation {
+            viewModel.detectionStarted.toggle()
+        }
+        if viewModel.detectionStarted {
+            viewModel.startListening()
+        } else {
+            viewModel.stopListening()
+        }
+    }
+
     private var microphoneImage: some View {
         Image(systemName: viewModel.detectionStarted ? "stop.fill" : "mic.fill")
             .font(.system(size: 50))
