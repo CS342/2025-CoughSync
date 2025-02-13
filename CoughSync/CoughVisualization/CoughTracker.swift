@@ -18,7 +18,7 @@ struct CoughEvent: Identifiable, Codable {
 class CoughTracker: ObservableObject {
     @Published var coughEvents: [CoughEvent] = []
     
-    //private let storageKey = "coughData"
+    // private let storageKey = "coughData"
     
     init() {
        // loadCoughEvents()
@@ -36,7 +36,7 @@ class CoughTracker: ObservableObject {
     //        }
     //    }
 //    
-//    //private func loadCoughEvents() {
+//    private func loadCoughEvents() {
 //        if let savedData = UserDefaults.standard.data(forKey: storageKey),
 //           let decoded = try? JSONDecoder().decode([CoughEvent].self, from: savedData) {
 //            coughEvents = decoded
