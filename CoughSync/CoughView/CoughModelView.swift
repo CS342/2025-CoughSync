@@ -13,7 +13,6 @@
 //
 
 import SwiftUI
-
 struct CoughModelView: View {
     @State var viewModel = SoundDetectionViewModel()
     
@@ -27,6 +26,18 @@ struct CoughModelView: View {
         .padding()
     }
     
+    private var microphoneImage: some View {
+        Image(systemName: viewModel.detectionStarted ? "stop.fill" : "mic.fill")
+            .font(.system(size: 50))
+            .padding(30)
+            .background(viewModel.detectionStarted ? .gray.opacity(0.7) : .blue)
+            .foregroundStyle(.white)
+            .clipShape(Circle())
+            .shadow(color: .gray, radius: 5)
+            .contentTransition(.symbolEffect(.replace))
+            .accessibilityLabel(viewModel.detectionStarted ? "Stop sound detection" : "Start sound detection")
+    }
+
     @ViewBuilder
     private func detectionStatusView() -> some View {
         if !viewModel.detectionStarted {
@@ -62,7 +73,7 @@ struct CoughModelView: View {
             microphoneImage
         })
     }
-
+    
     private func toggleListening() {
         withAnimation {
             viewModel.detectionStarted.toggle()
@@ -72,17 +83,5 @@ struct CoughModelView: View {
         } else {
             viewModel.stopListening()
         }
-    }
-
-    private var microphoneImage: some View {
-        Image(systemName: viewModel.detectionStarted ? "stop.fill" : "mic.fill")
-            .font(.system(size: 50))
-            .padding(30)
-            .background(viewModel.detectionStarted ? .gray.opacity(0.7) : .blue)
-            .foregroundStyle(.white)
-            .clipShape(Circle())
-            .shadow(color: .gray, radius: 5)
-            .contentTransition(.symbolEffect(.replace))
-            .accessibilityLabel(viewModel.detectionStarted ? "Stop sound detection" : "Start sound detection")
     }
 }
