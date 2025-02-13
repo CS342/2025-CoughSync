@@ -13,8 +13,8 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case schedule
-        case contact
-        case coughTracking  // ✅ Added a new case for Cough Tracking
+        case profile
+        case coughTracking
     }
 
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
@@ -30,10 +30,10 @@ struct HomeView: View {
             .customizationID("home.schedule")
 
     
-            Tab("Contacts", systemImage: "person.fill", value: .contact) {
-                Contacts(presentingAccount: $presentingAccount)
+            Tab("Profile", systemImage: "person.circle.fill", value: .profile) {
+                ProfileView(presentingAccount: $presentingAccount)
             }
-            .customizationID("home.contacts")
+            .customizationID("home.profile")
 
         
             Tab("Cough Tracking", systemImage: "waveform.path.ecg", value: .coughTracking) {
