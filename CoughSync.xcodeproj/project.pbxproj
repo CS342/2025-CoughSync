@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -140,6 +140,11 @@
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		252FC3102D5DC6520043712C /* CoughDetection */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughDetection; sourceTree = "<group>"; };
+		252FC3112D5DC7760043712C /* CoughView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughView; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		653A254A283387FE005D4D48 /* Frameworks */ = {
@@ -288,6 +293,8 @@
 		653A254F283387FE005D4D48 /* CoughSync */ = {
 			isa = PBXGroup;
 			children = (
+				252FC3112D5DC7760043712C /* CoughView */,
+				252FC3102D5DC6520043712C /* CoughDetection */,
 				2FC975A72978F11A00BA99FE /* HomeView.swift */,
 				653A2550283387FE005D4D48 /* CoughSync.swift */,
 				2F5E32BC297E05EA003432F8 /* CoughSyncDelegate.swift */,
@@ -365,6 +372,10 @@
 			dependencies = (
 				A9E1D3432C67A3F800CED217 /* PBXTargetDependency */,
 				56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				252FC3102D5DC6520043712C /* CoughDetection */,
+				252FC3112D5DC7760043712C /* CoughView */,
 			);
 			name = CoughSync;
 			packageProductDependencies = (
