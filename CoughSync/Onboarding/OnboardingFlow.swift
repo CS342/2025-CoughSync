@@ -39,7 +39,6 @@ struct OnboardingFlow: View {
     var body: some View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
-            InterestingModules()
             
             if !FeatureFlags.disableFirebase {
                 AccountOnboarding()
@@ -56,6 +55,8 @@ struct OnboardingFlow: View {
             if !localNotificationAuthorization {
                 NotificationPermissions()
             }
+            OnboardingQuestionnaire()
+            ProfileQuestionnaire()
         }
             .interactiveDismissDisabled(!completedOnboardingFlow)
             .onChange(of: scenePhase, initial: true) {

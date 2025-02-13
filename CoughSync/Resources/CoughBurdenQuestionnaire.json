@@ -49,12 +49,12 @@
     {
       "linkId": "80dc8153-5b61-4b1c-8dda-e9ebeaa63fc7",
       "type": "choice",
-      "text": "In the last 2 weeks, how many times a day have you had coughing bouts?",
+      "text": "In the last week, how many times a day have you had coughing bouts?",
       "answerOption": [
         {
           "valueCoding": {
             "id": "8e37892c-2f54-4912-8be0-6c9124570642",
-            "code": "1---all-of-the-time",
+            "code": "1",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "1 - All of the time"
           }
@@ -62,7 +62,7 @@
         {
           "valueCoding": {
             "id": "b764ebc3-25de-4f02-c658-d27d6827a850",
-            "code": "2---most-of-the-time",
+            "code": "2",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "2 - Most of the time"
           }
@@ -70,7 +70,7 @@
         {
           "valueCoding": {
             "id": "230770c1-a162-4a52-9afe-f21e34740a5f",
-            "code": "3---several-times-during-the-day",
+            "code": "3",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "3 - Several times during the day"
           }
@@ -78,7 +78,7 @@
         {
           "valueCoding": {
             "id": "2231e817-6b25-4ac3-bc56-6e76199a0494",
-            "code": "4---some-times-during-the-day",
+            "code": "4",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "4 - Some times during the day"
           }
@@ -86,7 +86,7 @@
         {
           "valueCoding": {
             "id": "0826f1f9-ebce-4c36-8f3f-09931c343e3a",
-            "code": "5---occasionally-through-the-day",
+            "code": "5",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "5 - Occasionally through the day"
           }
@@ -94,7 +94,7 @@
         {
           "valueCoding": {
             "id": "f2209262-7690-49e8-8454-639fef4bef99",
-            "code": "6---rarely",
+            "code": "6",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "6 - Rarely"
           }
@@ -102,7 +102,7 @@
         {
           "valueCoding": {
             "id": "f7240412-f1a8-42ea-98cf-8e497c19f856",
-            "code": "7---none",
+            "code": "7",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
             "display": "7 - None"
           }
@@ -113,7 +113,7 @@
     {
       "linkId": "e61212d0-2522-4f3c-faba-73bb9044c357",
       "type": "choice",
-      "text": "In the last 2 weeks, which of the following factors triggered or worsened your cough?",
+      "text": "In the last week, which of the following factors triggered or worsened your cough?",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -181,7 +181,7 @@
     {
       "linkId": "81ad20e6-d2a7-48c3-866d-5240bf1d6868",
       "type": "choice",
-      "text": "In the last 2 weeks, have you had a lot of energy?",
+      "text": "In the last week, have you had a lot of energy?",
       "required": true,
       "answerOption": [
         {
@@ -245,7 +245,7 @@
     {
       "linkId": "c7495877-a09a-47cb-9968-e9606a06eae2",
       "type": "choice",
-      "text": "In the last 2 weeks, has your cough disturbed your sleep?",
+      "text": "In the last week, has your cough disturbed your sleep?",
       "required": true,
       "answerOption": [
         {
@@ -309,7 +309,7 @@
     {
       "linkId": "b75315dc-db15-4e0c-8235-82f956b4b211",
       "type": "choice",
-      "text": "In the last 2 weeks, my cough has interfered with my job, or other daily tasks.",
+      "text": "In the last week, my cough has interfered with my job, or other daily tasks.",
       "required": true,
       "answerOption": [
         {
