@@ -54,7 +54,8 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
                 request.overlapFactor = overlapFactor
             }
             
-            // self.subject = subject
+            self.subject = subject
+            useSubject()
             try startAnalysis((request, observer))
         } catch {
             print("Unable to prepare request with Sound Classifier: \(error.localizedDescription)")
@@ -133,5 +134,8 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
     
     private func useObserver() {
         _ = retainedObserver
+    }
+    private func useSubject() {
+        _ = subject
     }
 }
