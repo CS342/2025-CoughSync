@@ -22,7 +22,7 @@ struct CoughChartView: View {
     let title: LocalizedStringResource
     let isWeekly: Bool
 
-    @State private var selectedElement: CoughData?
+   // @State private var selectedElement: CoughData?
 
     let calendar = Calendar.current
 
