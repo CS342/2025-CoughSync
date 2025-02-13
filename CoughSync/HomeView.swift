@@ -5,41 +5,38 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
 @_spi(TestingSupport) import SpeziAccount
 import SwiftUI
-
-
 struct HomeView: View {
     enum Tabs: String {
         case schedule
         case contact
-        case coughTracking  // ✅ Added a new case for Cough Tracking
+        case coughTracking  
+        case coughDetection
     }
-
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @AppStorage(StorageKeys.tabViewCustomization) private var tabViewCustomization = TabViewCustomization()
-
     @State private var presentingAccount = false
-
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
                 ScheduleView(presentingAccount: $presentingAccount)
             }
             .customizationID("home.schedule")
-
-    
-            Tab("Contacts", systemImage: "person.fill", value: .contact) {
-                Contacts(presentingAccount: $presentingAccount)
-            }
-            .customizationID("home.contacts")
-
-        
             Tab("Cough Tracking", systemImage: "waveform.path.ecg", value: .coughTracking) {
                 CoughTrackerView()
             }
             .customizationID("home.coughtracking")
+            
+            Tab("Cough Detection", systemImage: "speaker.wave.3.fill", value: .coughDetection) {
+                CoughModelView()
+            }
+            .customizationID("home.coughdetection")
+    
+//            Tab("Contacts", systemImage: "person.fill", value: .contact) {
+//                Contacts(presentingAccount: $presentingAccount)
+//            }
+//            .customizationID("home.contacts")
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
@@ -51,14 +48,11 @@ struct HomeView: View {
         }
     }
 }
-
-
 #if DEBUG
 #Preview {
     var details = AccountDetails()
     details.userId = "lelandstanford@stanford.edu"
     details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
-
     return HomeView()
         .previewWith(standard: CoughSyncStandard()) {
             CoughSyncScheduler()
@@ -66,3 +60,12 @@ struct HomeView: View {
         }
 }
 #endif
+
+
+
+
+
+
+
+
+
