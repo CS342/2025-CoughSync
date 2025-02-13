@@ -11,4 +11,5 @@ import Foundation
 enum QuestionnaireType: String {
     case profile = "Profile"
     case checkIn = "CheckIn"
+    case morningCheckIn = "MorningCheckIn"
 }
