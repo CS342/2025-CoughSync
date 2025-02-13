@@ -95,15 +95,21 @@
     "Cough Sync" : {
 
     },
+    "Coughing Tracking" : {
+
+    },
     "CoughSync" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi\nCoughSync"
+            "value" : "CoughSync"
           }
         }
       }
+    },
+    "Get Started" : {
+
     },
     "Grant Access" : {
       "localizations" : {
@@ -154,6 +160,9 @@
           }
         }
       }
+    },
+    "Help us understand your health better." : {
+
     },
     "HL7 FHIR" : {
       "localizations" : {
@@ -226,6 +235,7 @@
       }
     },
     "Learn More" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -295,6 +305,9 @@
         }
       }
     },
+    "Please complete the questionnaire to personalize your experience." : {
+
+    },
     "Please fill out the Social Support Questionnaire every day." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -305,6 +318,9 @@
           }
         }
       }
+    },
+    "Profile Questionnaire" : {
+
     },
     "Questionnaires" : {
 
@@ -320,6 +336,7 @@
       }
     },
     "Spezi Modules" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -350,6 +367,7 @@
       }
     },
     "Swift Package Manager" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -363,6 +381,7 @@
 
     },
     "The Spezi Framework" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -397,7 +416,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Framework builds the foundation of this application."
+            "value" : "Monitor your coughing patterns with ease."
           }
         }
       }
@@ -407,12 +426,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi uses the Swift Package Manager to import it as a dependency."
+            "value" : "Check in regularly to track how coughing affects your quality of life and see your progress over time."
           }
         }
       }
     },
     "WELCOME_AREA3_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -427,10 +447,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This application demonstrates several Spezi features & modules."
+            "value" : "This application helps you track and manage your coughing."
           }
         }
       }
+    },
+    "Well-Being Tracking" : {
+
     },
     "Your Account" : {
       "localizations" : {

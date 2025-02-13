@@ -61,7 +61,7 @@ actor CoughSyncStandard: Standard,
     }
 
     // periphery:ignore:parameters isolation
-    func add(response: ModelsR4.QuestionnaireResponse, isolation: isolated (any Actor)? = #isolation) async {
+    func add(response: ModelsR4.QuestionnaireResponse, questionnaireType: QuestionnaireType, isolation: isolated (any Actor)? = #isolation) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
         
         if FeatureFlags.disableFirebase {
@@ -72,7 +72,7 @@ actor CoughSyncStandard: Standard,
         
         do {
             try await configuration.userDocumentReference
-                .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
+                .collection("\(questionnaireType.rawValue)QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
                 .document(id) // Set the document identifier to the id of the response.
                 .setData(from: response)
         } catch {
