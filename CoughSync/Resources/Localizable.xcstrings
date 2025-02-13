@@ -81,6 +81,9 @@
         }
       }
     },
+    "Cough at %@" : {
+
+    },
     "Cough Burden Questionnaire" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -91,6 +94,9 @@
           }
         }
       }
+    },
+    "Cough Counter: %lld" : {
+
     },
     "Cough Sync" : {
 
@@ -339,6 +345,9 @@
         }
       }
     },
+    "Start Listening" : {
+
+    },
     "Start Questionnaire" : {
       "localizations" : {
         "en" : {
@@ -348,6 +357,9 @@
           }
         }
       }
+    },
+    "Stop Listening" : {
+
     },
     "Swift Package Manager" : {
       "localizations" : {

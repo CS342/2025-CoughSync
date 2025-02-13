@@ -42,6 +42,7 @@ struct ScheduleView: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
+            CoughModelView()
         }
     }
     
