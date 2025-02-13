@@ -19,27 +19,30 @@ class CoughTracker: ObservableObject {
     @Published var coughEvents: [CoughEvent] = []
     
     private let storageKey = "coughData"
-
+    
     init() {
-        loadCoughEvents()
+       // loadCoughEvents()
     }
     
-    func addCoughEvent(date: Date) {
-        let newCough = CoughEvent(date: date)
-        coughEvents.append(newCough)
-        saveCoughEvents()
-    }
+    //    func addCoughEvent(date: Date) {
+    //        let newCough = CoughEvent(date: date)
+    //        coughEvents.append(newCough)
+    //        saveCoughEvents()
+    //    }
     
-    private func saveCoughEvents() {
-        if let encoded = try? JSONEncoder().encode(coughEvents) {
-            UserDefaults.standard.set(encoded, forKey: storageKey)
-        }
-    }
+    //    private func saveCoughEvents() {
+    //        if let encoded = try? JSONEncoder().encode(coughEvents) {
+    //            UserDefaults.standard.set(encoded, forKey: storageKey)
+    //        }
+    //    }
     
     private func loadCoughEvents() {
         if let savedData = UserDefaults.standard.data(forKey: storageKey),
            let decoded = try? JSONDecoder().decode([CoughEvent].self, from: savedData) {
             coughEvents = decoded
+            print("Loaded \(coughEvents.count) existing cough events from UserDefaults")
+        } else {
+            print("No existing cough data found in UserDefaults")
         }
     }
 }

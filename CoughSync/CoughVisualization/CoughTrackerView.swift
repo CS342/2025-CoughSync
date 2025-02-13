@@ -25,7 +25,6 @@ struct CoughTrackerView: View {
                     )
                 }
 
-              
                 Section {
                     CoughChartView(
                         coughEvents: coughTracker.coughEvents,
@@ -40,6 +39,7 @@ struct CoughTrackerView: View {
             .onAppear {
                 if coughTracker.coughEvents.isEmpty {
                     coughTracker.coughEvents = coughDataReceiver.generateFakeCoughData()
+                    print("Using fake cough data: \(coughTracker.coughEvents.count) events")
                 }
             }
         }

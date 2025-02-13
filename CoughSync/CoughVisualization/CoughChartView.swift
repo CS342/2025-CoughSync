@@ -83,7 +83,6 @@ struct CoughChartView: View {
                 Text("\(latest.date.formatted(isWeekly ? .dateTime.weekday() : .dateTime.hour().minute())): \(latest.count) coughs")
                     .font(.footnote)
                     .foregroundColor(.gray)
-                    .listRowSeparator(.hidden)
             }
 
             chart
