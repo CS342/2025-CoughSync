@@ -5,13 +5,12 @@
 //  Created by Ethan Bell on 12/2/2025.
 //
 
+import Combine
 import Foundation
 import SoundAnalysis
-import Combine
 
 // Observer object that is called as analysis results are found.
-class ResultsObserver : NSObject, SNResultsObserving {
-    
+class ResultsObserver: NSObject, SNResultsObserving {
     // 1.
     private let subject: PassthroughSubject<SNClassificationResult, Error>
     

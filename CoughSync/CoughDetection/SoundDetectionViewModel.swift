@@ -5,30 +5,26 @@
 //  Created by Ethan Bell on 12/2/2025.
 //
 
+import Combine
 import Foundation
 import Observation
 import SoundAnalysis
-import Combine
 
 @Observable
 @MainActor
 class SoundDetectionViewModel {
+    @ObservationIgnored let soundAnalysisManager = SoundAnalysisManager.shared
     
-    // 1.
-    @ObservationIgnored
-    let soundAnalysisManager = SoundAnalysisManager.shared
-    
-    @ObservationIgnored
-    var lastTime: Double = 0
+    @ObservationIgnored var lastTime: Double = 0
     
     var detectionStarted = false
     var coughCount = 0
     var identifiedSound: (identifier: String, confidence: String)?
-    private var detectionCancellable: AnyCancellable? = nil
+    private var detectionCancellable: AnyCancellable?
     
-    // 2.
     private func formattedDetectionResult(_ result: SNClassificationResult) -> (identifier: String, confidence: String)? {
-        guard let classification = result.classifications.first else { return nil }
+        guard let classification = result.classifications.first else {
+            return nil }
         
         if lastTime == 0 {
             lastTime = result.timeRange.start.seconds
@@ -39,7 +35,7 @@ class SoundDetectionViewModel {
         
         let displayName = classification.identifier.replacingOccurrences(of: "_", with: " ").capitalized
         let confidence = classification.confidence
-        let confidencePercentString = String(format: "%.2f%%", confidence  * 100.0)
+        let confidencePercentString = String(format: "%.2f%%", confidence * 100.0)
         print("\(displayName): \(confidencePercentString) confidence.\n")
         
         if displayName == "Coughs" {
@@ -49,22 +45,24 @@ class SoundDetectionViewModel {
         return (displayName, confidencePercentString)
     }
     
-    // 3.
-    func startDetection() {
+    func startListening() {
         let classificationSubject = PassthroughSubject<SNClassificationResult, Error>()
         
         detectionCancellable = classificationSubject
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { _ in self.detectionStarted = false },
-                  receiveValue: { result in
-                self.identifiedSound = self.formattedDetectionResult(result)
-            })
+            .sink(
+                receiveCompletion: { _ in
+                    self.detectionStarted = false
+                },
+                receiveValue: { result in
+                    self.identifiedSound = self.formattedDetectionResult(result)
+                }
+            )
         
         soundAnalysisManager.startSoundClassification(subject: classificationSubject)
     }
     
-    // 4.
-    func stopDetection() {
+    func stopListening() {
         lastTime = 0
         identifiedSound = nil
         soundAnalysisManager.stopSoundClassification()
