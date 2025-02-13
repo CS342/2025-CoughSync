@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665A3F72D5C01C10055D1B2 /* AppIcon.png */; };
 		2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */; };
 		2F3D4ABC2A4E7C290068FB2F /* SpeziScheduler in Frameworks */ = {isa = PBXBuildFile; productRef = 2F3D4ABB2A4E7C290068FB2F /* SpeziScheduler */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -22,14 +23,12 @@
 		2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FB099B52A875E2B00B20952 /* HealthKitOnFHIR */; };
 		2FBD738C2A3BD150004228E7 /* SpeziScheduler in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBD738B2A3BD150004228E7 /* SpeziScheduler */; };
 		2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */; };
-		2FC3439129EE6349002D773C /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */; };
 		2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */; };
 		2FC975A82978F11A00BA99FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* HomeView.swift */; };
 		2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */; };
 		2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */; };
 		2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3029EDD7CA004B9AB4 /* HealthKitPermissions.swift */; };
 		2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */; };
-		2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */; };
 		2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */; };
 		2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */; };
 		2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */; };
@@ -50,6 +49,10 @@
 		2FE5DC9C29EDD9EF004B9AB4 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */; };
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8D2A8729D600042B76 /* CoughSyncStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* CoughSyncStandard.swift */; };
+		4913AC822D5AC5B80030C90D /* ProfileQuestionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913AC812D5AC5B80030C90D /* ProfileQuestionnaire.swift */; };
+		4913AC8E2D5AE0310030C90D /* ProfileQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 4913AC8D2D5AE0270030C90D /* ProfileQuestionnaire.json */; };
+		4913AC902D5AE07F0030C90D /* ProfileQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */; };
+		4913AC952D5BDE050030C90D /* OnboardingQuestionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913AC942D5BDE050030C90D /* OnboardingQuestionnaire.swift */; };
 		492845522D4AB56800C737C8 /* CoughBurdenQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */; };
 		49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */; };
 		49F06F5B2D533E7B00A7E170 /* CoughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */; };
@@ -94,6 +97,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0665A3F72D5C01C10055D1B2 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoughSync.docc; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTestingSetup.swift; sourceTree = "<group>"; };
@@ -106,12 +110,10 @@
 		2FC94CD4298B0A1D009C8209 /* CoughSync.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughSync.xctestplan; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ConsentDocument.md; sourceTree = "<group>"; };
 		2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		2FE5DC3029EDD7CA004B9AB4 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
 		2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
-		2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
 		2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
@@ -121,6 +123,10 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* CoughSyncStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoughSyncStandard.swift; sourceTree = "<group>"; };
+		4913AC812D5AC5B80030C90D /* ProfileQuestionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileQuestionnaire.swift; sourceTree = "<group>"; };
+		4913AC8D2D5AE0270030C90D /* ProfileQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ProfileQuestionnaire.json; sourceTree = "<group>"; };
+		4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = ProfileQuestionnaire.json.license; sourceTree = "<group>"; };
+		4913AC942D5BDE050030C90D /* OnboardingQuestionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingQuestionnaire.swift; sourceTree = "<group>"; };
 		492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoughBurdenQuestionnaire.json; sourceTree = "<group>"; };
 		49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughBurdenQuestionnaire.json.license; sourceTree = "<group>"; };
 		49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoughClassifier.mlmodel; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		252FC3102D5DC6520043712C /* CoughDetection */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughDetection; sourceTree = "<group>"; };
 		252FC3112D5DC7760043712C /* CoughView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughView; sourceTree = "<group>"; };
+		0665A4212D5C2D180055D1B2 /* CoughVisualization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughVisualization; sourceTree = "<group>"; };
+		4913AC9F2D5C4CF40030C90D /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,11 +231,12 @@
 			children = (
 				2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */,
 				2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */,
-				2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */,
 				2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */,
 				2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */,
 				2FE5DC3029EDD7CA004B9AB4 /* HealthKitPermissions.swift */,
 				2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */,
+				4913AC812D5AC5B80030C90D /* ProfileQuestionnaire.swift */,
+				4913AC942D5BDE050030C90D /* OnboardingQuestionnaire.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -235,11 +244,13 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0665A3F72D5C01C10055D1B2 /* AppIcon.png */,
+				4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */,
+				4913AC8D2D5AE0270030C90D /* ProfileQuestionnaire.json */,
 				49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */,
 				49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */,
 				49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */,
 				492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */,
-				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
@@ -295,6 +306,7 @@
 			children = (
 				252FC3112D5DC7760043712C /* CoughView */,
 				252FC3102D5DC6520043712C /* CoughDetection */,
+				4913AC9F2D5C4CF40030C90D /* Models */,
 				2FC975A72978F11A00BA99FE /* HomeView.swift */,
 				653A2550283387FE005D4D48 /* CoughSync.swift */,
 				2F5E32BC297E05EA003432F8 /* CoughSyncDelegate.swift */,
@@ -302,6 +314,7 @@
 				2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2729EDD38D004B9AB4 /* Contacts */,
+				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
 				A9A3DCC62C75CB8D00FC9B69 /* Firestore */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
@@ -376,6 +389,8 @@
 			fileSystemSynchronizedGroups = (
 				252FC3102D5DC6520043712C /* CoughDetection */,
 				252FC3112D5DC7760043712C /* CoughView */,
+				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
+				4913AC9F2D5C4CF40030C90D /* Models */,
 			);
 			name = CoughSync;
 			packageProductDependencies = (
@@ -521,15 +536,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4913AC902D5AE07F0030C90D /* ProfileQuestionnaire.json.license in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
-				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
 				49F06F5F2D53468400A7E170 /* CoughClassifier.mlmodel.license in Resources */,
+				0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				492845522D4AB56800C737C8 /* CoughBurdenQuestionnaire.json in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
+				4913AC8E2D5AE0310030C90D /* ProfileQuestionnaire.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,12 +574,12 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
-				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* HomeView.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				A9A3DCC82C75CBBD00FC9B69 /* FirebaseConfiguration.swift in Sources */,
+				4913AC822D5AC5B80030C90D /* ProfileQuestionnaire.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* CoughSyncStandard.swift in Sources */,
@@ -574,6 +591,7 @@
 				2F5E32BD297E05EA003432F8 /* CoughSyncDelegate.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* CoughSyncScheduler.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
+				4913AC952D5BDE050030C90D /* OnboardingQuestionnaire.swift in Sources */,
 				653A2551283387FE005D4D48 /* CoughSync.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,

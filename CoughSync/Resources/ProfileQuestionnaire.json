@@ -1,0 +1,176 @@
+{
+  "resourceType": "Questionnaire",
+  "language": "en-US",
+  "id": "profilequestionnaire",
+  "name": "ProfileQuestionnaire",
+  "title": "Initial Assessment",
+  "description": "This survey asseses the cough burden profile.",
+  "version": "1",
+  "status": "draft",
+  "publisher": "RAND Corp",
+  "meta": {
+    "profile": [
+      "http://spezi.health/fhir/StructureDefinition/sdf-Questionnaire"
+    ],
+    "tag": [
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "en-US",
+        "display": "English"
+      }
+    ]
+  },
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+            "display": "Cough Burden Profile"
+          }
+        ]
+      }
+    }
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "item": [
+    {
+      "linkId": "9664bab9-13a4-49c5-8d2c-10505f240503",
+      "type": "boolean",
+      "text": "Do you sleep with your phone nearby?"
+    },
+    {
+      "linkId": "eca04ccf-5eef-4029-ca1e-d92f1e527037",
+      "type": "time",
+      "text": "What time do you usually go to sleep?",
+      "required": false
+    },
+    {
+      "linkId": "bba06a37-ec51-489d-fadb-91f3362f26df",
+      "type": "integer",
+      "text": "How many hours do you usually sleep per night?",
+      "required": false,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+          "valueInteger": 0
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 24
+        }
+      ]
+    },
+    {
+      "linkId": "da10aaed-4b2c-4edb-f0f9-b68387915ddc",
+      "type": "choice",
+      "text": "Do you frequently wake up at night due to coughing?",
+      "required": false,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "745b5b99-1422-4178-aacf-043c22fe0262",
+            "code": "yes",
+            "system": "urn:uuid:1a3debb4-bbcc-4dde-bc4d-bccc32551aaa",
+            "display": "Yes"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "a076794a-653a-4e02-8ec1-953932b0c0b4",
+            "code": "no",
+            "system": "urn:uuid:1a3debb4-bbcc-4dde-bc4d-bccc32551aaa",
+            "display": "No"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "796aba69-4248-453b-c670-2cdcfa1e0e30",
+            "code": "sometimes",
+            "system": "urn:uuid:1a3debb4-bbcc-4dde-bc4d-bccc32551aaa",
+            "display": "Sometimes"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "3f44d61a-742b-40c1-bd8d-fe64b362d577",
+      "type": "open-choice",
+      "text": "Do you have any known respiratory conditions?",
+      "required": false,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "33421c45-f0e6-40f0-8248-c34542536981",
+            "code": "no",
+            "system": "urn:uuid:81f2688c-dbe0-483f-8003-93e690307f89",
+            "display": "No"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "16f2a679-f038-48d0-a56a-c743af2eafc6",
+            "code": "asthma",
+            "system": "urn:uuid:81f2688c-dbe0-483f-8003-93e690307f89",
+            "display": "Asthma"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "f9e93eff-968f-4c91-9d9f-dd834520cf6a",
+            "code": "copd",
+            "system": "urn:uuid:81f2688c-dbe0-483f-8003-93e690307f89",
+            "display": "COPD"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "460f8c04-3ec9-40ab-f9ee-002f6f8b27c9",
+            "code": "allergies",
+            "system": "urn:uuid:81f2688c-dbe0-483f-8003-93e690307f89",
+            "display": "Allergies"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "9ae651f8-286e-4931-8300-2796f8caa85f",
+      "type": "choice",
+      "text": "Do you smoke or are you exposed to secondhand smoke?",
+      "required": false,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "id": "543e42cd-8e76-4cd0-9bc2-04b4c6d54e02",
+            "code": "yes",
+            "system": "urn:uuid:485386d6-231d-4dee-c013-fd3f2caf75e5",
+            "display": "Yes"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "6e683847-e373-4d27-f798-23441dec0e03",
+            "code": "no",
+            "system": "urn:uuid:485386d6-231d-4dee-c013-fd3f2caf75e5",
+            "display": "No"
+          }
+        },
+        {
+          "valueCoding": {
+            "id": "013169f5-f994-4b07-87ee-21354abb5527",
+            "code": "sometimes",
+            "system": "urn:uuid:485386d6-231d-4dee-c013-fd3f2caf75e5",
+            "display": "Sometimes"
+          }
+        }
+      ]
+    }
+  ]
+}

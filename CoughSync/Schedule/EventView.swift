@@ -28,7 +28,10 @@ struct EventView: View {
                 }
 
                 event.complete()
-                await standard.add(response: response)
+                await standard.add(
+                    response: response,
+                    questionnaireType: QuestionnaireType.checkIn
+                )
             }
         } else {
             NavigationStack {
