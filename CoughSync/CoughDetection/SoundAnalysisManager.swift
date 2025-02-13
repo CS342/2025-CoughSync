@@ -90,7 +90,7 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
                 return
             }
             
-            let inputNode = audioRecorder.inputNode
+            _ = audioRecorder.inputNode
             let inputBus = AVAudioNodeBus(0)
             self.inputBus = inputBus
             
