@@ -72,6 +72,7 @@
       }
     },
     "Contact" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -102,10 +103,10 @@
         }
       }
     },
-    "Cough Count: %lld" : {
-    
-    },
     "Cough Count" : {
+
+    },
+    "Cough Count: %lld" : {
 
     },
     "Cough Sync" : {
@@ -134,7 +135,7 @@
 
     },
     "Day" : {
-    
+
     },
     "Get Started" : {
 
@@ -160,6 +161,7 @@
       }
     },
     "HealthKit Data Source" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -193,6 +195,7 @@
 
     },
     "HL7 FHIR" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -202,13 +205,14 @@
         }
       }
     },
-    "Identifying Cough..." : {
-    
-    },
     "Hourly Coughs (Today)" : {
 
     },
+    "Identifying Cough..." : {
+
+    },
     "Interesting Modules" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -219,6 +223,7 @@
       }
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -229,6 +234,7 @@
       }
     },
     "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -239,6 +245,7 @@
       }
     },
     "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -249,6 +256,7 @@
       }
     },
     "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -259,6 +267,7 @@
       }
     },
     "INTERESTING_MODULES_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -333,6 +342,7 @@
       }
     },
     "Onboarding" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
