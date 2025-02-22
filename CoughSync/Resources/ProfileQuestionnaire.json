@@ -52,35 +52,7 @@
             "valueMarkdown": "Do you sleep with your phone nearby?"
           }
         ]
-      },
-      "item": [
-        {
-          "linkId": "a2560fd5-de21-4504-d6fa-7547580b9d55",
-          "type": "display",
-          "text": "For better accuracy in cough detection during sleep, we recommend keeping your phone nearby (such as on a bedside table). This helps our app capture nighttime coughing more effectively, leading to more accurate reports for your doctor.",
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
-                    "code": "highlight"
-                  }
-                ]
-              }
-            }
-          ],
-          "required": false,
-          "enableWhen": [
-            {
-              "question": "9664bab9-13a4-49c5-8d2c-10505f240503",
-              "operator": "=",
-              "answerBoolean": false
-            }
-          ]
-        }
-      ]
+      }
     },
     {
       "linkId": "eca04ccf-5eef-4029-ca1e-d92f1e527037",
