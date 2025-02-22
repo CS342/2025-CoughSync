@@ -1,11 +1,10 @@
 {
   "resourceType": "Questionnaire",
-  "title": "Cough Sync",
-  "id": "coughsync",
-  "name": "CoughSync",
-  "description": "This survey asseses the cough burden profile.",
-  "resourceType": "Questionnaire",
   "language": "en-US",
+  "id": "coughburden",
+  "name": "CoughSync",
+  "title": "Cough Sync",
+  "description": "This survey asseses the cough burden profile.",
   "version": "1",
   "status": "draft",
   "publisher": "RAND Corp",
@@ -38,13 +37,9 @@
       }
     }
   ],
-  "contact": [
-    {}
-  ],
   "subjectType": [
     "Patient"
   ],
-  "id": "coughburden",
   "item": [
     {
       "linkId": "80dc8153-5b61-4b1c-8dda-e9ebeaa63fc7",
@@ -61,50 +56,34 @@
         },
         {
           "valueCoding": {
-            "id": "b764ebc3-25de-4f02-c658-d27d6827a850",
+            "id": "230770c1-a162-4a52-9afe-f21e34740a5f",
             "code": "2",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "2 - Most of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "230770c1-a162-4a52-9afe-f21e34740a5f",
-            "code": "3",
-            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "3 - Several times during the day"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "2231e817-6b25-4ac3-bc56-6e76199a0494",
-            "code": "4",
-            "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "4 - Some times during the day"
+            "display": "2 - Several times during the day"
           }
         },
         {
           "valueCoding": {
             "id": "0826f1f9-ebce-4c36-8f3f-09931c343e3a",
-            "code": "5",
+            "code": "3",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "5 - Occasionally through the day"
+            "display": "3 - Occasionally through the day"
           }
         },
         {
           "valueCoding": {
             "id": "f2209262-7690-49e8-8454-639fef4bef99",
-            "code": "6",
+            "code": "4",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "6 - Rarely"
+            "display": "4 - Rarely"
           }
         },
         {
           "valueCoding": {
             "id": "f7240412-f1a8-42ea-98cf-8e497c19f856",
-            "code": "7",
+            "code": "5",
             "system": "urn:uuid:509be6be-327e-4054-c9c6-9b50054436f0",
-            "display": "7 - None"
+            "display": "5 - None"
           }
         }
       ],
@@ -194,50 +173,34 @@
         },
         {
           "valueCoding": {
-            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
             "code": "2",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "2 - Most of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
-            "code": "3",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "3 - A good bit of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
-            "code": "4",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "4 - Some of the time"
+            "display": "2 - A good bit of the time"
           }
         },
         {
           "valueCoding": {
             "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
-            "code": "5",
+            "code": "3",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "5 - A little of the time"
+            "display": "3 - Some of the time"
           }
         },
         {
           "valueCoding": {
             "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
-            "code": "6",
+            "code": "4",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "6 - Hardly any of the time"
+            "display": "4 - A little of the time"
           }
         },
         {
           "valueCoding": {
             "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
-            "code": "7",
+            "code": "5",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "7 - None of the time"
+            "display": "5 - None of the time"
           }
         }
       ]
@@ -258,50 +221,34 @@
         },
         {
           "valueCoding": {
-            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
             "code": "2",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "2 - Most of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
-            "code": "3",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "3 - A good bit of the time"
+            "display": "2 - A good bit of the time"
           }
         },
         {
           "valueCoding": {
             "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
-            "code": "4",
+            "code": "3",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "4 - Some of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
-            "code": "5",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "5 - A little of the time"
+            "display": "3 - Some of the time"
           }
         },
         {
           "valueCoding": {
             "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
-            "code": "6",
+            "code": "4",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "6 - Hardly any of the time"
+            "display": "4 - A little of the time"
           }
         },
         {
           "valueCoding": {
             "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
-            "code": "7",
+            "code": "5",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "7 - None of the time"
+            "display": "5 - None of the time"
           }
         }
       ]
@@ -322,53 +269,43 @@
         },
         {
           "valueCoding": {
-            "id": "1cd6b4d2-3dcb-4af0-804b-9402b5d2eca4",
+            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
             "code": "2",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "2 - Most of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "77f68c62-e1a1-43c4-fc4d-7dd3eea9086c",
-            "code": "3",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "3 - A good bit of the time"
+            "display": "2 - A good bit of the time"
           }
         },
         {
           "valueCoding": {
             "id": "a8b414a2-cc78-4054-89f4-00e72e258826",
-            "code": "4",
+            "code": "3",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "4 - Some of the time"
+            "display": "3 - Some of the time"
           }
         },
         {
           "valueCoding": {
             "id": "6360cf9a-7ecc-4594-9de0-d825ea5fa14b",
-            "code": "5",
+            "code": "4",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "5 - A little of the time"
-          }
-        },
-        {
-          "valueCoding": {
-            "id": "cef80cd5-3873-4d9a-8f63-ecf6977e3d1e",
-            "code": "6",
-            "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "6 - Hardly any of the time"
+            "display": "4 - A little of the time"
           }
         },
         {
           "valueCoding": {
             "id": "de519e9a-32bf-44a1-b4ca-0abf1ad5a22d",
-            "code": "7",
+            "code": "5",
             "system": "urn:uuid:2134d3f1-c6fe-4ff8-accf-868c02da0948",
-            "display": "7 - None of the time"
+            "display": "5 - None of the time"
           }
         }
       ]
+    },
+    {
+      "linkId": "5718c088-bfb7-406e-9862-08b3b41a97c1",
+      "type": "boolean",
+      "text": "In the past week, have you taken any prescribed medication for your cough?",
+      "required": false
     }
   ]
 }

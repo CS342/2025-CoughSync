@@ -36,8 +36,8 @@ class SchedulerTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["In the last week, how many times a day have you had coughing bouts?"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars.buttons["Cancel"].exists)
 
-        XCTAssertTrue(app.staticTexts["7 - None"].exists)
-        let noButton = app.staticTexts["7 - None"]
+        XCTAssertTrue(app.staticTexts["5 - None"].exists)
+        let noButton = app.staticTexts["5 - None"]
 
         let nextButton = app.buttons["Next"]
         XCTAssertFalse(nextButton.isEnabled)
@@ -54,21 +54,27 @@ class SchedulerTests: XCTestCase {
         nextButton.tap()
         
         XCTAssertTrue(app.staticTexts["In the last week, have you had a lot of energy?"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
-        let energyButton = app.staticTexts["7 - None of the time"]
+        XCTAssertTrue(app.staticTexts["5 - None of the time"].exists)
+        let energyButton = app.staticTexts["5 - None of the time"]
         energyButton.tap()
         nextButton.tap()
         
         XCTAssertTrue(app.staticTexts["In the last week, has your cough disturbed your sleep?"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
-        let sleepButton = app.staticTexts["7 - None of the time"]
+        XCTAssertTrue(app.staticTexts["5 - None of the time"].exists)
+        let sleepButton = app.staticTexts["5 - None of the time"]
         sleepButton.tap()
         nextButton.tap()
         
         XCTAssertTrue(app.staticTexts["In the last week, my cough has interfered with my job, or other daily tasks."].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["7 - None of the time"].exists)
-        let dailyTasksButton = app.staticTexts["7 - None of the time"]
+        XCTAssertTrue(app.staticTexts["5 - None of the time"].exists)
+        let dailyTasksButton = app.staticTexts["5 - None of the time"]
         dailyTasksButton.tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(app.staticTexts["In the past week, have you taken any prescribed medication for your cough?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["No"].exists)
+        let medicationButton = app.staticTexts["No"]
+        medicationButton.tap()
         app.buttons["Done"].tap()
 
         XCTAssert(app.staticTexts["Completed"].waitForExistence(timeout: 0.5))
