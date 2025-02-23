@@ -3,6 +3,17 @@
 //  CoughSync
 //
 //  Created by Ethan Bell on 22/2/2025.
+
+// SPDX-FileCopyrightText: 2025 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
+//  SoundDetectionViewModel.swift
+//  CoughSync
+//
+//  Created by Ethan Bell on 12/2/2025.
+//
 //
 
 import Foundation
