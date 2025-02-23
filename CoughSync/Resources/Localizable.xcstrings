@@ -109,6 +109,9 @@
     "Cough Count: %lld" : {
 
     },
+    "Cough Difference: %lld" : {
+
+    },
     "Cough Sync" : {
 
     },
@@ -119,6 +122,9 @@
 
     },
     "Coughing Tracking" : {
+
+    },
+    "Coughs Today: %lld" : {
 
     },
     "CoughSync" : {
