@@ -44,7 +44,15 @@
     {
       "linkId": "9664bab9-13a4-49c5-8d2c-10505f240503",
       "type": "boolean",
-      "text": "Do you sleep with your phone nearby?"
+      "text": "Do you sleep with your phone nearby?",
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-markdown",
+            "valueMarkdown": "Do you sleep with your phone nearby?"
+          }
+        ]
+      }
     },
     {
       "linkId": "eca04ccf-5eef-4029-ca1e-d92f1e527037",
@@ -71,7 +79,7 @@
     {
       "linkId": "da10aaed-4b2c-4edb-f0f9-b68387915ddc",
       "type": "choice",
-      "text": "Do you frequently wake up at night due to coughing?",
+      "text": "Do you experience chronic nighttime awakenings due to coughing?",
       "required": false,
       "answerOption": [
         {
@@ -141,9 +149,15 @@
       ]
     },
     {
+      "linkId": "a7a1affb-7329-4385-a472-7abf2680e9cc",
+      "type": "boolean",
+      "text": "Have you been prescribed any medication for your cough or related conditions?",
+      "required": false
+    },
+    {
       "linkId": "9ae651f8-286e-4931-8300-2796f8caa85f",
       "type": "choice",
-      "text": "Do you smoke or are you exposed to secondhand smoke?",
+      "text": "Do you currently smoke or are you exposed to secondhand smoke?",
       "required": false,
       "answerOption": [
         {
