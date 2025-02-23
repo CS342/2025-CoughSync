@@ -7,7 +7,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//  SoundDetectionViewModel.swift
+//  CoughDetectionViewModel.swift
 //  CoughSync
 //
 //  Created by Ethan Bell on 12/2/2025.
@@ -20,8 +20,8 @@ import SoundAnalysis
 
 @Observable
 @MainActor
-class SoundDetectionViewModel {
-    @ObservationIgnored let soundAnalysisManager = SoundAnalysisManager.shared
+class CoughDetectionViewModel {
+    @ObservationIgnored let coughAnalysisManager = CoughAnalysisManager.shared
     
     @ObservationIgnored var lastTime: Double = 0
     
@@ -67,12 +67,12 @@ class SoundDetectionViewModel {
                 }
             )
         
-        soundAnalysisManager.startSoundClassification(subject: classificationSubject)
+        coughAnalysisManager.startCoughDetection(subject: classificationSubject)
     }
     
     func stopListening() {
         lastTime = 0
         identifiedSound = nil
-        soundAnalysisManager.stopSoundClassification()
+        coughAnalysisManager.stopCoughDetection()
     }
 }

@@ -7,7 +7,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//  SoundAnalysisManager.swift
+//  CoughAnalysisManager.swift
 //  CoughSync
 //
 //  Created by Ethan Bell on 12/2/2025.
@@ -18,8 +18,8 @@ import Foundation
 @preconcurrency import SoundAnalysis
 
 
-final class SoundAnalysisManager: NSObject, @unchecked Sendable {
-    @MainActor static let shared = SoundAnalysisManager()
+final class CoughAnalysisManager: NSObject, @unchecked Sendable {
+    @MainActor static let shared = CoughAnalysisManager()
     private let bufferSize = 8192
     
     private var audioRecorder: AVAudioEngine?
@@ -28,17 +28,18 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
     
     private var streamAnalyzer: SNAudioStreamAnalyzer?
     
-    private let analysisQueue = DispatchQueue(label: "com.createwithswift.AnalysisQueue")
+    private let analysisQueue = DispatchQueue(
+        label: "com.createwithswift.AnalysisQueue"
+    )
     
     private var retainedObserver: SNResultsObserving?
     private var subject: PassthroughSubject<SNClassificationResult, Error>?
     
     override private init() {}
     
-    func startSoundClassification(
+    func startCoughDetection(
         subject: PassthroughSubject<SNClassificationResult, Error>,
-        inferenceWindowSize: Double? = nil,
-        overlapFactor: Double? = nil
+        config: CoughDetectionConfiguration = CoughDetectionConfiguration()
     ) {
         do {
             let observer = ResultsObserver(subject: subject)
@@ -47,24 +48,25 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
             let model = soundClassifier.model
             let request = try SNClassifySoundRequest(mlModel: model)
             
-            if let inferenceWindowSize = inferenceWindowSize {
-                request.windowDuration = CMTimeMakeWithSeconds(inferenceWindowSize, preferredTimescale: 48_000)
-            }
-            if let overlapFactor = overlapFactor {
-                request.overlapFactor = overlapFactor
-            }
+            request.windowDuration = CMTimeMakeWithSeconds(
+                config.windowSize,
+                preferredTimescale: config.timescale
+            )
+            request.overlapFactor = config.overlapFactor
             
             self.subject = subject
             useSubject()
             try startAnalysis((request, observer))
         } catch {
-            print("Unable to prepare request with Sound Classifier: \(error.localizedDescription)")
+            print(
+                "Unable to prepare request with Sound Classifier: \(error.localizedDescription)"
+            )
             subject.send(completion: .failure(error))
             self.subject = nil
         }
     }
     
-    func stopSoundClassification() {
+    func stopCoughDetection() {
         autoreleasepool {
             if let audioRecorder = audioRecorder {
                 audioRecorder.stop()
@@ -82,7 +84,11 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
     private func setupAudioEngine() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try audioSession.setCategory(
+                .record,
+                mode: .measurement,
+                options: .duckOthers
+            )
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             
             audioRecorder = AVAudioEngine()
@@ -103,7 +109,9 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
 
-    private func startAnalysis(_ requestAndObserver: (request: SNRequest, observer: SNResultsObserving)) throws {
+    private func startAnalysis(
+        _ requestAndObserver: (request: SNRequest, observer: SNResultsObserving)
+    ) throws {
         setupAudioEngine()
         
         guard let audioRecorder = audioRecorder,
@@ -112,7 +120,10 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
 
         let streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
         self.streamAnalyzer = streamAnalyzer
-        try streamAnalyzer.add(requestAndObserver.request, withObserver: requestAndObserver.observer)
+        try streamAnalyzer.add(
+            requestAndObserver.request,
+            withObserver: requestAndObserver.observer
+        )
         retainedObserver = requestAndObserver.observer
         useObserver()
         self.audioRecorder?.inputNode.installTap(
@@ -121,7 +132,10 @@ final class SoundAnalysisManager: NSObject, @unchecked Sendable {
             format: inputFormat
         ) { buffer, time in
             self.analysisQueue.async {
-                self.streamAnalyzer?.analyze(buffer, atAudioFramePosition: time.sampleTime)
+                self.streamAnalyzer?.analyze(
+                    buffer,
+                    atAudioFramePosition: time.sampleTime
+                )
             }
         }
         

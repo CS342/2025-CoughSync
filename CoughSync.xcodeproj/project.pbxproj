@@ -148,9 +148,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0665A4212D5C2D180055D1B2 /* CoughVisualization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughVisualization; sourceTree = "<group>"; };
 		252FC3102D5DC6520043712C /* CoughDetection */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughDetection; sourceTree = "<group>"; };
 		252FC3112D5DC7760043712C /* CoughView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughView; sourceTree = "<group>"; };
-		0665A4212D5C2D180055D1B2 /* CoughVisualization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughVisualization; sourceTree = "<group>"; };
 		4913AC9F2D5C4CF40030C90D /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -387,9 +387,9 @@
 				56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
 				252FC3102D5DC6520043712C /* CoughDetection */,
 				252FC3112D5DC7760043712C /* CoughView */,
-				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
 				4913AC9F2D5C4CF40030C90D /* Models */,
 			);
 			name = CoughSync;
