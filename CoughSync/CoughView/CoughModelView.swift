@@ -16,7 +16,7 @@
 import SwiftUI
 
 struct CoughModelView: View {
-    @State var viewModel = SoundDetectionViewModel()
+    @State var viewModel = CoughDetectionViewModel()
     
     var body: some View {
         VStack {
