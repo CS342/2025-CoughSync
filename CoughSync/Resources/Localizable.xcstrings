@@ -211,6 +211,9 @@
     "Identifying Cough..." : {
 
     },
+    "Initial Assessment" : {
+
+    },
     "Interesting Modules" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -365,9 +368,6 @@
           }
         }
       }
-    },
-    "Profile Questionnaire" : {
-
     },
     "Questionnaires" : {
 
