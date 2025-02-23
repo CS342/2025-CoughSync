@@ -100,7 +100,7 @@ extension XCUIApplication {
         
         buttons["Skip"].tap()
         
-        XCTAssertTrue(staticTexts["Do you frequently wake up at night due to coughing?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Do you experience chronic nighttime awakenings due to coughing?"].waitForExistence(timeout: 2))
         staticTexts["No"].tap()
         nextButton.tap()
         
@@ -108,7 +108,11 @@ extension XCUIApplication {
         staticTexts["No"].tap()
         nextButton.tap()
         
-        XCTAssertTrue(staticTexts["Do you smoke or are you exposed to secondhand smoke?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Have you been prescribed any medication for your cough or related conditions?"].waitForExistence(timeout: 2))
+        staticTexts["No"].tap()
+        nextButton.tap()
+        
+        XCTAssertTrue(staticTexts["Do you currently smoke or are you exposed to secondhand smoke?"].waitForExistence(timeout: 2))
         staticTexts["No"].tap()
         buttons["Done"].tap()
     }

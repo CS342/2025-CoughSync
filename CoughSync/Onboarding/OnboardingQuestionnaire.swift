@@ -18,7 +18,7 @@ struct OnboardingQuestionnaire: View {
             contentView: {
                 VStack {
                     OnboardingTitleView(
-                        title: "Profile Questionnaire",
+                        title: "Initial Assessment",
                         subtitle: "Help us understand your health better."
                     )
                     Spacer()
