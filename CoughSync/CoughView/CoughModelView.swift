@@ -32,6 +32,8 @@ struct CoughModelView: View {
                     Text(predictedSound.0)
                         .font(.system(size: 26))
                     Text("Cough Count: \(viewModel.coughCount)")
+                    Text("Coughs Today: \(viewModel.coughCollection.coughsToday())")
+                    Text("Cough Difference: \(viewModel.coughCollection.coughDiffDay())")
                 }
                 .multilineTextAlignment(.center)
                 .padding()

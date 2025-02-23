@@ -26,7 +26,11 @@ class SoundDetectionViewModel {
     @ObservationIgnored var lastTime: Double = 0
     
     var detectionStarted = false
-    var coughCount = 0
+    var coughCollection = CoughCollection()
+    var coughCount: Int {
+        let coughCount = coughCollection.coughCount
+        return coughCount
+    }
     var identifiedSound: (identifier: String, confidence: String)?
     private var detectionCancellable: AnyCancellable?
     
@@ -47,7 +51,8 @@ class SoundDetectionViewModel {
         print("\(displayName): \(confidencePercentString) confidence.\n")
         
         if displayName == "Coughs" {
-            coughCount += 1
+            let cough = Cough(timestamp: Date())
+            coughCollection.addCough(cough)
         }
         
         return (displayName, confidencePercentString)
