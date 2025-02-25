@@ -149,6 +149,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0665A4212D5C2D180055D1B2 /* CoughVisualization */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughVisualization; sourceTree = "<group>"; };
+		0665A4852D6E602C0055D1B2 /* Report */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Report; sourceTree = "<group>"; };
 		252FC3102D5DC6520043712C /* CoughDetection */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughDetection; sourceTree = "<group>"; };
 		252FC3112D5DC7760043712C /* CoughView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoughView; sourceTree = "<group>"; };
 		4913AC9F2D5C4CF40030C90D /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
@@ -314,6 +315,7 @@
 				2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2729EDD38D004B9AB4 /* Contacts */,
+				0665A4852D6E602C0055D1B2 /* Report */,
 				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
 				A9A3DCC62C75CB8D00FC9B69 /* Firestore */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
@@ -388,6 +390,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0665A4212D5C2D180055D1B2 /* CoughVisualization */,
+				0665A4852D6E602C0055D1B2 /* Report */,
 				252FC3102D5DC6520043712C /* CoughDetection */,
 				252FC3112D5DC7760043712C /* CoughView */,
 				4913AC9F2D5C4CF40030C90D /* Models */,

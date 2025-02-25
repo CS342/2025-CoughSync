@@ -9,12 +9,12 @@
 @_spi(TestingSupport) import SpeziAccount
 import SwiftUI
 
-
 struct HomeView: View {
     enum Tabs: String {
         case schedule
         case contact
-        case coughTracking  // ✅ Added a new case for Cough Tracking
+        case coughTracking
+        case coughReport
     }
 
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
@@ -29,17 +29,20 @@ struct HomeView: View {
             }
             .customizationID("home.schedule")
 
-    
             Tab("Contacts", systemImage: "person.fill", value: .contact) {
                 Contacts(presentingAccount: $presentingAccount)
             }
             .customizationID("home.contacts")
 
-        
             Tab("Cough Tracking", systemImage: "waveform.path.ecg", value: .coughTracking) {
                 CoughTrackerView()
             }
             .customizationID("home.coughtracking")
+
+            Tab("Cough Report", systemImage: "chart.bar.doc.horizontal", value: .coughReport) {
+                CoughReportView()
+            }
+            .customizationID("home.coughreport")
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
@@ -51,7 +54,6 @@ struct HomeView: View {
         }
     }
 }
-
 
 #if DEBUG
 #Preview {
