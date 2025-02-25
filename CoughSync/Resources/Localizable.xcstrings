@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ " : {
+
+    },
     "%@: %lld coughs" : {
       "localizations" : {
         "en" : {
@@ -10,6 +13,9 @@
           }
         }
       }
+    },
+    "%lld " : {
+
     },
     "ACCOUNT_SETUP_DESCRIPTION" : {
       "localizations" : {
@@ -50,6 +56,9 @@
           }
         }
       }
+    },
+    "Check In" : {
+
     },
     "Close" : {
       "localizations" : {
@@ -109,6 +118,9 @@
     "Cough Count: %lld" : {
 
     },
+    "Cough Detection" : {
+
+    },
     "Cough Sync" : {
 
     },
@@ -119,6 +131,12 @@
 
     },
     "Coughing Tracking" : {
+
+    },
+    "coughs" : {
+
+    },
+    "coughs/d" : {
 
     },
     "CoughSync" : {
@@ -132,6 +150,9 @@
       }
     },
     "Daily Coughs (Past 7 Days)" : {
+
+    },
+    "Dashboard" : {
 
     },
     "Day" : {
@@ -373,6 +394,7 @@
 
     },
     "Schedule" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -419,6 +441,9 @@
     "Stop sound detection" : {
 
     },
+    "Summary" : {
+
+    },
     "Swift Package Manager" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -461,6 +486,9 @@
 
     },
     "Time" : {
+
+    },
+    "Today" : {
 
     },
     "Unsupported Event" : {

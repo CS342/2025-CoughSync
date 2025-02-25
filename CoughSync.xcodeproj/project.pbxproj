@@ -13,7 +13,6 @@
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
 		2F4E237E2989A2FE0013F3D9 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */; };
 		2F4E23832989D51F0013F3D9 /* CoughSyncTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */; };
-		2F4E23872989DB360013F3D9 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23862989DB360013F3D9 /* ContactsTests.swift */; };
 		2F5E32BD297E05EA003432F8 /* CoughSyncDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* CoughSyncDelegate.swift */; };
 		2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */; };
 		2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */; };
@@ -54,6 +53,7 @@
 		4913AC902D5AE07F0030C90D /* ProfileQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */; };
 		4913AC952D5BDE050030C90D /* OnboardingQuestionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913AC942D5BDE050030C90D /* OnboardingQuestionnaire.swift */; };
 		492845522D4AB56800C737C8 /* CoughBurdenQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */; };
+		49437EC12D6D2BA900B6493C /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49437EC02D6D2BA900B6493C /* Dashboard.swift */; };
 		49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */; };
 		49F06F5B2D533E7B00A7E170 /* CoughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */; };
 		49F06F5F2D53468400A7E170 /* CoughClassifier.mlmodel.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */; };
@@ -101,7 +101,6 @@
 		2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoughSync.docc; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTestingSetup.swift; sourceTree = "<group>"; };
-		2F4E23862989DB360013F3D9 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* CoughSyncDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncDelegate.swift; sourceTree = "<group>"; };
 		2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissions.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = ProfileQuestionnaire.json.license; sourceTree = "<group>"; };
 		4913AC942D5BDE050030C90D /* OnboardingQuestionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingQuestionnaire.swift; sourceTree = "<group>"; };
 		492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoughBurdenQuestionnaire.json; sourceTree = "<group>"; };
+		49437EC02D6D2BA900B6493C /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughBurdenQuestionnaire.json.license; sourceTree = "<group>"; };
 		49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoughClassifier.mlmodel; sourceTree = "<group>"; };
 		49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughClassifier.mlmodel.license; sourceTree = "<group>"; };
@@ -279,6 +279,14 @@
 			path = SharedContext;
 			sourceTree = "<group>";
 		};
+		49437EBF2D6D2B8100B6493C /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				49437EC02D6D2BA900B6493C /* Dashboard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +312,7 @@
 		653A254F283387FE005D4D48 /* CoughSync */ = {
 			isa = PBXGroup;
 			children = (
+				49437EBF2D6D2B8100B6493C /* Dashboard */,
 				252FC3112D5DC7760043712C /* CoughView */,
 				252FC3102D5DC6520043712C /* CoughDetection */,
 				4913AC9F2D5C4CF40030C90D /* Models */,
@@ -338,7 +347,6 @@
 			children = (
 				2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */,
 				653A256B28338800005D4D48 /* SchedulerTests.swift */,
-				2F4E23862989DB360013F3D9 /* ContactsTests.swift */,
 				5680DD3D2AB8CD84004E6D4A /* ContributionsTest.swift */,
 			);
 			path = CoughSyncUITests;
@@ -580,6 +588,7 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				A9A3DCC82C75CBBD00FC9B69 /* FirebaseConfiguration.swift in Sources */,
 				4913AC822D5AC5B80030C90D /* ProfileQuestionnaire.swift in Sources */,
+				49437EC12D6D2BA900B6493C /* Dashboard.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* CoughSyncStandard.swift in Sources */,
@@ -613,7 +622,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680DD3E2AB8CD84004E6D4A /* ContributionsTest.swift in Sources */,
-				2F4E23872989DB360013F3D9 /* ContactsTests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* OnboardingTests.swift in Sources */,
 				653A256C28338800005D4D48 /* SchedulerTests.swift in Sources */,
 			);
