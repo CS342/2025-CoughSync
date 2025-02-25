@@ -28,9 +28,15 @@ struct EventView: View {
                 }
 
                 event.complete()
+                
+                // Determine questionnaire type based on task ID
+                let questionnaireType: QuestionnaireType = event.task.id == "morning-checkin" 
+                    ? .morningCheckIn 
+                    : .checkIn
+                
                 await standard.add(
                     response: response,
-                    questionnaireType: QuestionnaireType.checkIn
+                    questionnaireType: questionnaireType
                 )
             }
         } else {
