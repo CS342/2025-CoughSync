@@ -47,7 +47,7 @@ struct Dashboard: View {
             .onAppear {
                 previousCoughCount = viewModel.coughCount
             }
-            .onChange(of: viewModel.coughCount) { oldValue, newValue in
+            .onChange(of: viewModel.coughCount) { oldValue, _ in
                 previousCoughCount = oldValue
             }
         }
