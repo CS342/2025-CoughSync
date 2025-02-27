@@ -121,6 +121,9 @@
     "Cough Detection" : {
 
     },
+    "Cough Difference: %lld" : {
+
+    },
     "Cough Sync" : {
 
     },
@@ -134,6 +137,9 @@
 
     },
     "coughs" : {
+
+    },
+    "Coughs Today: %lld" : {
 
     },
     "coughs/d" : {
