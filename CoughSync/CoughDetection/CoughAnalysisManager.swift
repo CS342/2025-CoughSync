@@ -16,6 +16,7 @@
 import Combine
 import Foundation
 @preconcurrency import SoundAnalysis
+import UIKit
 
 
 final class CoughAnalysisManager: NSObject, @unchecked Sendable {
@@ -35,12 +36,34 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     private var retainedObserver: SNResultsObserving?
     private var subject: PassthroughSubject<SNClassificationResult, Error>?
     
+    var background: UIBackgroundTaskIdentifier = .invalid
+    
     override private init() {}
     
+    // to prevent IOS from shutting down recording process
+    @MainActor
+    func startBackgroundTask() {
+        background = UIApplication.shared.beginBackgroundTask(withName: "CoughDetection") {
+            UIApplication.shared.endBackgroundTask(self.background)
+            self.background = .invalid
+        }
+    }
+    
+    @MainActor
+    func endBackgroundTask() {
+        if background != .invalid {
+            UIApplication.shared.endBackgroundTask(background)
+            background = .invalid
+        }
+    }
+    
+    @MainActor
     func startCoughDetection(
         subject: PassthroughSubject<SNClassificationResult, Error>,
         config: CoughDetectionConfiguration = CoughDetectionConfiguration()
     ) {
+        startBackgroundTask()
+        
         do {
             let observer = ResultsObserver(subject: subject)
             
@@ -66,7 +89,9 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    @MainActor
     func stopCoughDetection() {
+        endBackgroundTask()
         autoreleasepool {
             if let audioRecorder = audioRecorder {
                 audioRecorder.stop()
@@ -85,9 +110,9 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(
-                .record,
-                mode: .measurement,
-                options: .duckOthers
+                .playAndRecord,
+                mode: .default,
+                options: [.allowBluetooth, .allowBluetoothA2DP, .defaultToSpeaker, .mixWithOthers]
             )
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             
