@@ -21,16 +21,16 @@ import SpeziViews
 import SwiftUI
 
 struct Dashboard: View {
+    // MARK: - Type Properties
+    
+    // MARK: - Instance Properties
     @Environment(Account.self) private var account: Account?
     @Environment(CoughSyncStandard.self) private var standard
     @Binding var presentingAccount: Bool
     @State private var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
     
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
-    }
-    
+    // MARK: - Computed Properties
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -65,6 +65,12 @@ struct Dashboard: View {
         }
     }
     
+    // MARK: - Initializers
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
+    }
+    
+    // MARK: - Methods
     @ViewBuilder
     private func coughSummaryCard() -> some View {
         VStack {
