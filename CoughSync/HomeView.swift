@@ -11,28 +11,29 @@ import SwiftUI
 
 struct HomeView: View {
     enum Tabs: String {
+        case dashboard
         case schedule
-        case contact
         case coughTracking
+        case coughDetection
         case coughReport
     }
 
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
+    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.dashboard
     @AppStorage(StorageKeys.tabViewCustomization) private var tabViewCustomization = TabViewCustomization()
 
     @State private var presentingAccount = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Schedule", systemImage: "list.clipboard", value: .schedule) {
+            Tab("Dashboard", systemImage: "rectangle.grid.2x2", value: .dashboard) {
+                Dashboard(presentingAccount: $presentingAccount)
+            }
+            .customizationID("home.dashboard")
+            
+            Tab("Check In", systemImage: "list.clipboard", value: .schedule) {
                 ScheduleView(presentingAccount: $presentingAccount)
             }
             .customizationID("home.schedule")
-
-            Tab("Contacts", systemImage: "person.fill", value: .contact) {
-                Contacts(presentingAccount: $presentingAccount)
-            }
-            .customizationID("home.contacts")
 
             Tab("Cough Tracking", systemImage: "waveform.path.ecg", value: .coughTracking) {
                 CoughTrackerView()
@@ -43,6 +44,13 @@ struct HomeView: View {
                 CoughReportView()
             }
             .customizationID("home.coughreport")
+            
+            if FeatureFlags.debugDetector {
+                Tab("Cough Detection", systemImage: "speaker.wave.3.fill", value: .coughDetection) {
+                    CoughModelView()
+                }
+                .customizationID("home.coughdetection")
+            }
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
