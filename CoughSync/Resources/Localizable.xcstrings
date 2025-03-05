@@ -60,6 +60,9 @@
     "Check In" : {
 
     },
+    "Clock icon" : {
+
+    },
     "Close" : {
       "localizations" : {
         "en" : {
@@ -118,13 +121,13 @@
     "Cough Count: %lld" : {
 
     },
-    "Cough Report" : {
-
-    },
     "Cough Detection" : {
 
     },
     "Cough Difference: %lld" : {
+
+    },
+    "Cough Report" : {
 
     },
     "Cough Sync" : {
@@ -142,13 +145,13 @@
     "Coughing Tracking" : {
 
     },
+    "coughs" : {
+
+    },
     "Coughs" : {
 
     },
     "Coughs Change: " : {
-    
-    },
-    "coughs" : {
 
     },
     "Coughs Today: %lld" : {

@@ -21,11 +21,4 @@ enum CoughReportData {
     static func getMonthlyCoughs() -> [Int] {
         (0..<12).map { _ in Int.random(in: 200...800) } // 12 months of cough counts
     }
-
-    static func getCoughPercentageChange(from oldValue: Int, to newValue: Int) -> Double {
-        guard oldValue > 0 else {
-            return 0
-        }
-        return ((Double(newValue) - Double(oldValue)) / Double(oldValue)) * 100
-    }
 }
