@@ -95,9 +95,4 @@ class CoughDetectionViewModel {
         identifiedSound = nil
         coughAnalysisManager.stopCoughDetection()
     }
-    
-    func syncCoughsToFirebase() async {
-        // This could be called when app goes to background or when stopping detection
-        // Implementation depends on how you want to track unsaved coughs
-    }
 }

@@ -12,8 +12,8 @@
 //  Created by Ethan Bell on 12/2/2025.
 //
 
-import SwiftUI
 import Spezi
+import SwiftUI
 
 struct CoughModelView: View {
     @Environment(CoughSyncStandard.self) private var standard

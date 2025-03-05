@@ -152,16 +152,4 @@ actor CoughSyncStandard: Standard,
             logger.error("Could not store cough event: \(error)")
         }
     }
-
-    // For batch saving multiple coughs at once (optional)
-    func add(coughs: [Cough]) async {
-        if FeatureFlags.disableFirebase {
-            logger.debug("Received batch of \(coughs.count) cough events")
-            return
-        }
-        
-        for cough in coughs {
-            await add(cough: cough)
-        }
-    }
 }
