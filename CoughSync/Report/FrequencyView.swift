@@ -1,5 +1,13 @@
-import SwiftUI
+//
+// This source file is part of the CoughSync based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2025 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
 import Charts
+import SwiftUI
 
 struct FrequencyView: View {
     let dailyCoughs = CoughReportData.getDailyCoughs()
