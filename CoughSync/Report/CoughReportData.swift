@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CoughReportData {
+enum CoughReportData {
     // Fake data for now (replace with actual logic later)
     static func getDailyCoughs() -> [Int] {
         (0..<7).map { _ in Int.random(in: 10...50) } // 7 days of cough counts
@@ -23,7 +23,9 @@ struct CoughReportData {
     }
 
     static func getCoughPercentageChange(from oldValue: Int, to newValue: Int) -> Double {
-        guard oldValue > 0 else { return 0 }
+        guard oldValue > 0 else {
+            return 0
+        }
         return ((Double(newValue) - Double(oldValue)) / Double(oldValue)) * 100
     }
 }

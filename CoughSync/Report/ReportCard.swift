@@ -42,6 +42,7 @@ struct ReportCard: View {
             HStack {
                 Image(systemName: "clock.fill")
                     .foregroundColor(.gray)
+                    .accessibilityLabel("Clock icon")
                 Text("Peak Time: \(peakTime)")
                     .font(.body)
                     .foregroundColor(.primary)
