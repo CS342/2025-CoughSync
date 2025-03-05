@@ -133,4 +133,23 @@ actor CoughSyncStandard: Standard,
             await logger.error("Could not store consent form: \(error)")
         }
     }
+
+    func add(cough: Cough) async {
+        if FeatureFlags.disableFirebase {
+            logger.debug("Received new cough event: \(cough.timestamp)")
+            return
+        }
+        
+        do {
+            try await configuration.userDocumentReference
+                .collection("CoughEvents") // Store all cough events in a /CoughEvents collection
+                .document(UUID().uuidString) // Generate a unique ID for each cough event
+                .setData([
+                    "timestamp": cough.timestamp,
+                    "confidence": cough.confidence
+                ])
+        } catch {
+            logger.error("Could not store cough event: \(error)")
+        }
+    }
 }
