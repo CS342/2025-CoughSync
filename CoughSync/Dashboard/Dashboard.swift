@@ -20,23 +20,33 @@ import SpeziSchedulerUI
 import SpeziViews
 import SwiftUI
 
-
 struct Dashboard: View {
     @Environment(Account.self) private var account: Account?
+    @Environment(CoughSyncStandard.self) private var standard
     @Binding var presentingAccount: Bool
     
-    @State private var viewModel = CoughDetectionViewModel()
+    // Don't initialize viewModel right away
+    @State private var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
+    
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
+    }
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
-                    coughSummaryCard()
-                    coughStats()
-                    Divider()
+                if let viewModel = viewModel {
+                    VStack(spacing: 20) {
+                        coughSummaryCard()
+                        coughStats()
+                        Divider()
+                    }
+                    .padding()
+                } else {
+                    // Show a loading indicator or placeholder
+                    ProgressView("Loading...")
                 }
-                .padding()
             }
             .navigationTitle("Summary")
             .toolbar {
@@ -45,10 +55,14 @@ struct Dashboard: View {
                 }
             }
             .onAppear {
-                previousCoughCount = viewModel.coughCount
+                // Initialize viewModel here when environment is available
+                viewModel = CoughDetectionViewModel(standard: standard)
             }
-            .onChange(of: viewModel.coughCount) { oldValue, _ in
-                previousCoughCount = oldValue
+            .onAppear {
+                previousCoughCount = viewModel?.coughCount ?? 0
+            }
+            .onChange(of: viewModel?.coughCount) { oldValue, _ in
+                previousCoughCount = oldValue ?? 0
             }
         }
     }
@@ -61,7 +75,7 @@ struct Dashboard: View {
                     Text("Today")
                         .font(.headline)
                         .foregroundColor(.primary)
-                    Text("\(viewModel.coughCount) ")
+                    Text("\(viewModel?.coughCount ?? 0) ")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.blue)
@@ -112,7 +126,7 @@ struct Dashboard: View {
     
     @ViewBuilder
     private func statusCircle() -> some View {
-        let change = viewModel.coughCount - previousCoughCount
+        let change = viewModel?.coughCount ?? 0 - previousCoughCount
         let color: Color = change > 0 ? .red : (change < 0 ? .green : .blue)
         let trendSymbol = change > 0 ? "↑" : (change < 0 ? "↓" : "–")
         
