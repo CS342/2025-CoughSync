@@ -28,11 +28,6 @@ struct Dashboard: View {
     @State private var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
     
-    // MARK: - Initializers
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
-    }
-    
     // MARK: - Body
     var body: some View {
         NavigationStack {
@@ -66,6 +61,11 @@ struct Dashboard: View {
                 previousCoughCount = oldValue ?? 0
             }
         }
+    }
+    
+    // MARK: - Initializers
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
     }
     
     // MARK: - Methods
