@@ -9,7 +9,7 @@
 import Charts
 import SwiftUI
 
-
+/// A chart that displays a trend of cough counts over time.
 struct CoughTrendChart: View {
     let title: String
     let data: [Int]
