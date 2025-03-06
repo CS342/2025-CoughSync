@@ -13,11 +13,15 @@
 
 import Foundation
 
-class Cough {
+class Cough: Identifiable, Codable {
     let timestamp: Date
+    let id: UUID
+    let confidence: Double
     
-    init(timestamp: Date = Date()) {
+    init(timestamp: Date = Date(), id: UUID = UUID(), confidence: Double = 0) {
         self.timestamp = timestamp
+        self.id = id
+        self.confidence = confidence
     }
 }
 
