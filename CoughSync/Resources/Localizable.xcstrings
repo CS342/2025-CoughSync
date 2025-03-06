@@ -60,6 +60,9 @@
     "Check In" : {
 
     },
+    "Clock icon" : {
+
+    },
     "Close" : {
       "localizations" : {
         "en" : {
@@ -124,6 +127,9 @@
     "Cough Difference: %lld" : {
 
     },
+    "Cough Report" : {
+
+    },
     "Cough Sync" : {
 
     },
@@ -133,10 +139,19 @@
     "Cough Tracking" : {
 
     },
+    "Cough Trends" : {
+
+    },
     "Coughing Tracking" : {
 
     },
     "coughs" : {
+
+    },
+    "Coughs" : {
+
+    },
+    "Coughs Change: " : {
 
     },
     "Coughs Today: %lld" : {
@@ -385,6 +400,9 @@
         }
       }
     },
+    "Peak Time: %@" : {
+
+    },
     "Please complete the questionnaire to personalize your experience." : {
 
     },
@@ -509,6 +527,9 @@
           }
         }
       }
+    },
+    "View Cough Frequency Trends →" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
