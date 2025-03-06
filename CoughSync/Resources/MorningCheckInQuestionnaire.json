@@ -1,0 +1,87 @@
+{
+  "resourceType": "Questionnaire",
+  "title": "Morning Check-in",
+  "id": "morning-checkin",
+  "name": "MorningCheckIn",
+  "description": "Daily morning check-in to track your cough symptoms.",
+  "status": "active",
+  "subjectType": ["Patient"],
+  "item": [
+    {
+      "linkId": "morning-cough-severity",
+      "type": "choice",
+      "text": "How severe was your cough this morning?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "1",
+            "display": "1 - Not severe at all"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "2",
+            "display": "2 - Slightly severe"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "3",
+            "display": "3 - Moderately severe"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "4",
+            "display": "4 - Very severe"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "5",
+            "display": "5 - Extremely severe"
+          }
+        }
+      ]
+    },
+    {
+      "linkId": "sleep-quality",
+      "type": "choice",
+      "text": "How well did you sleep last night?",
+      "required": true,
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "1",
+            "display": "1 - Very poorly"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "2",
+            "display": "2 - Poorly"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "3",
+            "display": "3 - Fair"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "4",
+            "display": "4 - Well"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "5",
+            "display": "5 - Very well"
+          }
+        }
+      ]
+    }
+  ]
+} 

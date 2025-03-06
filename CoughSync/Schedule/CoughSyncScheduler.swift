@@ -34,6 +34,16 @@ final class CoughSyncScheduler: Module, DefaultInitializable, EnvironmentAccessi
             ) { context in
                 context.questionnaire = Bundle.main.questionnaire(withName: "CoughBurdenQuestionnaire")
             }
+            
+            try scheduler.createOrUpdateTask(
+                id: "morning-checkin",
+                title: "Morning Check-in",
+                instructions: "Track your morning symptoms",
+                category: .questionnaire,
+                schedule: .daily(hour: 8, minute: 0)
+            ) { context in
+                context.questionnaire = Bundle.main.questionnaire(withName: "MorningCheckInQuestionnaire")
+            }
         } catch {
             viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Failed to create or update scheduled tasks."))
         }
