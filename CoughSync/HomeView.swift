@@ -29,7 +29,7 @@ struct HomeView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Summary", systemImage: "rectangle.grid.2x2", value: .summary) {
-                if let viewModel = viewModel {
+                if viewModel != nil {
                     SummaryView(
                         presentingAccount: $presentingAccount,
                         viewModel: $viewModel

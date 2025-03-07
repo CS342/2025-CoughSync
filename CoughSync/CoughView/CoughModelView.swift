@@ -29,21 +29,7 @@ struct CoughModelView: View {
             Spacer()
             detectionStatusView()
             Spacer()
-            microphoneButton2()
-        }
-    }
-    
-    private func microphoneButton2() -> some View {
-        Button(action: {
-            toggleListening()
-        }) {
-            Text(viewModel?.detectionStarted == true ? "Stop tracking" : "Start tracking")
-                .font(.headline)
-                .padding()
-                .frame(minWidth: 200)
-                .background(viewModel?.detectionStarted == true ? Color.red : Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+            microphoneButton()
         }
     }
     
@@ -69,7 +55,7 @@ struct CoughModelView: View {
                     description: Text("Tap below to begin detecting nighttime coughs.")
                 )
             }
-        } else if let predictedSound = viewModel?.identifiedSound {
+        } else if (viewModel?.identifiedSound) != nil {
             VStack(spacing: 10) {
                 ContentUnavailableView(
                     "Tracking in Progress",
@@ -90,6 +76,20 @@ struct CoughModelView: View {
         }
     }
     
+    private func microphoneButton() -> some View {
+        Button(action: {
+            toggleListening()
+        }) {
+            Text(viewModel?.detectionStarted == true ? "Stop tracking" : "Start tracking")
+                .font(.headline)
+                .padding()
+                .frame(minWidth: 200)
+                .background(viewModel?.detectionStarted == true ? Color.red : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+    }
+    
     private func elapsedTimeString(since startDate: Date) -> String {
         let elapsed = Int(Date().timeIntervalSince(startDate))
         
@@ -98,15 +98,6 @@ struct CoughModelView: View {
         let seconds = elapsed % 60
         
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-
-    
-    private func microphoneButton() -> some View {
-        Button(action: {
-            toggleListening()
-        }, label: {
-            microphoneImage
-        })
     }
     
     private func toggleListening() {
