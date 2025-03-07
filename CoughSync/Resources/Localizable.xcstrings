@@ -119,12 +119,6 @@
     "Cough Count" : {
 
     },
-    "Cough Count: %lld" : {
-
-    },
-    "Cough Difference: %lld" : {
-
-    },
     "Cough Report" : {
 
     },
@@ -150,9 +144,6 @@
 
     },
     "Coughs Change: " : {
-
-    },
-    "Coughs Today: %lld" : {
 
     },
     "coughs/d" : {
@@ -243,9 +234,6 @@
       }
     },
     "Hourly Coughs (Today)" : {
-
-    },
-    "Identifying Cough..." : {
 
     },
     "Initial Assessment" : {
@@ -362,9 +350,6 @@
         }
       }
     },
-    "No Sound Detected" : {
-
-    },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -413,6 +398,9 @@
         }
       }
     },
+    "Ready for bed?" : {
+
+    },
     "Schedule" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -445,6 +433,9 @@
         }
       }
     },
+    "Start cough detection" : {
+
+    },
     "Start Questionnaire" : {
       "localizations" : {
         "en" : {
@@ -455,10 +446,16 @@
         }
       }
     },
-    "Start sound detection" : {
+    "Start tracking" : {
 
     },
-    "Stop sound detection" : {
+    "Starting..." : {
+
+    },
+    "Stop cough detection" : {
+
+    },
+    "Stop tracking" : {
 
     },
     "Summary" : {
@@ -475,7 +472,10 @@
         }
       }
     },
-    "Tap the microphone to start detecting" : {
+    "Tap below to begin detecting nighttime coughs." : {
+
+    },
+    "Tap below to stop detecting coughs.\nTracking for %@" : {
 
     },
     "Tell us about your cough every week." : {
@@ -509,6 +509,9 @@
 
     },
     "Today" : {
+
+    },
+    "Tracking in Progress" : {
 
     },
     "Unsupported Event" : {
