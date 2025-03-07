@@ -7,7 +7,7 @@
 //
 
 //
-//  Dashboard.swift
+//  SummaryView.swift
 //  CoughSync
 //
 //  Created by Miguel Fuentes on 2/24/25.
@@ -20,12 +20,12 @@ import SpeziSchedulerUI
 import SpeziViews
 import SwiftUI
 
-/// `Dashboard` is a view that displays a summary of cough detection data.
+/// `SummaryView` is a view that displays a summary of cough detection data.
 ///
 /// This view provides a summary of cough detection data, including the number of coughs detected
 /// today, this week, and this month. It also displays a visual representation of the cough count
 /// and a trend indicator.
-struct Dashboard: View {
+struct SummaryView: View {
     @Environment(Account.self) private var account: Account?
     @Environment(CoughSyncStandard.self) private var standard
     @Binding var presentingAccount: Bool
@@ -146,5 +146,5 @@ struct Dashboard: View {
 }
 
 #Preview {
-    Dashboard(presentingAccount: .constant(false))
+    SummaryView(presentingAccount: .constant(false))
 }

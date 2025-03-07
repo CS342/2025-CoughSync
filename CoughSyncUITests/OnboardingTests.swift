@@ -188,7 +188,7 @@ extension XCUIApplication {
     
     fileprivate func assertOnboardingComplete() {
         let tabBar = tabBars["Tab Bar"]
-        XCTAssertTrue(tabBar.buttons["Dashboard"].waitForExistence(timeout: 2))
+        XCTAssertTrue(tabBar.buttons["Summary"].waitForExistence(timeout: 2))
         XCTAssertTrue(tabBar.buttons["Check In"].exists)
     }
 

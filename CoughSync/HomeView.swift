@@ -11,24 +11,24 @@ import SwiftUI
 
 struct HomeView: View {
     enum Tabs: String {
-        case dashboard
+        case summary
         case schedule
         case coughTracking
         case coughDetection
         case coughReport
     }
 
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.dashboard
+    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.summary
     @AppStorage(StorageKeys.tabViewCustomization) private var tabViewCustomization = TabViewCustomization()
 
     @State private var presentingAccount = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Dashboard", systemImage: "rectangle.grid.2x2", value: .dashboard) {
-                Dashboard(presentingAccount: $presentingAccount)
+            Tab("Summary", systemImage: "rectangle.grid.2x2", value: .summary) {
+                SummaryView(presentingAccount: $presentingAccount)
             }
-            .customizationID("home.dashboard")
+            .customizationID("home.summary")
             
             Tab("Check In", systemImage: "list.clipboard", value: .schedule) {
                 ScheduleView(presentingAccount: $presentingAccount)

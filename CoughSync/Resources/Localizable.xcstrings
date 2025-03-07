@@ -174,9 +174,6 @@
     "Daily Coughs (Past 7 Days)" : {
 
     },
-    "Dashboard" : {
-
-    },
     "Day" : {
 
     },
@@ -418,9 +415,6 @@
           }
         }
       }
-    },
-    "Questionnaires" : {
-
     },
     "Schedule" : {
       "extractionState" : "stale",
