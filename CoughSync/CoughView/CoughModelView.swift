@@ -15,6 +15,10 @@
 import Spezi
 import SwiftUI
 
+/// A view that displays the cough detection model and user interface.
+///
+/// This view provides a user interface for starting and stopping cough detection
+/// and displays the current status of the detection process.
 struct CoughModelView: View {
     @Environment(CoughSyncStandard.self) private var standard
     @State private var viewModel: CoughDetectionViewModel?

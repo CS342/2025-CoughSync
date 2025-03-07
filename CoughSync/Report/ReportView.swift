@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// A view that displays a summary of cough reports.
 struct CoughReportView: View {
     var body: some View {
         NavigationStack {
