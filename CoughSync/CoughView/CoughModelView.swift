@@ -21,7 +21,7 @@ import SwiftUI
 /// and displays the current status of the detection process.
 struct CoughModelView: View {
     @Environment(CoughSyncStandard.self) private var standard
-    @State private var viewModel: CoughDetectionViewModel?
+    @Binding var viewModel: CoughDetectionViewModel?
     
     var body: some View {
         VStack {
@@ -30,16 +30,16 @@ struct CoughModelView: View {
                 detectionStatusView()
                 Spacer()
                 microphoneButton()
-                .padding()
+//                .padding()
             } else {
                 // Show a loading indicator
                 ProgressView("Loading...")
             }
         }
-        .onAppear {
-            // Initialize viewModel here when environment is available
-            viewModel = CoughDetectionViewModel(standard: standard)
-        }
+//        .onAppear {
+//            // Initialize viewModel here when environment is available
+//            viewModel = CoughDetectionViewModel(standard: standard)
+//        }
     }
     
     private var microphoneImage: some View {
