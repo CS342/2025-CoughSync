@@ -27,7 +27,6 @@ import SwiftUI
 /// and a trend indicator.
 struct SummaryView: View {
     @Environment(Account.self) private var account: Account?
-    @Environment(CoughSyncStandard.self) private var standard
     @Binding var presentingAccount: Bool
     @Binding var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0

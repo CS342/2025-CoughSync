@@ -436,9 +436,6 @@
         }
       }
     },
-    "Start cough detection" : {
-
-    },
     "Start Questionnaire" : {
       "localizations" : {
         "en" : {
@@ -453,9 +450,6 @@
 
     },
     "Starting..." : {
-
-    },
-    "Stop cough detection" : {
 
     },
     "Stop tracking" : {

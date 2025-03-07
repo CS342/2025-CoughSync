@@ -20,9 +20,7 @@ import SwiftUI
 /// This view provides a user interface for starting and stopping cough detection
 /// and displays the current status of the detection process.
 struct CoughModelView: View {
-    @Environment(CoughSyncStandard.self) private var standard
     @Binding var viewModel: CoughDetectionViewModel?
-    var startDate: Date?
     
     var body: some View {
         VStack {
@@ -31,18 +29,6 @@ struct CoughModelView: View {
             Spacer()
             microphoneButton()
         }
-    }
-    
-    private var microphoneImage: some View {
-        Image(systemName: viewModel?.detectionStarted == true ? "stop.fill" : "mic.fill")
-            .font(.system(size: 50))
-            .padding(30)
-            .background(viewModel?.detectionStarted == true ? .gray.opacity(0.7) : .blue)
-            .foregroundStyle(.white)
-            .clipShape(Circle())
-            .shadow(color: .gray, radius: 5)
-            .contentTransition(.symbolEffect(.replace))
-            .accessibilityLabel(viewModel?.detectionStarted == true ? "Stop cough detection" : "Start cough detection")
     }
 
     @ViewBuilder
