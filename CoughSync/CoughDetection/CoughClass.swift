@@ -47,4 +47,8 @@ class CoughCollection {
         let coughYesterday = coughArray.filter { Calendar.current.isDateInYesterday($0.timestamp) }.count
         return coughToday - coughYesterday
     }
+    
+    func resetCoughs() {
+        coughArray.removeAll()
+    }
 }

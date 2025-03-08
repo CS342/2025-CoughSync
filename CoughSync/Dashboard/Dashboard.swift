@@ -19,6 +19,8 @@ import SpeziScheduler
 import SpeziSchedulerUI
 import SpeziViews
 import SwiftUI
+import FirebaseFirestore
+import FirebaseAuth
 
 struct Dashboard: View {
     // MARK: - Instance Properties
@@ -27,12 +29,13 @@ struct Dashboard: View {
     @Binding var presentingAccount: Bool
     @State private var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
+    @State private var isLoadingData: Bool = true
     
     // MARK: - Body
     var body: some View {
         NavigationStack {
             ScrollView {
-                if let viewModel = viewModel {
+                if let viewModel = viewModel, !isLoadingData {
                     VStack(spacing: 20) {
                         coughSummaryCard()
                         coughStats()
@@ -41,7 +44,8 @@ struct Dashboard: View {
                     .padding()
                 } else {
                     // Show a loading indicator or placeholder
-                    ProgressView("Loading...")
+                    ProgressView("Loading cough data...")
+                        .padding()
                 }
             }
             .navigationTitle("Summary")
@@ -53,12 +57,16 @@ struct Dashboard: View {
             .onAppear {
                 // Initialize viewModel here when environment is available
                 viewModel = CoughDetectionViewModel(standard: standard)
+                loadCoughData()
             }
             .onAppear {
                 previousCoughCount = viewModel?.coughCount ?? 0
             }
             .onChange(of: viewModel?.coughCount) { oldValue, _ in
                 previousCoughCount = oldValue ?? 0
+            }
+            .refreshable {
+                loadCoughData()
             }
         }
     }
@@ -99,8 +107,16 @@ struct Dashboard: View {
     @ViewBuilder
     private func coughStats() -> some View {
         HStack(spacing: 16) {
-            statCard(title: "This Week", value: "20", fontColor: .purple)
-            statCard(title: "This Month", value: "15", fontColor: .mint)
+            statCard(
+                title: "This Week", 
+                value: "\(viewModel?.weeklyAverage ?? 0)", 
+                fontColor: .purple
+            )
+            statCard(
+                title: "This Month", 
+                value: "\(viewModel?.monthlyAverage ?? 0)", 
+                fontColor: .mint
+            )
         }
     }
     
@@ -141,6 +157,17 @@ struct Dashboard: View {
                     .foregroundColor(.white)
             )
             .shadow(radius: 5)
+    }
+    
+    private func loadCoughData() {
+        isLoadingData = true
+        viewModel?.fetchCoughData { success in
+            isLoadingData = false
+            if !success {
+                // Handle error case if needed
+                print("Failed to load cough data")
+            }
+        }
     }
 }
 

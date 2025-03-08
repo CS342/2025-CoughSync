@@ -152,4 +152,137 @@ actor CoughSyncStandard: Standard,
             logger.error("Could not store cough event: \(error)")
         }
     }
+
+    func fetchCoughEvents() async throws -> [CoughEvent] {
+        if FeatureFlags.disableFirebase {
+            logger.debug("Firebase disabled - returning empty cough events list")
+            return []
+        }
+        
+        var coughEvents: [CoughEvent] = []
+        
+        do {
+            let snapshot = try await configuration.userDocumentReference
+                .collection("CoughEvents")
+                .order(by: "timestamp", descending: false)
+                .getDocuments()
+            
+            for document in snapshot.documents {
+                let data = document.data()
+                if let timestamp = data["timestamp"] as? Timestamp {
+                    let date = timestamp.dateValue()
+                    let coughEvent = CoughEvent(date: date)
+                    coughEvents.append(coughEvent)
+                }
+            }
+            
+            return coughEvents
+        } catch {
+            logger.error("Error fetching cough events: \(error)")
+            throw error
+        }
+    }
+    
+    /// Fetches the count of cough events that occurred today
+    func fetchTodayCoughCount() async throws -> Int {
+        if FeatureFlags.disableFirebase {
+            logger.debug("Firebase disabled - returning dummy today cough count")
+            return 0
+        }
+        
+        let today = Calendar.current.startOfDay(for: Date())
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        
+        do {
+            let snapshot = try await configuration.userDocumentReference
+                .collection("CoughEvents")
+                .whereField("timestamp", isGreaterThanOrEqualTo: today)
+                .whereField("timestamp", isLessThan: tomorrow)
+                .getDocuments()
+            
+            return snapshot.documents.count
+        } catch {
+            logger.error("Error fetching today's cough count: \(error)")
+            throw error
+        }
+    }
+    
+    /// Fetches the average daily cough count for the past week
+    func fetchWeeklyAverageCoughCount() async throws -> Int {
+        if FeatureFlags.disableFirebase {
+            logger.debug("Firebase disabled - returning dummy weekly average")
+            return 0
+        }
+        
+        let today = Calendar.current.startOfDay(for: Date())
+        let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: today)!
+        
+        return try await fetchAverageCoughCount(from: weekAgo, to: today)
+    }
+    
+    /// Fetches the average daily cough count for the past month
+    func fetchMonthlyAverageCoughCount() async throws -> Int {
+        if FeatureFlags.disableFirebase {
+            logger.debug("Firebase disabled - returning dummy monthly average")
+            return 0
+        }
+        
+        let today = Calendar.current.startOfDay(for: Date())
+        let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: today)!
+        
+        return try await fetchAverageCoughCount(from: monthAgo, to: today)
+    }
+    
+    /// Helper method to calculate average cough count between two dates
+    private func fetchAverageCoughCount(from startDate: Date, to endDate: Date) async throws -> Int {
+        do {
+            let coughEvents = try await fetchCoughEventsInRange(from: startDate, to: endDate)
+            
+            // Group events by day
+            var dailyCounts: [Date: Int] = [:]
+            for event in coughEvents {
+                let day = Calendar.current.startOfDay(for: event.date)
+                dailyCounts[day, default: 0] += 1
+            }
+            
+            // Calculate average coughs per day
+            let totalDays = max(1, dailyCounts.count) // Avoid division by zero
+            let totalCoughs = coughEvents.count
+            return Int(round(Double(totalCoughs) / Double(totalDays)))
+        } catch {
+            logger.error("Error calculating average cough count: \(error)")
+            throw error
+        }
+    }
+    
+    /// Helper method to fetch cough events within a specific date range
+    private func fetchCoughEventsInRange(from startDate: Date, to endDate: Date) async throws -> [CoughEvent] {
+        if FeatureFlags.disableFirebase {
+            return []
+        }
+        
+        var coughEvents: [CoughEvent] = []
+        
+        do {
+            let snapshot = try await configuration.userDocumentReference
+                .collection("CoughEvents")
+                .whereField("timestamp", isGreaterThanOrEqualTo: startDate)
+                .whereField("timestamp", isLessThan: endDate)
+                .getDocuments()
+            
+            for document in snapshot.documents {
+                let data = document.data()
+                if let timestamp = data["timestamp"] as? Timestamp {
+                    let date = timestamp.dateValue()
+                    let coughEvent = CoughEvent(date: date)
+                    coughEvents.append(coughEvent)
+                }
+            }
+            
+            return coughEvents
+        } catch {
+            logger.error("Error fetching cough events in range: \(error)")
+            throw error
+        }
+    }
 }
