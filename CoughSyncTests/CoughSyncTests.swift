@@ -55,7 +55,7 @@ class CoughSyncTests: XCTestCase {
         let todayCough = Cough(timestamp: Date(), confidence: 0.9)
         
         // Yesterday's date
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
         let yesterdayCough = Cough(timestamp: yesterday, confidence: 0.85)
         
         // Add coughs
