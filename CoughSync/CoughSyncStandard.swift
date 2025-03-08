@@ -191,13 +191,13 @@ actor CoughSyncStandard: Standard,
         }
         
         let today = Calendar.current.startOfDay(for: Date())
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)
         
         do {
             let snapshot = try await configuration.userDocumentReference
                 .collection("CoughEvents")
                 .whereField("timestamp", isGreaterThanOrEqualTo: today)
-                .whereField("timestamp", isLessThan: tomorrow)
+                .whereField("timestamp", isLessThan: tomorrow ?? Date())
                 .getDocuments()
             
             return snapshot.documents.count
@@ -215,7 +215,7 @@ actor CoughSyncStandard: Standard,
         }
         
         let today = Calendar.current.startOfDay(for: Date())
-        let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: today)!
+        let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: today) ?? Date()
         
         return try await fetchAverageCoughCount(from: weekAgo, to: today)
     }
@@ -228,7 +228,7 @@ actor CoughSyncStandard: Standard,
         }
         
         let today = Calendar.current.startOfDay(for: Date())
-        let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: today)!
+        let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: today) ?? Date()
         
         return try await fetchAverageCoughCount(from: monthAgo, to: today)
     }
