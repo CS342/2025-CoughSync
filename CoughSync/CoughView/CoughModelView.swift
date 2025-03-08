@@ -20,38 +20,15 @@ import SwiftUI
 /// This view provides a user interface for starting and stopping cough detection
 /// and displays the current status of the detection process.
 struct CoughModelView: View {
-    @Environment(CoughSyncStandard.self) private var standard
-    @State private var viewModel: CoughDetectionViewModel?
+    @Binding var viewModel: CoughDetectionViewModel?
     
     var body: some View {
         VStack {
-            if let viewModel = viewModel {
-                Spacer()
-                detectionStatusView()
-                Spacer()
-                microphoneButton()
-                .padding()
-            } else {
-                // Show a loading indicator
-                ProgressView("Loading...")
-            }
+            Spacer()
+            detectionStatusView()
+            Spacer()
+            microphoneButton()
         }
-        .onAppear {
-            // Initialize viewModel here when environment is available
-            viewModel = CoughDetectionViewModel(standard: standard)
-        }
-    }
-    
-    private var microphoneImage: some View {
-        Image(systemName: viewModel?.detectionStarted == true ? "stop.fill" : "mic.fill")
-            .font(.system(size: 50))
-            .padding(30)
-            .background(viewModel?.detectionStarted == true ? .gray.opacity(0.7) : .blue)
-            .foregroundStyle(.white)
-            .clipShape(Circle())
-            .shadow(color: .gray, radius: 5)
-            .contentTransition(.symbolEffect(.replace))
-            .accessibilityLabel(viewModel?.detectionStarted == true ? "Stop sound detection" : "Start sound detection")
     }
 
     @ViewBuilder
@@ -59,37 +36,54 @@ struct CoughModelView: View {
         if viewModel?.detectionStarted == false {
             VStack(spacing: 10) {
                 ContentUnavailableView(
-                    "No Sound Detected",
-                    systemImage: "waveform.badge.magnifyingglass",
-                    description: Text("Tap the microphone to start detecting")
+                    "Ready for bed?",
+                    systemImage: "bed.double.fill",
+                    description: Text("Tap below to begin detecting nighttime coughs.")
                 )
-                Text("Cough Count: \(viewModel?.coughCount ?? 0)")
-                    .font(.title2)
-                    .foregroundColor(.secondary)
             }
-        } else if let predictedSound = viewModel?.identifiedSound {
+        } else if (viewModel?.identifiedSound) != nil {
             VStack(spacing: 10) {
-                Text(predictedSound.0)
-                    .font(.system(size: 26))
-                Text("Cough Count: \(viewModel?.coughCount ?? 0)")
-                Text("Coughs Today: \(viewModel?.coughCollection.coughsToday() ?? 0)")
-                Text("Cough Difference: \(viewModel?.coughCollection.coughDiffDay() ?? 0)")
+                ContentUnavailableView(
+                    "Tracking in Progress",
+                    systemImage: "lines.measurement.horizontal",
+                    description: Text("""
+                        Tap below to stop detecting coughs.
+                        Tracking for \(elapsedTimeString(since: viewModel?.detectionStatedDate ?? Date()))
+                    """)
+                )
             }
-            .multilineTextAlignment(.center)
-            .padding()
-            .foregroundStyle(.secondary)
-            .background(RoundedRectangle(cornerRadius: 14).fill(.ultraThinMaterial))
         } else {
-            ProgressView("Identifying Cough...")
+            VStack {
+                ProgressView("Starting...")
+                    .progressViewStyle(.circular)
+                    .padding(.top, 50)
+            }
+            .frame(maxWidth: .infinity, minHeight: 150)
         }
     }
     
     private func microphoneButton() -> some View {
         Button(action: {
             toggleListening()
-        }, label: {
-            microphoneImage
-        })
+        }) {
+            Text(viewModel?.detectionStarted == true ? "Stop tracking" : "Start tracking")
+                .font(.headline)
+                .padding()
+                .frame(minWidth: 200)
+                .background(viewModel?.detectionStarted == true ? Color.red : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+    }
+    
+    private func elapsedTimeString(since startDate: Date) -> String {
+        let elapsed = Int(Date().timeIntervalSince(startDate))
+        
+        let hours = elapsed / 3600
+        let minutes = (elapsed % 3600) / 60
+        let seconds = elapsed % 60
+        
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
     private func toggleListening() {
@@ -98,6 +92,7 @@ struct CoughModelView: View {
         }
         if viewModel?.detectionStarted == true {
             viewModel?.startListening()
+            viewModel?.detectionStatedDate = Date()
         } else {
             viewModel?.stopListening()
         }

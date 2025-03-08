@@ -11,24 +11,34 @@ import SwiftUI
 
 struct HomeView: View {
     enum Tabs: String {
-        case dashboard
+        case summary
         case schedule
         case coughTracking
         case coughDetection
         case coughReport
     }
+    
+    @Environment(CoughSyncStandard.self) private var standard
 
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.dashboard
+    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.summary
     @AppStorage(StorageKeys.tabViewCustomization) private var tabViewCustomization = TabViewCustomization()
 
+    @State private var viewModel: CoughDetectionViewModel?
     @State private var presentingAccount = false
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Dashboard", systemImage: "rectangle.grid.2x2", value: .dashboard) {
-                Dashboard(presentingAccount: $presentingAccount)
+            Tab("Summary", systemImage: "rectangle.grid.2x2", value: .summary) {
+                if viewModel != nil {
+                    SummaryView(
+                        presentingAccount: $presentingAccount,
+                        viewModel: $viewModel
+                    )
+                } else {
+                    ProgressView("Loading...")
+                }
             }
-            .customizationID("home.dashboard")
+            .customizationID("home.summary")
             
             Tab("Check In", systemImage: "list.clipboard", value: .schedule) {
                 ScheduleView(presentingAccount: $presentingAccount)
@@ -44,13 +54,10 @@ struct HomeView: View {
                 CoughReportView()
             }
             .customizationID("home.coughreport")
-            
-            if FeatureFlags.debugDetector {
-                Tab("Cough Detection", systemImage: "speaker.wave.3.fill", value: .coughDetection) {
-                    CoughModelView()
-                }
-                .customizationID("home.coughdetection")
-            }
+        }
+        .onAppear {
+            // Initialize viewModel here when environment is available
+            viewModel = CoughDetectionViewModel(standard: standard)
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
