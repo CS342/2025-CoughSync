@@ -20,6 +20,10 @@ import SoundAnalysis
 import Spezi
 import SwiftUI
 
+/// A view model that manages cough detection and analysis.
+///
+/// This class coordinates between the UI and the cough analysis components,
+/// processing detected sounds, tracking cough events, and storing cough data.
 @Observable
 @MainActor
 class CoughDetectionViewModel {
@@ -43,11 +47,20 @@ class CoughDetectionViewModel {
     var weeklyAverage: Int = 0
     var monthlyAverage: Int = 0
     
-    // Initialize with standard from environment
+    /// Initializes the view model with the cough sync standard.
+    ///
+    /// - Parameter standard: The standard used for storing and retrieving cough data.
     init(standard: CoughSyncStandard) {
         self.standard = standard
     }
     
+    /// Processes a sound classification result and determines if a cough was detected.
+    ///
+    /// This method evaluates the classification result, formats the display information,
+    /// and adds a cough to the collection if one is detected with sufficient confidence.
+    ///
+    /// - Parameter result: The sound classification result from the analysis.
+    /// - Returns: A tuple containing the identified sound name and confidence level, or nil if none.
     private func formattedDetectionResult(_ result: SNClassificationResult) -> (identifier: String, confidence: String)? {
         guard let classification = result.classifications.first else {
             return nil }
@@ -77,6 +90,10 @@ class CoughDetectionViewModel {
         return (displayName, confidencePercentString)
     }
     
+    /// Starts the cough detection process.
+    ///
+    /// This method initializes a publisher for classification results and begins
+    /// monitoring audio for cough sounds using the cough analysis manager.
     func startListening() {
         let classificationSubject = PassthroughSubject<SNClassificationResult, Error>()
         
@@ -94,6 +111,9 @@ class CoughDetectionViewModel {
         coughAnalysisManager.startCoughDetection(subject: classificationSubject)
     }
     
+    /// Stops the cough detection process.
+    ///
+    /// This method resets the detection state and stops the audio analysis.
     func stopListening() {
         lastTime = 0
         identifiedSound = nil

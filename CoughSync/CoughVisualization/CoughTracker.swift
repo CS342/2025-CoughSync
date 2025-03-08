@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(TestingSupport) import SpeziAccount
-import Spezi
 import FirebaseFirestore
 import Foundation
+import Spezi
+@_spi(TestingSupport) import SpeziAccount
 
 struct CoughEvent: Identifiable, Codable {
     var id = UUID()

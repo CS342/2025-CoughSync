@@ -14,14 +14,20 @@
 //
 
 import Charts
+import FirebaseAuth
+import FirebaseFirestore
 import SpeziAccount
 import SpeziScheduler
 import SpeziSchedulerUI
 import SpeziViews
 import SwiftUI
-import FirebaseFirestore
-import FirebaseAuth
 
+
+/// `Dashboard` is a view that displays a summary of cough detection data.
+///
+/// This view provides a summary of cough detection data, including the number of coughs detected
+/// today, this week, and this month. It also displays a visual representation of the cough count
+/// and a trend indicator.
 struct Dashboard: View {
     // MARK: - Instance Properties
     @Environment(Account.self) private var account: Account?
@@ -71,12 +77,10 @@ struct Dashboard: View {
         }
     }
     
-    // MARK: - Initializers
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
     
-    // MARK: - Methods
     @ViewBuilder
     private func coughSummaryCard() -> some View {
         VStack {
@@ -108,13 +112,13 @@ struct Dashboard: View {
     private func coughStats() -> some View {
         HStack(spacing: 16) {
             statCard(
-                title: "This Week", 
-                value: "\(viewModel?.weeklyAverage ?? 0)", 
+                title: "This Week",
+                value: "\(viewModel?.weeklyAverage ?? 0)",
                 fontColor: .purple
             )
             statCard(
-                title: "This Month", 
-                value: "\(viewModel?.monthlyAverage ?? 0)", 
+                title: "This Month",
+                value: "\(viewModel?.monthlyAverage ?? 0)",
                 fontColor: .mint
             )
         }
