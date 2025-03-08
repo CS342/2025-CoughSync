@@ -35,6 +35,7 @@ class CoughDetectionViewModel {
     @ObservationIgnored var lastTime: Double = 0
     
     var detectionStarted = false
+    var detectionStatedDate: Date?
     var coughCollection = CoughCollection()
     var coughCount: Int {
         let coughCount = coughCollection.coughCount

@@ -67,27 +67,6 @@ class CoughSyncTests: XCTestCase {
         XCTAssertEqual(coughCollection.coughCount, 2, "Total cough count should be 2")
     }
     
-    func testCoughDiffDay() {
-        // Create a collection with mocked dates for testing
-        let coughCollection = CoughCollection()
-        
-        // Today's date
-        let todayCough1 = Cough(timestamp: Date(), confidence: 0.9)
-        let todayCough2 = Cough(timestamp: Date(), confidence: 0.92)
-        
-        // Yesterday's date
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-        let yesterdayCough = Cough(timestamp: yesterday, confidence: 0.85)
-        
-        // Add coughs (2 today, 1 yesterday)
-        coughCollection.addCough(todayCough1)
-        coughCollection.addCough(todayCough2)
-        coughCollection.addCough(yesterdayCough)
-        
-        // The difference should be 2 - 1 = 1
-        XCTAssertEqual(coughCollection.coughDiffDay(), 1, "Cough difference should be 1")
-    }
-    
     // MARK: - CoughDetectionViewModel Tests
     
     @MainActor

@@ -63,16 +63,6 @@ class CoughCollection {
         return coughToday
     }
     
-    /// Calculates the difference between today's and yesterday's cough counts.
-    ///
-    /// - Returns: A positive value if today has more coughs than yesterday,
-    ///            a negative value if today has fewer coughs than yesterday.
-    func coughDiffDay() -> Int {
-        let coughToday = coughArray.filter { Calendar.current.isDateInToday($0.timestamp) }.count
-        let coughYesterday = coughArray.filter { Calendar.current.isDateInYesterday($0.timestamp) }.count
-        return coughToday - coughYesterday
-    }
-    
     func resetCoughs() {
         coughArray.removeAll()
     }
