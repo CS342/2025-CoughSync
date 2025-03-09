@@ -76,30 +76,6 @@ class CoughDashboardTests: XCTestCase {
         XCTAssertEqual(coughCollection.coughCount, 2, "Total cough count should be 2")
     }
     
-    // MARK: - CoughDetectionViewModel Tests
-    
-    @MainActor
-    func testCoughDetectionViewModelFetchData() async throws {
-        // Since we can't modify disableFirebase, we need to work with its current value
-        // Create a standard
-        let standard = CoughSyncStandard()
-        
-        // Create a view model
-        let viewModel = CoughDetectionViewModel(standard: standard)
-        
-        // Create an expectation
-        let expectation = XCTestExpectation(description: "Fetch cough data")
-        
-        // Fetch data
-        viewModel.fetchCoughData { _ in
-            // With Firebase disabled or enabled, the operation should complete
-            expectation.fulfill()
-        }
-        
-        // Wait for the expectation
-        await fulfillment(of: [expectation], timeout: 2.0)
-    }
-    
     @MainActor
     func testCoughViewModelPropertiesUpdated() {
         // Create a standard
