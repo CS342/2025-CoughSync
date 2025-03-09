@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// An enumeration representing the type of questionnaire.
 enum QuestionnaireType: String {
     case profile = "Profile"
     case checkIn = "CheckIn"

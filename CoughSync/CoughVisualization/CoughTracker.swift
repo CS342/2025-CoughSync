@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(TestingSupport) import SpeziAccount
-import Spezi
 import FirebaseFirestore
 import Foundation
+import Spezi
+@_spi(TestingSupport) import SpeziAccount
 
 struct CoughEvent: Identifiable, Codable {
     var id = UUID()
@@ -18,7 +18,6 @@ struct CoughEvent: Identifiable, Codable {
 
 class CoughTracker: ObservableObject {
     @Published var coughEvents: [CoughEvent] = []
-    @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
     var standard: CoughSyncStandard?
@@ -34,7 +33,6 @@ class CoughTracker: ObservableObject {
             return
         }
         
-        isLoading = true
         errorMessage = nil
         
         do {
@@ -44,12 +42,5 @@ class CoughTracker: ObservableObject {
             errorMessage = "Failed to load cough data: \(error.localizedDescription)"
             coughEvents = []
         }
-        
-        isLoading = false
-    }
-    
-    func addCoughEvent(_ cough: Cough) {
-        let coughEvent = CoughEvent(date: cough.timestamp)
-        coughEvents.append(coughEvent)
     }
 }

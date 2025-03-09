@@ -1,5 +1,4 @@
 //
-
 // This source file is part of the CoughSync based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2025 Stanford University
@@ -18,7 +17,10 @@ import Foundation
 @preconcurrency import SoundAnalysis
 import UIKit
 
-
+/// A singleton manager responsible for analyzing audio for cough detection.
+///
+/// This class handles the audio recording setup, processing, and analysis
+/// using the `SoundAnalysis` framework to detect coughs in real-time audio.
 final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     @MainActor static let shared = CoughAnalysisManager()
     private let bufferSize = 8192
@@ -40,7 +42,10 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     
     override private init() {}
     
-    // to prevent IOS from shutting down recording process
+    /// Starts a background task to prevent iOS from suspending the cough detection process.
+    ///
+    /// This method is called when starting cough detection to ensure the app
+    /// can continue processing audio even when in the background.
     @MainActor
     func startBackgroundTask() {
         background = UIApplication.shared.beginBackgroundTask(withName: "CoughDetection") {
@@ -49,6 +54,7 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    /// Ends the background task when cough detection is no longer needed.
     @MainActor
     func endBackgroundTask() {
         if background != .invalid {
@@ -57,6 +63,14 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    /// Starts the cough detection process with the specified configuration.
+    ///
+    /// This method initializes the cough classifier, creates a sound classification request,
+    /// and begins analyzing audio input for cough sounds. Results are published to the provided subject.
+    ///
+    /// - Parameters:
+    ///   - subject: A `PassthroughSubject` that will publish classification results or errors.
+    ///   - config: Configuration parameters for cough detection. Defaults to standard settings.
     @MainActor
     func startCoughDetection(
         subject: PassthroughSubject<SNClassificationResult, Error>,
@@ -89,6 +103,10 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    /// Stops the cough detection process and cleans up resources.
+    ///
+    /// This method stops the audio engine, removes the analysis requests,
+    /// and releases all related resources.
     @MainActor
     func stopCoughDetection() {
         endBackgroundTask()
@@ -106,6 +124,9 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    /// Sets up the audio engine for recording with appropriate settings.
+    ///
+    /// Configures the audio session and AVAudioEngine for optimal cough detection.
     private func setupAudioEngine() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
@@ -134,6 +155,12 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
 
+    /// Starts the audio analysis with the specified request and observer.
+    ///
+    /// This method configures the audio stream analyzer and begins processing audio buffers.
+    ///
+    /// - Parameter requestAndObserver: A tuple containing the sound classification request and its observer.
+    /// - Throws: An error if the analyzer cannot be set up or the audio engine cannot be started.
     private func startAnalysis(
         _ requestAndObserver: (request: SNRequest, observer: SNResultsObserving)
     ) throws {
@@ -171,9 +198,12 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    /// Helper method to retain the observer object.
     private func useObserver() {
         _ = retainedObserver
     }
+    
+    /// Helper method to retain the subject object.
     private func useSubject() {
         _ = subject
     }

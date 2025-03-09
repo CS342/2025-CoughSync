@@ -7,27 +7,30 @@
 //
 
 //
-//  Dashboard.swift
+//  SummaryView.swift
 //  CoughSync
 //
 //  Created by Miguel Fuentes on 2/24/25.
 //
 
 import Charts
+import FirebaseAuth
+import FirebaseFirestore
 import SpeziAccount
 import SpeziScheduler
 import SpeziSchedulerUI
 import SpeziViews
 import SwiftUI
-import FirebaseFirestore
-import FirebaseAuth
 
-struct Dashboard: View {
-    // MARK: - Instance Properties
+/// `SummaryView` is a view that displays a summary of cough detection data.
+///
+/// This view provides a summary of cough detection data, including the number of coughs detected
+/// today, this week, and this month. It also displays a visual representation of the cough count
+/// and a trend indicator.
+struct SummaryView: View {
     @Environment(Account.self) private var account: Account?
-    @Environment(CoughSyncStandard.self) private var standard
     @Binding var presentingAccount: Bool
-    @State private var viewModel: CoughDetectionViewModel?
+    @Binding var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
     @State private var isLoadingData: Bool = true
     
@@ -40,6 +43,7 @@ struct Dashboard: View {
                         coughSummaryCard()
                         coughStats()
                         Divider()
+                        CoughModelView(viewModel: $viewModel)
                     }
                     .padding()
                 } else {
@@ -56,10 +60,7 @@ struct Dashboard: View {
             }
             .onAppear {
                 // Initialize viewModel here when environment is available
-                viewModel = CoughDetectionViewModel(standard: standard)
                 loadCoughData()
-            }
-            .onAppear {
                 previousCoughCount = viewModel?.coughCount ?? 0
             }
             .onChange(of: viewModel?.coughCount) { oldValue, _ in
@@ -71,12 +72,14 @@ struct Dashboard: View {
         }
     }
     
-    // MARK: - Initializers
-    init(presentingAccount: Binding<Bool>) {
+    init(
+        presentingAccount: Binding<Bool>,
+        viewModel: Binding<CoughDetectionViewModel?>
+    ) {
         self._presentingAccount = presentingAccount
+        self._viewModel = viewModel
     }
     
-    // MARK: - Methods
     @ViewBuilder
     private func coughSummaryCard() -> some View {
         VStack {
@@ -108,13 +111,13 @@ struct Dashboard: View {
     private func coughStats() -> some View {
         HStack(spacing: 16) {
             statCard(
-                title: "This Week", 
-                value: "\(viewModel?.weeklyAverage ?? 0)", 
+                title: "This Week",
+                value: "\(viewModel?.weeklyAverage ?? 0)",
                 fontColor: .purple
             )
             statCard(
-                title: "This Month", 
-                value: "\(viewModel?.monthlyAverage ?? 0)", 
+                title: "This Month",
+                value: "\(viewModel?.monthlyAverage ?? 0)",
                 fontColor: .mint
             )
         }
@@ -172,5 +175,10 @@ struct Dashboard: View {
 }
 
 #Preview {
-    Dashboard(presentingAccount: .constant(false))
+    SummaryView(
+        presentingAccount: .constant(false),
+        viewModel: .constant(CoughDetectionViewModel(
+            standard: CoughSyncStandard()
+        ))
+    )
 }

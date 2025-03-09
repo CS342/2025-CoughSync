@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "    Tap below to stop detecting coughs.\n    Tracking for %@" : {
+
+    },
     "%@ " : {
 
     },
@@ -95,6 +98,7 @@
       }
     },
     "Contacts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -116,15 +120,6 @@
       }
     },
     "Cough Count" : {
-
-    },
-    "Cough Count: %lld" : {
-
-    },
-    "Cough Detection" : {
-
-    },
-    "Cough Difference: %lld" : {
 
     },
     "Cough Report" : {
@@ -154,9 +149,6 @@
     "Coughs Change: " : {
 
     },
-    "Coughs Today: %lld" : {
-
-    },
     "coughs/d" : {
 
     },
@@ -171,9 +163,6 @@
       }
     },
     "Daily Coughs (Past 7 Days)" : {
-
-    },
-    "Dashboard" : {
 
     },
     "Day" : {
@@ -248,9 +237,6 @@
       }
     },
     "Hourly Coughs (Today)" : {
-
-    },
-    "Identifying Cough..." : {
 
     },
     "Initial Assessment" : {
@@ -334,6 +320,7 @@
       }
     },
     "LELAND_STANFORD_BIO" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -368,9 +355,6 @@
           }
         }
       }
-    },
-    "No Sound Detected" : {
-
     },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
       "localizations" : {
@@ -420,7 +404,7 @@
         }
       }
     },
-    "Questionnaires" : {
+    "Ready for bed?" : {
 
     },
     "Schedule" : {
@@ -465,10 +449,13 @@
         }
       }
     },
-    "Start sound detection" : {
+    "Start tracking" : {
 
     },
-    "Stop sound detection" : {
+    "Starting..." : {
+
+    },
+    "Stop tracking" : {
 
     },
     "Summary" : {
@@ -485,7 +472,7 @@
         }
       }
     },
-    "Tap the microphone to start detecting" : {
+    "Tap below to begin detecting nighttime coughs." : {
 
     },
     "Tell us about your cough every week." : {
@@ -519,6 +506,9 @@
 
     },
     "Today" : {
+
+    },
+    "Tracking in Progress" : {
 
     },
     "Unsupported Event" : {

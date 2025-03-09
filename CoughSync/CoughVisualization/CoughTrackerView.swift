@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
 import Spezi
+import SwiftUI
 
 struct CoughTrackerView: View {
     @Environment(CoughSyncStandard.self) private var standard
