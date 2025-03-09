@@ -6,42 +6,87 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SwiftUI
 
 struct CoughTrackerView: View {
+    @Environment(CoughSyncStandard.self) private var standard
     @StateObject private var coughTracker = CoughTracker()
-    @StateObject private var coughDataReceiver = CoughDataReceiver()
-
+    @State private var isLoading = true
+    
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    CoughChartView(
-                        coughEvents: coughTracker.coughEvents,
-                        xName: "Time",
-                        yName: "Cough Count",
-                        title: "Hourly Coughs (Today)",
-                        isWeekly: false
-                    )
-                }
-
-                Section {
-                    CoughChartView(
-                        coughEvents: coughTracker.coughEvents,
-                        xName: "Day",
-                        yName: "Cough Count",
-                        title: "Daily Coughs (Past 7 Days)",
-                        isWeekly: true
-                    )
+            ZStack {
+                if isLoading {
+                    loadingView
+                } else {
+                    contentView
                 }
             }
             .navigationTitle("Cough Tracker")
             .onAppear {
-                if coughTracker.coughEvents.isEmpty {
-                    coughTracker.coughEvents = coughDataReceiver.generateFakeCoughData()
-                    print("Using fake cough data: \(coughTracker.coughEvents.count) events")
+                setupAndLoad()
+            }
+            .refreshable {
+                await coughTracker.loadCoughEvents()
+            }
+        }
+    }
+    
+    // MARK: - View Components
+    
+    private var loadingView: some View {
+        ProgressView("Loading cough data...")
+    }
+    
+    private var contentView: some View {
+        List {
+            Section {
+                hourlyChartView
+            }
+            
+            Section {
+                weeklyChartView
+            }
+            
+            if let errorMessage = coughTracker.errorMessage {
+                Section {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
                 }
             }
+        }
+    }
+    
+    private var hourlyChartView: some View {
+        CoughChartView(
+            coughEvents: coughTracker.coughEvents,
+            xName: "Time",
+            yName: "Cough Count",
+            title: "Hourly Coughs (Today)",
+            isWeekly: false
+        )
+    }
+    
+    private var weeklyChartView: some View {
+        CoughChartView(
+            coughEvents: coughTracker.coughEvents,
+            xName: "Day",
+            yName: "Cough Count",
+            title: "Daily Coughs (Past 7 Days)",
+            isWeekly: true
+        )
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func setupAndLoad() {
+        coughTracker.standard = standard
+        isLoading = true
+        
+        Task {
+            await coughTracker.loadCoughEvents()
+            isLoading = false
         }
     }
 }

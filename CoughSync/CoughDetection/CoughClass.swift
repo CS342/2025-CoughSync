@@ -62,4 +62,19 @@ class CoughCollection {
         let coughToday = coughArray.filter { Calendar.current.isDateInToday($0.timestamp) }.count
         return coughToday
     }
+    
+    func resetCoughs() {
+        coughArray.removeAll()
+    }
+
+    func setCount(_ count: Int) {
+        // First reset the collection
+        resetCoughs()
+
+        // Then add the desired number of coughs
+        for _ in 0..<count {
+            let dummyCough = Cough(timestamp: Date(), confidence: 1.0)
+            addCough(dummyCough)
+        }
+    }
 }
