@@ -17,7 +17,12 @@ struct NotificationPermissions: View {
     @Environment(\.requestNotificationAuthorization) private var requestNotificationAuthorization
 
     @State private var notificationProcessing = false
-    @State private var notifTime = Date()
+    @State private var notifTime: Date = {
+        var components = DateComponents()
+        components.hour = 20 // 8 PM
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }()
     
     var body: some View {
         OnboardingView(
@@ -25,25 +30,20 @@ struct NotificationPermissions: View {
                 VStack {
                     OnboardingTitleView(
                         title: "Notifications",
-                        subtitle: "Spezi Scheduler Notifications."
+                        subtitle: "CoughSync helps you monitor your cough while you sleep."
                     )
                     Spacer()
                     Image(systemName: "bell.square.fill")
-                        .font(.system(size: 150))
+                        .font(.system(size: 130))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("NOTIFICATION_PERMISSIONS_DESCRIPTION")
                         .multilineTextAlignment(.center)
-                        .padding(.vertical, 16)
-                    Text("Set your preferred time to receive your daily reminder to start recording (before going to sleep!)")
-                        .font(.headline)
-                        .padding(.top, 16)
+                        .padding(.vertical, 2)
                     DatePicker("Choose Reminder Time", selection: $notifTime, displayedComponents: .hourAndMinute)
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
-                        .padding()
-                    
-                    Spacer()
+                        .scaleEffect(0.8)
                 }
             }, actionView: {
                 OnboardingActionsView(
