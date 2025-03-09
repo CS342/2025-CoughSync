@@ -171,6 +171,9 @@
     "Day" : {
 
     },
+    "Decrease in coughs" : {
+
+    },
     "Get Started" : {
 
     },
@@ -240,6 +243,9 @@
       }
     },
     "Hourly Coughs (Today)" : {
+
+    },
+    "Increase in coughs" : {
 
     },
     "Initial Assessment" : {
