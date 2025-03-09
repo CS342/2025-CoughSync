@@ -149,7 +149,7 @@ struct SummaryView: View {
     @ViewBuilder
     private func statusCircle() -> some View {
         let change = viewModel?.coughCount ?? 0 - previousCoughCount
-        let color: Color = change > 0 ? .red : (change < 0 ? .green : .blue)
+        let color: Color = change > 0 ? .yellow : (change < 0 ? .green : .blue)
         let trendSymbol = change > 0 ? "↑" : (change < 0 ? "↓" : "–")
         
         Circle()

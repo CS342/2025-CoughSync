@@ -28,7 +28,7 @@ struct HealthKitPermissions: View {
                     )
                     Spacer()
                     Image(systemName: "heart.text.square.fill")
-                        .font(.system(size: 150))
+                        .font(.system(size: 130))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("HEALTHKIT_PERMISSIONS_DESCRIPTION")
