@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665A3F72D5C01C10055D1B2 /* AppIcon.png */; };
-		2580EC672D7D0E2B005C1980 /* trick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC662D7D0E2B005C1980 /* trick.wav */; };
+		2580EC6F2D7D188D005C1980 /* trick 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC6E2D7D188D005C1980 /* trick 2.wav */; };
+		2580EC732D7D190A005C1980 /* trick 2.license in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC722D7D190A005C1980 /* trick 2.license */; };
 		2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */; };
 		2F3D4ABC2A4E7C290068FB2F /* SpeziScheduler in Frameworks */ = {isa = PBXBuildFile; productRef = 2F3D4ABB2A4E7C290068FB2F /* SpeziScheduler */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -120,7 +121,8 @@
 
 /* Begin PBXFileReference section */
 		0665A3F72D5C01C10055D1B2 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
-		2580EC662D7D0E2B005C1980 /* trick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = trick.wav; sourceTree = "<group>"; };
+		2580EC6E2D7D188D005C1980 /* trick 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "trick 2.wav"; sourceTree = "<group>"; };
+		2580EC722D7D190A005C1980 /* trick 2.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "trick 2.license"; sourceTree = "<group>"; };
 		2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoughSync.docc; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTestingSetup.swift; sourceTree = "<group>"; };
@@ -272,9 +274,10 @@
 			children = (
 				0665A3F72D5C01C10055D1B2 /* AppIcon.png */,
 				4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */,
+				2580EC722D7D190A005C1980 /* trick 2.license */,
+				2580EC6E2D7D188D005C1980 /* trick 2.wav */,
 				4913AC8D2D5AE0270030C90D /* ProfileQuestionnaire.json */,
 				49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */,
-				2580EC662D7D0E2B005C1980 /* trick.wav */,
 				49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */,
 				49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */,
 				492845512D4AB56700C737C8 /* CoughBurdenQuestionnaire.json */,
@@ -620,8 +623,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4913AC902D5AE07F0030C90D /* ProfileQuestionnaire.json.license in Resources */,
+				2580EC732D7D190A005C1980 /* trick 2.license in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
-				2580EC672D7D0E2B005C1980 /* trick.wav in Resources */,
+				2580EC6F2D7D188D005C1980 /* trick 2.wav in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
