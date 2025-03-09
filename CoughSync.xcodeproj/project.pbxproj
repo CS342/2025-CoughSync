@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665A3F72D5C01C10055D1B2 /* AppIcon.png */; };
+		2580EC7D2D7D1D95005C1980 /* trick 2.wav.license in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC7C2D7D1D95005C1980 /* trick 2.wav.license */; };
+		2580EC7F2D7D1DA4005C1980 /* trick 3.wav.license in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC7E2D7D1DA4005C1980 /* trick 3.wav.license */; };
+		2580EC812D7D1DD1005C1980 /* trick 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC802D7D1DD1005C1980 /* trick 3.wav */; };
+		2580EC832D7D1E3F005C1980 /* trick.wav.license.license in Resources */ = {isa = PBXBuildFile; fileRef = 2580EC822D7D1E3F005C1980 /* trick.wav.license.license */; };
 		2F1AC9DF2B4E840E00C24973 /* CoughSync.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */; };
 		2F3D4ABC2A4E7C290068FB2F /* SpeziScheduler in Frameworks */ = {isa = PBXBuildFile; productRef = 2F3D4ABB2A4E7C290068FB2F /* SpeziScheduler */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -119,6 +123,10 @@
 
 /* Begin PBXFileReference section */
 		0665A3F72D5C01C10055D1B2 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		2580EC7C2D7D1D95005C1980 /* trick 2.wav.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "trick 2.wav.license"; sourceTree = "<group>"; };
+		2580EC7E2D7D1DA4005C1980 /* trick 3.wav.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = "trick 3.wav.license"; sourceTree = "<group>"; };
+		2580EC802D7D1DD1005C1980 /* trick 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "trick 3.wav"; sourceTree = "<group>"; };
+		2580EC822D7D1E3F005C1980 /* trick.wav.license.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = trick.wav.license.license; sourceTree = "<group>"; };
 		2F1AC9DE2B4E840E00C24973 /* CoughSync.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoughSync.docc; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* CoughSyncTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTestingSetup.swift; sourceTree = "<group>"; };
@@ -270,6 +278,10 @@
 			children = (
 				0665A3F72D5C01C10055D1B2 /* AppIcon.png */,
 				4913AC8F2D5AE06D0030C90D /* ProfileQuestionnaire.json.license */,
+				2580EC7C2D7D1D95005C1980 /* trick 2.wav.license */,
+				2580EC802D7D1DD1005C1980 /* trick 3.wav */,
+				2580EC7E2D7D1DA4005C1980 /* trick 3.wav.license */,
+				2580EC822D7D1E3F005C1980 /* trick.wav.license.license */,
 				4913AC8D2D5AE0270030C90D /* ProfileQuestionnaire.json */,
 				49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */,
 				49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */,
@@ -617,12 +629,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4913AC902D5AE07F0030C90D /* ProfileQuestionnaire.json.license in Resources */,
+				2580EC812D7D1DD1005C1980 /* trick 3.wav in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
+				2580EC7F2D7D1DA4005C1980 /* trick 3.wav.license in Resources */,
 				49F06F5F2D53468400A7E170 /* CoughClassifier.mlmodel.license in Resources */,
+				2580EC7D2D7D1D95005C1980 /* trick 2.wav.license in Resources */,
 				0665A3F82D5C01C10055D1B2 /* AppIcon.png in Resources */,
+				2580EC832D7D1E3F005C1980 /* trick.wav.license.license in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				492845522D4AB56800C737C8 /* CoughBurdenQuestionnaire.json in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
