@@ -128,7 +128,7 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     
     // Plays a generated silent audio to keep the audio session active upon closing the app
     private func playTrickAudio() {
-        guard let url = Bundle.main.url(forResource: "trick 2", withExtension: "wav") else {
+        guard let url = Bundle.main.url(forResource: "trick 3", withExtension: "wav") else {
             print("Can't find audio")
             return
         }
@@ -226,5 +226,21 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     /// Helper method to retain the subject object.
     private func useSubject() {
         _ = subject
+    }
+    
+    private func useTrick() {
+        if let url = Bundle.main.url(forResource: "trick", withExtension: "wav") {
+            print("Playing")
+        } else {
+            print("Nope!")
+        }
+    }
+    
+    private func useTrick2() {
+        if let url = Bundle.main.url(forResource: "trick 2", withExtension: "wav") {
+            print("Playing")
+        } else {
+            print("Nope!")
+        }
     }
 }
