@@ -165,6 +165,9 @@
         }
       }
     },
+    "CoughSync helps you monitor your cough while you sleep." : {
+
+    },
     "Daily Coughs (Past 7 Days)" : {
 
     },
@@ -364,7 +367,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+            "value" : "Set your preferred time to receive your daily reminder to start recording (before going to sleep!)"
           }
         }
       }
@@ -421,9 +424,6 @@
         }
       }
     },
-    "Set your preferred time to receive your daily reminder to start recording (before going to sleep!)" : {
-
-    },
     "Spezi Modules" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -436,6 +436,7 @@
       }
     },
     "Spezi Scheduler Notifications." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
