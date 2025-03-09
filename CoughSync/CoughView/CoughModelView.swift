@@ -24,56 +24,66 @@ struct CoughModelView: View {
     
     var body: some View {
         VStack {
-            Spacer()
             detectionStatusView()
+                .animation(.easeInOut(duration: 0.3), value: viewModel?.detectionStarted)
             Spacer()
             microphoneButton()
+                .animation(.easeInOut(duration: 0.3), value: viewModel?.detectionStarted)
+                .padding(.bottom, 50)
+            
+            Spacer()
         }
+        .frame(maxHeight: .infinity, alignment: .bottom)
     }
 
     @ViewBuilder
     private func detectionStatusView() -> some View {
-        if viewModel?.detectionStarted == false {
-            VStack(spacing: 10) {
+        ZStack { // this keeps elements in stack without shifting layout
+            if viewModel?.detectionStarted == false {
                 ContentUnavailableView(
                     "Ready for bed?",
                     systemImage: "bed.double.fill",
                     description: Text("Tap below to begin detecting nighttime coughs.")
                 )
-            }
-        } else if (viewModel?.identifiedSound) != nil {
-            VStack(spacing: 10) {
+            } else if (viewModel?.identifiedSound) != nil {
                 ContentUnavailableView(
                     "Tracking in Progress",
-                    systemImage: "lines.measurement.horizontal",
+                    systemImage: "waveform.path.ecg",
                     description: Text("""
-                        Tap below to stop detecting coughs.
-                        Tracking for \(elapsedTimeString(since: viewModel?.detectionStatedDate ?? Date()))
-                    """)
+                    Tap below to stop detecting coughs.
+                    Tracking for \(elapsedTimeString(since: viewModel?.detectionStatedDate ?? Date()))
+                """)
                 )
+            } else {
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                        .scaleEffect(0.8)
+                    Text("Starting...")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity) // keep everything centred
+                .background(Color(.systemBackground).opacity(0.8))
             }
-        } else {
-            VStack {
-                ProgressView("Starting...")
-                    .progressViewStyle(.circular)
-                    .padding(.top, 50)
-            }
-            .frame(maxWidth: .infinity, minHeight: 150)
         }
+        .frame(height: 193) // keeps button fixed
     }
     
     private func microphoneButton() -> some View {
         Button(action: {
             toggleListening()
         }) {
-            Text(viewModel?.detectionStarted == true ? "Stop tracking" : "Start tracking")
-                .font(.headline)
-                .padding()
-                .frame(minWidth: 200)
-                .background(viewModel?.detectionStarted == true ? Color.red : Color.blue)
+            Image(systemName: viewModel?.detectionStarted == true ? "stop.fill" : "mic.fill")
+                .font(.system(size: 30))
                 .foregroundColor(.white)
-                .cornerRadius(10)
+                .frame(width: 80, height: 80)
+                .background(viewModel?.detectionStarted == true ? Color.red.gradient : Color.blue.gradient)
+                .clipShape(Circle()) // circle might be more visually appealing?
+                .shadow(radius: 5)
+                .padding(.top, 10)
         }
+        .accessibilityLabel(viewModel?.detectionStarted == true ? "Stop tracking" : "Start tracking")
     }
     
     private func elapsedTimeString(since startDate: Date) -> String {
@@ -87,9 +97,7 @@ struct CoughModelView: View {
     }
     
     private func toggleListening() {
-        withAnimation {
-            viewModel?.detectionStarted.toggle()
-        }
+        viewModel?.detectionStarted.toggle()
         if viewModel?.detectionStarted == true {
             viewModel?.startListening()
             viewModel?.detectionStatedDate = Date()

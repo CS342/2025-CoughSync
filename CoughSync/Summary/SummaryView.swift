@@ -82,28 +82,29 @@ struct SummaryView: View {
     
     @ViewBuilder
     private func coughSummaryCard() -> some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Today")
+                .font(.headline)
+                .foregroundColor(.primary)
+            
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Today")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    Text("\(viewModel?.coughCount ?? 0) ")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.blue)
-                    +
-                    Text("coughs")
-                        .font(.footnote)
-                        .foregroundColor(.blue)
-                }
+                Text("\(viewModel?.coughCount ?? 0) ")
+                    .font(.system(size: 50, weight: .bold, design: .rounded))
+                    .foregroundColor(.blue)
+                +
+                Text("coughs")
+                    .font(.footnote)
+                    .foregroundColor(.blue)
+            }
+            HStack {
                 Spacer()
                 statusCircle()
             }
-            .padding()
         }
-        .background(Color(.secondarySystemBackground)) // Subtle differentiation
-        .cornerRadius(12)
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(.thinMaterial) // Subtle differentiation, more clear / transparent
+        .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(radius: 5)
     }
     
@@ -152,7 +153,7 @@ struct SummaryView: View {
         let trendSymbol = change > 0 ? "↑" : (change < 0 ? "↓" : "–")
         
         Circle()
-            .fill(color)
+            .fill(LinearGradient(colors: [color.opacity(0.8), color], startPoint: .top, endPoint: .bottom))
             .frame(width: 50, height: 50)
             .overlay(
                 Text(trendSymbol)
@@ -160,6 +161,7 @@ struct SummaryView: View {
                     .foregroundColor(.white)
             )
             .shadow(radius: 5)
+            .accessibilityLabel(Text(change > 0 ? "Increase in coughs" : "Decrease in coughs"))
     }
     
     private func loadCoughData() {
