@@ -228,7 +228,7 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         _ = subject
     }
     
-    private func useTrick() {
+    /*private func useTrick() {
         if let url = Bundle.main.url(forResource: "trick", withExtension: "wav") {
             print("Playing")
         } else {
@@ -242,5 +242,5 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         } else {
             print("Nope!")
         }
-    }
+    }*/
 }
