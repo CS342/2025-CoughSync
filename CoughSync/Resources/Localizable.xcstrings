@@ -63,6 +63,9 @@
     "Check In" : {
 
     },
+    "Choose Reminder Time" : {
+
+    },
     "Clock icon" : {
 
     },
@@ -414,6 +417,9 @@
           }
         }
       }
+    },
+    "Set your preferred time to receive your daily reminder to start recording (before going to sleep!)" : {
+
     },
     "Spezi Modules" : {
       "extractionState" : "stale",
