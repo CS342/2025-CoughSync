@@ -60,7 +60,13 @@
         }
       }
     },
+    "Change in Coughs: " : {
+
+    },
     "Check In" : {
+
+    },
+    "Choose Reminder Time" : {
 
     },
     "Clock icon" : {
@@ -146,9 +152,6 @@
     "Coughs" : {
 
     },
-    "Coughs Change: " : {
-
-    },
     "coughs/d" : {
 
     },
@@ -166,6 +169,9 @@
 
     },
     "Day" : {
+
+    },
+    "Decrease in coughs" : {
 
     },
     "Get Started" : {
@@ -237,6 +243,9 @@
       }
     },
     "Hourly Coughs (Today)" : {
+
+    },
+    "Increase in coughs" : {
 
     },
     "Initial Assessment" : {
@@ -414,6 +423,9 @@
           }
         }
       }
+    },
+    "Set your preferred time to receive your daily reminder to start recording (before going to sleep!)" : {
+
     },
     "Spezi Modules" : {
       "extractionState" : "stale",
