@@ -18,7 +18,6 @@ struct NotificationPermissions: View {
 
     @State private var notificationProcessing = false
     
-    
     var body: some View {
         OnboardingView(
             contentView: {
