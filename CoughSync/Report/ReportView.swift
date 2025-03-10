@@ -30,9 +30,11 @@ struct CoughReportView: View {
                         .padding(.top, 10)
                     }
                     .padding()
+                    .frame(maxWidth: .infinity)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal)
         }
     }
 }
