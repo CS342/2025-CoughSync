@@ -23,7 +23,8 @@ struct CoughTrackerView: View {
                     contentView
                 }
             }
-            .navigationTitle("Cough Tracker")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Trends")
             .onAppear {
                 setupAndLoad()
             }
@@ -49,6 +50,10 @@ struct CoughTrackerView: View {
                 weeklyChartView
             }
             
+            Section {
+                monthlyChartView
+            }
+            
             if let errorMessage = coughTracker.errorMessage {
                 Section {
                     Text(errorMessage)
@@ -64,7 +69,7 @@ struct CoughTrackerView: View {
             xName: "Time",
             yName: "Cough Count",
             title: "Hourly Coughs (Today)",
-            isWeekly: false
+            coughChartType: .daily
         )
     }
     
@@ -73,8 +78,18 @@ struct CoughTrackerView: View {
             coughEvents: coughTracker.coughEvents,
             xName: "Day",
             yName: "Cough Count",
-            title: "Daily Coughs (Past 7 Days)",
-            isWeekly: true
+            title: "Daily Coughs (Past Week)",
+            coughChartType: .weekly
+        )
+    }
+    
+    private var monthlyChartView: some View {
+        CoughChartView(
+            coughEvents: coughTracker.coughEvents,
+            xName: "Day",
+            yName: "Cough Count",
+            title: "Daily Coughs (Past Month)",
+            coughChartType: .monthly
         )
     }
     

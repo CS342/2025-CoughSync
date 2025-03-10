@@ -20,7 +20,7 @@ struct CoughChartView: View {
     let xName: LocalizedStringResource
     let yName: LocalizedStringResource
     let title: LocalizedStringResource
-    let isWeekly: Bool
+    let coughChartType: CoughChartType
 
    // @State private var selectedElement: CoughData?
 
@@ -66,6 +66,26 @@ struct CoughChartView: View {
         return dailyData.map { CoughData(date: $0.key, count: $0.value) }
             .sorted { $0.date < $1.date }
     }
+    
+    var groupedCoughsMonthly: [CoughData] {
+        let today = calendar.startOfDay(for: Date())
+        let startOfWeek = calendar.date(byAdding: .day, value: -29, to: today) ?? today
+
+        var dailyData: [Date: Int] = [:]
+        for dayOffset in 0..<30 {
+            if let date = calendar.date(byAdding: .day, value: -dayOffset, to: today) {
+                dailyData[date] = 0
+            }
+        }
+
+        for event in coughEvents.filter({ $0.date >= startOfWeek }) {
+            let dayStart = calendar.startOfDay(for: event.date)
+            dailyData[dayStart, default: 0] += 1
+        }
+
+        return dailyData.map { CoughData(date: $0.key, count: $0.value) }
+            .sorted { $0.date < $1.date }
+    }
 
     var maxCoughCount: Int {
         let maxHourly = groupedCoughsHourly.map(\.count).max() ?? 5
@@ -78,9 +98,8 @@ struct CoughChartView: View {
             Text(self.title)
                 .font(.title3.bold())
                 .listRowSeparator(.hidden)
-
-            if let latest = (isWeekly ? groupedCoughsWeekly.last : groupedCoughsHourly.last) {
-                Text("\(latest.date.formatted(isWeekly ? .dateTime.weekday() : .dateTime.hour().minute())): \(latest.count) coughs")
+            if let latest = (getData().last) {
+                Text("\(latest.date.formatted(getFormat())): \(latest.count) coughs")
                     .font(.footnote)
                     .foregroundColor(.gray)
             }
@@ -91,11 +110,11 @@ struct CoughChartView: View {
 
     private var chart: some View {
         Chart {
-            let data = isWeekly ? groupedCoughsWeekly : groupedCoughsHourly
+            let data = getData()
 
             ForEach(data) { dataPoint in
                 BarMark(
-                    x: .value(.init(self.xName), dataPoint.date, unit: isWeekly ? .day : .hour),
+                    x: .value(.init(self.xName), dataPoint.date, unit: getXUnit()),
                     y: .value(.init(self.yName), dataPoint.count)
                 )
                 .foregroundStyle(.blue)
@@ -111,7 +130,7 @@ struct CoughChartView: View {
             AxisMarks(values: .automatic) { date in
                 AxisValueLabel {
                     if let date = date.as(Date.self) {
-                        Text(date.formatted(isWeekly ? .dateTime.weekday(.abbreviated) : .dateTime.hour()))
+                        Text(date.formatted(getAxisFormat()))
                             .font(.footnote)
                             .foregroundColor(.gray)
                     }
@@ -121,6 +140,53 @@ struct CoughChartView: View {
             }
         }
     }
+    
+    private func getAxisFormat() -> Date.FormatStyle {
+        switch coughChartType {
+        case .daily:
+            return .dateTime.hour()
+        case .weekly:
+            return .dateTime.weekday(.abbreviated)
+        case .monthly:
+            return .dateTime.day()
+        }
+    }
+
+    
+    private func getXUnit() -> Calendar.Component {
+        switch coughChartType {
+        case .daily:
+            return .hour
+        case .weekly:
+            return .day
+        case .monthly:
+            return .day
+        }
+    }
+
+    
+    private func getFormat() -> Date.FormatStyle {
+        switch coughChartType {
+        case .daily:
+            return .dateTime.hour().minute()
+        case .weekly:
+            return .dateTime.weekday()
+        case .monthly:
+            return .dateTime.day()
+        }
+    }
+    
+    private func getData() -> [CoughData] {
+        let data = switch coughChartType {
+        case .daily:
+            groupedCoughsHourly
+        case .weekly:
+            groupedCoughsWeekly
+        case .monthly:
+            groupedCoughsMonthly
+        }
+        return data
+    }
 }
 
 #Preview {
@@ -129,6 +195,6 @@ struct CoughChartView: View {
         xName: "Time",
         yName: "Cough Count",
         title: "COUGH_PLOT_TITLE",
-        isWeekly: false
+        coughChartType: .daily
     )
 }
