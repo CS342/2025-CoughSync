@@ -10,7 +10,7 @@
 import XCTest
 
 
-class CoughDashboardTests: XCTestCase {
+class CoughSyncTests: XCTestCase {
     // Removing the testContactsCount test as it references a non-existent Contacts class
     
     // MARK: - CoughCollection Tests
