@@ -36,38 +36,40 @@ struct SummaryView: View {
     
     // MARK: - Body
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                if let viewModel = viewModel, !isLoadingData {
-                    VStack(spacing: 20) {
-                        coughSummaryCard()
-                        coughStats()
-                        Divider()
-                        CoughModelView(viewModel: $viewModel)
-                    }
-                    .padding()
-                } else {
-                    // Show a loading indicator or placeholder
-                    ProgressView("Loading cough data...")
+        GeometryReader {geometry in
+            NavigationStack {
+                ScrollView {
+                    if let viewModel = viewModel, !isLoadingData {
+                        VStack(spacing: geometry.size.height * 0.02) {
+                            coughSummaryCard(geometry: geometry)
+                            coughStats(geometry: geometry)
+                            Divider()
+                            CoughModelView(viewModel: $viewModel)
+                        }
                         .padding()
+                    } else {
+                        // Show a loading indicator or placeholder
+                        ProgressView("Loading cough data...")
+                            .padding()
+                    }
                 }
-            }
-            .navigationTitle("Summary")
-            .toolbar {
-                if account != nil {
-                    AccountButton(isPresented: $presentingAccount)
+                .navigationTitle("Summary")
+                .toolbar {
+                    if account != nil {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
                 }
-            }
-            .onAppear {
-                // Initialize viewModel here when environment is available
-                loadCoughData()
-                previousCoughCount = viewModel?.coughCount ?? 0
-            }
-            .onChange(of: viewModel?.coughCount) { oldValue, _ in
-                previousCoughCount = oldValue ?? 0
-            }
-            .refreshable {
-                loadCoughData()
+                .onAppear {
+                    // Initialize viewModel here when environment is available
+                    loadCoughData()
+                    previousCoughCount = viewModel?.coughCount ?? 0
+                }
+                .onChange(of: viewModel?.coughCount) { oldValue, _ in
+                    previousCoughCount = oldValue ?? 0
+                }
+                .refreshable {
+                    loadCoughData()
+                }
             }
         }
     }
@@ -81,15 +83,15 @@ struct SummaryView: View {
     }
     
     @ViewBuilder
-    private func coughSummaryCard() -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+    private func coughSummaryCard(geometry: GeometryProxy) -> some View {
+        VStack(alignment: .leading, spacing: geometry.size.height * 0.01) {
             Text("Today")
                 .font(.headline)
                 .foregroundColor(.primary)
             
             HStack {
                 Text("\(viewModel?.coughCount ?? 0) ")
-                    .font(.system(size: 50, weight: .bold, design: .rounded))
+                    .font(.system(size: geometry.size.width * 0.12, weight: .bold, design: .rounded))
                     .foregroundColor(.blue)
                 +
                 Text("coughs")
@@ -98,40 +100,45 @@ struct SummaryView: View {
             }
             HStack {
                 Spacer()
-                statusCircle()
+                statusCircle(geometry: geometry)
             }
         }
         .padding()
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: geometry.size.width * 0.85)
         .background(.thinMaterial) // Subtle differentiation, more clear / transparent
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: geometry.size.width * 0.04))
         .shadow(radius: 5)
+        .padding(.horizontal)
     }
     
     @ViewBuilder
-    private func coughStats() -> some View {
-        HStack(spacing: 16) {
+    private func coughStats(geometry: GeometryProxy) -> some View {
+        HStack(spacing: geometry.size.width * 0.05) {
             statCard(
                 title: "This Week",
                 value: "\(viewModel?.weeklyAverage ?? 0)",
+                geometry: geometry,
                 fontColor: .purple
             )
             statCard(
                 title: "This Month",
                 value: "\(viewModel?.monthlyAverage ?? 0)",
+                geometry: geometry,
                 fontColor: .mint
             )
         }
+        .frame(maxWidth: geometry.size.width * 0.85)
+        .padding(.horizontal)
     }
     
     @ViewBuilder
-    private func statCard(title: String, value: String, fontColor: Color = .blue) -> some View {
+    private func statCard(title: String, value: String, geometry: GeometryProxy, fontColor: Color = .blue) -> some View {
         VStack {
             Text(title)
                 .font(.headline)
                 .foregroundColor(.primary)
             Text("\(value) ")
-                .font(.title2)
+                .font(.system(size: geometry.size.width * 0.06))
                 .bold()
                 .foregroundColor(fontColor)
             +
@@ -139,22 +146,22 @@ struct SummaryView: View {
                 .font(.footnote)
                 .foregroundColor(fontColor)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: geometry.size.width * 0.40)
         .padding()
         .background(Color(.secondarySystemBackground))
-        .cornerRadius(12)
+        .cornerRadius(geometry.size.width * 0.04)
         .shadow(radius: 5)
     }
     
     @ViewBuilder
-    private func statusCircle() -> some View {
+    private func statusCircle(geometry: GeometryProxy) -> some View {
         let change = viewModel?.coughCount ?? 0 - previousCoughCount
         let color: Color = change > 0 ? .yellow : (change < 0 ? .green : .blue)
         let trendSymbol = change > 0 ? "↑" : (change < 0 ? "↓" : "–")
         
         Circle()
             .fill(LinearGradient(colors: [color.opacity(0.8), color], startPoint: .top, endPoint: .bottom))
-            .frame(width: 50, height: 50)
+            .frame(width: geometry.size.width * 0.12)
             .overlay(
                 Text(trendSymbol)
                     .font(.title2)
