@@ -46,7 +46,7 @@ class CoughTracker: ObservableObject {
     
     func getCoughsBetweenDates(startDate: Date, endDate: Date) -> [CoughEvent] {
         // Filter coughEvents to find events between the specified dates (inclusive)
-        return coughEvents.filter { coughEvent in
+        coughEvents.filter { coughEvent in
             // Get calendar date components (ignoring time) for comparison
             let calendar = Calendar.current
             let eventDate = calendar.startOfDay(for: coughEvent.date)
@@ -54,7 +54,7 @@ class CoughTracker: ObservableObject {
             let end = calendar.startOfDay(for: endDate)
             
             // Check if the event date is on or after the start date AND on or before the end date
-            return (eventDate >= start && eventDate <= end)
+            return eventDate >= start && eventDate <= end
         }
     }
     
@@ -146,7 +146,7 @@ class CoughTracker: ObservableObject {
     }
 
     private func findPeakPeriod(from coughsByTimePeriod: [String: Int]) -> String? {
-        return coughsByTimePeriod.max(by: { $0.value < $1.value })?.key
+        coughsByTimePeriod.max(by: { $0.value < $1.value })?.key
     }
 
 
