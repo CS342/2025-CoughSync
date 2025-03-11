@@ -60,7 +60,13 @@
         }
       }
     },
+    "Change in Coughs: " : {
+
+    },
     "Check In" : {
+
+    },
+    "Choose Reminder Time" : {
 
     },
     "Clock icon" : {
@@ -146,9 +152,6 @@
     "Coughs" : {
 
     },
-    "Coughs Change: " : {
-
-    },
     "coughs/d" : {
 
     },
@@ -162,10 +165,16 @@
         }
       }
     },
+    "CoughSync helps you monitor your cough while you sleep." : {
+
+    },
     "Daily Coughs (Past 7 Days)" : {
 
     },
     "Day" : {
+
+    },
+    "Decrease in coughs" : {
 
     },
     "Get Started" : {
@@ -237,6 +246,9 @@
       }
     },
     "Hourly Coughs (Today)" : {
+
+    },
+    "Increase in coughs" : {
 
     },
     "Initial Assessment" : {
@@ -340,6 +352,9 @@
         }
       }
     },
+    "Loading cough data..." : {
+
+    },
     "Loading..." : {
 
     },
@@ -358,7 +373,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+            "value" : "Set your preferred time to receive your daily reminder to start recording (before going to sleep!)"
           }
         }
       }
@@ -427,6 +442,7 @@
       }
     },
     "Spezi Scheduler Notifications." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

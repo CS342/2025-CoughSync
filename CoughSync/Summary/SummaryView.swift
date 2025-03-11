@@ -66,6 +66,7 @@ struct SummaryView: View {
                 .onChange(of: viewModel?.coughCount) { oldValue, _ in
                     previousCoughCount = oldValue ?? 0
                 }
+
                 .onAppear {
                     if isRecording == true {
                         reloadData()

@@ -17,7 +17,12 @@ struct NotificationPermissions: View {
     @Environment(\.requestNotificationAuthorization) private var requestNotificationAuthorization
 
     @State private var notificationProcessing = false
-    
+    @State private var notifTime: Date = {
+        var components = DateComponents()
+        components.hour = 20 // 8 PM
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }()
     
     var body: some View {
         OnboardingView(
@@ -25,17 +30,20 @@ struct NotificationPermissions: View {
                 VStack {
                     OnboardingTitleView(
                         title: "Notifications",
-                        subtitle: "Spezi Scheduler Notifications."
+                        subtitle: "CoughSync helps you monitor your cough while you sleep."
                     )
                     Spacer()
                     Image(systemName: "bell.square.fill")
-                        .font(.system(size: 150))
+                        .font(.system(size: 130))
                         .foregroundColor(.accentColor)
                         .accessibilityHidden(true)
                     Text("NOTIFICATION_PERMISSIONS_DESCRIPTION")
                         .multilineTextAlignment(.center)
-                        .padding(.vertical, 16)
-                    Spacer()
+                        .padding(.vertical, 2)
+                    DatePicker("Choose Reminder Time", selection: $notifTime, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                        .scaleEffect(0.8)
                 }
             }, actionView: {
                 OnboardingActionsView(
@@ -49,6 +57,8 @@ struct NotificationPermissions: View {
                             } else {
                                 try await requestNotificationAuthorization(options: [.alert, .sound, .badge])
                             }
+                            saveNotifTime()
+                            scheduleNotif()
                         } catch {
                             print("Could not request notification permissions.")
                         }
@@ -62,6 +72,34 @@ struct NotificationPermissions: View {
             .navigationBarBackButtonHidden(notificationProcessing)
             // Small fix as otherwise "Login" or "Sign up" is still shown in the nav bar
             .navigationTitle(Text(verbatim: ""))
+    }
+    
+    private func saveNotifTime() {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: notifTime)
+        let minute = calendar.component(.minute, from: notifTime)
+        
+        UserDefaults.standard.set(hour, forKey: "notifHour")
+        UserDefaults.standard.set(minute, forKey: "notifMinute")
+    }
+    
+    private func scheduleNotif() {
+        let savedHour = UserDefaults.standard.integer(forKey: "notifHour")
+        let savedMinute = UserDefaults.standard.integer(forKey: "notifMinute")
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Time to start recording!"
+        content.body = "Open the app to start recording your coughs."
+        content.sound = .default
+        
+        var date = DateComponents()
+        date.hour = savedHour
+        date.minute = savedMinute
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        let request = UNNotificationRequest(identifier: "CoughSyncNotif", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
     }
 }
 

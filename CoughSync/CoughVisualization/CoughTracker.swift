@@ -6,9 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(TestingSupport) import SpeziAccount
-
+import FirebaseFirestore
 import Foundation
+import Spezi
+@_spi(TestingSupport) import SpeziAccount
 
 struct CoughEvent: Identifiable, Codable {
     var id = UUID()
@@ -17,32 +18,29 @@ struct CoughEvent: Identifiable, Codable {
 
 class CoughTracker: ObservableObject {
     @Published var coughEvents: [CoughEvent] = []
+    @Published var errorMessage: String?
     
-    // private let storageKey = "coughData"
+    var standard: CoughSyncStandard?
     
-    init() {
-       // loadCoughEvents()
+    init(standard: CoughSyncStandard? = nil) {
+        self.standard = standard
     }
     
-    //    func addCoughEvent(date: Date) {
-    //        let newCough = CoughEvent(date: date)
-    //        coughEvents.append(newCough)
-    //        saveCoughEvents()
-    //    }
-    
-    //    private func saveCoughEvents() {
-    //        if let encoded = try? JSONEncoder().encode(coughEvents) {
-    //            UserDefaults.standard.set(encoded, forKey: storageKey)
-    //        }
-    //    }
-//    
-//    private func loadCoughEvents() {
-//        if let savedData = UserDefaults.standard.data(forKey: storageKey),
-//           let decoded = try? JSONDecoder().decode([CoughEvent].self, from: savedData) {
-//            coughEvents = decoded
-//            print("Loaded \(coughEvents.count) existing cough events from UserDefaults")
-//        } else {
-//            print("No existing cough data found in UserDefaults")
-//        }
-//    }
+    @MainActor
+    func loadCoughEvents() async {
+        guard let standard = standard else {
+            errorMessage = "Standard not available"
+            return
+        }
+        
+        errorMessage = nil
+        
+        do {
+            coughEvents = try await standard.fetchCoughEvents()
+            // Only use real data from Firebase, no fallback to fake data
+        } catch {
+            errorMessage = "Failed to load cough data: \(error.localizedDescription)"
+            coughEvents = []
+        }
+    }
 }

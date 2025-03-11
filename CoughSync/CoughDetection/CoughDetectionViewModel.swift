@@ -44,6 +44,10 @@ class CoughDetectionViewModel {
     var identifiedSound: (identifier: String, confidence: String)?
     private var detectionCancellable: AnyCancellable?
     
+    // Add these new properties
+    var weeklyAverage: Int = 0
+    var monthlyAverage: Int = 0
+    
     /// Initializes the view model with the cough sync standard.
     ///
     /// - Parameter standard: The standard used for storing and retrieving cough data.
@@ -115,5 +119,29 @@ class CoughDetectionViewModel {
         lastTime = 0
         identifiedSound = nil
         coughAnalysisManager.stopCoughDetection()
+    }
+    
+    // Add this new method
+    func fetchCoughData(completion: @escaping (Bool) -> Void) {
+        Task {
+            do {
+                // Fetch today's cough count
+                let todayCount = try await standard.fetchTodayCoughCount()
+                
+                // Update the cough collection to reflect the current count
+                coughCollection.setCount(todayCount)
+                
+                // Fetch weekly average
+                weeklyAverage = try await standard.fetchWeeklyAverageCoughCount()
+                
+                // Fetch monthly average
+                monthlyAverage = try await standard.fetchMonthlyAverageCoughCount()
+                
+                completion(true)
+            } catch {
+                print("Error fetching cough data: \(error)")
+                completion(false)
+            }
+        }
     }
 }

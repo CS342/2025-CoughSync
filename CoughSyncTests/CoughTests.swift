@@ -16,7 +16,7 @@
 import Foundation
 import XCTest
 
-class CoughSyncTests: XCTestCase {
+class CoughTests: XCTestCase {
     @MainActor
     func testCoughInstance() throws {
         let date = Date()

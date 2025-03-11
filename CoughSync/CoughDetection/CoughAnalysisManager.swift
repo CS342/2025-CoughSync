@@ -26,6 +26,7 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     private let bufferSize = 8192
     
     private var audioRecorder: AVAudioEngine?
+    private var trickAudioPlayer: AVAudioPlayer?
     private var inputBus: AVAudioNodeBus?
     private var inputFormat: AVAudioFormat?
     
@@ -51,6 +52,7 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         background = UIApplication.shared.beginBackgroundTask(withName: "CoughDetection") {
             UIApplication.shared.endBackgroundTask(self.background)
             self.background = .invalid
+            self.startBackgroundTask()
         }
     }
     
@@ -124,6 +126,22 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
         }
     }
     
+    // Plays a generated silent audio to keep the audio session active upon closing the app
+    private func playTrickAudio() {
+        guard let url = Bundle.main.url(forResource: "trick 3", withExtension: "wav") else {
+            print("Can't find audio")
+            return
+        }
+        do {
+            trickAudioPlayer = try AVAudioPlayer(contentsOf: url)
+            trickAudioPlayer?.numberOfLoops = -1 // to play audio indefinitely
+            trickAudioPlayer?.volume = 0.01 // silent audio
+            trickAudioPlayer?.play()
+        } catch {
+            print("Couldn't play audio")
+        }
+    }
+    
     /// Sets up the audio engine for recording with appropriate settings.
     ///
     /// Configures the audio session and AVAudioEngine for optimal cough detection.
@@ -150,6 +168,8 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
             self.inputFormat = audioRecorder.inputNode.inputFormat(forBus: inputBus)
             
             print("Audio format configured: \(String(describing: inputFormat))")
+            
+            playTrickAudio()
         } catch {
             print("Error setting up audio engine: \(error.localizedDescription)")
         }
@@ -207,4 +227,20 @@ final class CoughAnalysisManager: NSObject, @unchecked Sendable {
     private func useSubject() {
         _ = subject
     }
+    
+    /*private func useTrick() {
+        if let url = Bundle.main.url(forResource: "trick", withExtension: "wav") {
+            print("Playing")
+        } else {
+            print("Nope!")
+        }
+    }
+    
+    private func useTrick2() {
+        if let url = Bundle.main.url(forResource: "trick 2", withExtension: "wav") {
+            print("Playing")
+        } else {
+            print("Nope!")
+        }
+    }*/
 }
