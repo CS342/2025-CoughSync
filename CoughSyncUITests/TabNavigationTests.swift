@@ -43,8 +43,8 @@ final class TabNavigationTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Check In"].waitForExistence(timeout: 2))
         
         // Test Cough Tracking exists
-        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Cough Tracking"].exists)
-        app.tabBars["Tab Bar"].buttons["Cough Tracking"].tap()
-        XCTAssertTrue(app.staticTexts["Cough Tracker"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Report"].exists)
+        app.tabBars["Tab Bar"].buttons["Report"].tap()
+        XCTAssertTrue(app.staticTexts["Report"].waitForExistence(timeout: 2))
     }
 }

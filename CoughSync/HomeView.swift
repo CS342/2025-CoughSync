@@ -13,8 +13,6 @@ struct HomeView: View {
     enum Tabs: String {
         case summary
         case schedule
-        case coughTracking
-        case coughDetection
         case coughReport
     }
     
@@ -45,13 +43,11 @@ struct HomeView: View {
             }
             .customizationID("home.schedule")
 
-            Tab("Cough Tracking", systemImage: "waveform.path.ecg", value: .coughTracking) {
-                CoughTrackerView()
-            }
-            .customizationID("home.coughtracking")
-
-            Tab("Cough Report", systemImage: "chart.bar.doc.horizontal", value: .coughReport) {
-                CoughReportView()
+            Tab("Report", systemImage: "chart.bar.doc.horizontal", value: .coughReport) {
+                CoughReportView(
+                    presentingAccount: $presentingAccount,
+                    viewModel: $viewModel
+                )
             }
             .customizationID("home.coughreport")
         }
