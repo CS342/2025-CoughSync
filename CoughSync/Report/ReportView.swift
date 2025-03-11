@@ -6,10 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
+import MessageUI
 import SpeziAccount
 import SwiftUI
 import UIKit
-import MessageUI
+
 
 struct CoughReportView: View {
     @Environment(Account.self) private var account: Account?
@@ -23,22 +24,35 @@ struct CoughReportView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
                 ScrollView {
                     reportCards()
                     shareButton()
                 }
-                .padding()
                 .frame(maxWidth: .infinity)
             }
             .onAppear {
                 loadCoughData()
             }
             .navigationTitle("Report")
-            .padding(.horizontal)
             .toolbar {
                 if account != nil {
                     AccountButton(isPresented: $presentingAccount)
+                }
+            }
+            .sheet(isPresented: Binding(
+                get: { pdfURL != nil && isSharing },
+                set: { _ in isSharing = false }
+            )) {
+                if let pdfURL = pdfURL {
+                    ShareSheet(activityItems: [pdfURL])
+                }
+            }
+            .sheet(isPresented: $isEmailPresented) {
+                if let pdfURL = pdfURL {
+                    MailView(pdfURL: pdfURL) { result in
+                        isEmailPresented = false
+                    }
                 }
             }
         }
@@ -53,47 +67,30 @@ struct CoughReportView: View {
                 print("Failed to load cough data")
             }
         }
-        .sheet(isPresented: Binding(
-            get: { pdfURL != nil && isSharing },
-            set: { _ in isSharing = false }
-        )) {
-            if let pdfURL = pdfURL {
-                ShareSheet(activityItems: [pdfURL])
-            }
-        }
-        .sheet(isPresented: $isEmailPresented) {
-            if let pdfURL = pdfURL {
-                MailView(pdfURL: pdfURL) { result in
-                    isEmailPresented = false
-                }
-            }
-        }
     }
 
     private func reportCards() -> some View {
         let dailyData = coughTracker.generateDailyReportData()
         let weeklyData = coughTracker.generateWeeklyReportData()
         let monthlyData = coughTracker.generateMonthlyReportData()
-        VStack(spacing: 15) {
-            if viewModel != nil, !isLoadingData {
-                VStack(spacing: 10) {
-                    ReportCard(title: "Daily Report", percentage: dailyData.percentage, peakTime: dailyData.peakTime)
-                    ReportCard(title: "Weekly Report", percentage: weeklyData.percentage, peakTime: weeklyData.peakTime)
-                    ReportCard(title: "Monthly Report", percentage: monthlyData.percentage, peakTime: monthlyData.peakTime)
+        if viewModel != nil, !isLoadingData {
+            return VStack(spacing: 10) {
+                ReportCard(title: "Daily Report", percentage: dailyData.percentage, peakTime: dailyData.peakTime)
+                ReportCard(title: "Weekly Report", percentage: weeklyData.percentage, peakTime: weeklyData.peakTime)
+                ReportCard(title: "Monthly Report", percentage: monthlyData.percentage, peakTime: monthlyData.peakTime)
 
-                    NavigationLink(destination: CoughTrackerView()) {
-                        Text("View Cough Frequency Trends →")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                    }
-                    .padding(.top, 10)
+                NavigationLink(destination: CoughTrackerView()) {
+                    Text("View Cough Frequency Trends →")
+                        .font(.headline)
+                        .foregroundColor(.blue)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-            } else {
-                ProgressView("Loading cough data...")
-                    .padding()
+                .padding(.top, 10)
             }
+            .padding()
+            .frame(maxWidth: .infinity)
+        } else {
+            return ProgressView("Loading cough data...")
+                .padding()
         }
     }
 
