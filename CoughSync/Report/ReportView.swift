@@ -14,9 +14,9 @@ import UIKit
 
 struct CoughReportView: View {
     @Environment(Account.self) private var account: Account?
+    @Environment(CoughSyncStandard.self) private var standard
     @StateObject private var coughTracker = CoughTracker()
     @Binding var presentingAccount: Bool
-    @Binding var viewModel: CoughDetectionViewModel?
     @State private var isLoadingData: Bool = true
     @State private var isSharing = false
     @State private var isEmailPresented = false
@@ -32,7 +32,7 @@ struct CoughReportView: View {
                 .frame(maxWidth: .infinity)
             }
             .onAppear {
-                loadCoughData()
+                setupAndLoad()
             }
             .navigationTitle("Report")
             .toolbar {
@@ -55,17 +55,19 @@ struct CoughReportView: View {
                     }
                 }
             }
+            .refreshable {
+                await coughTracker.loadCoughEvents()
+            }
         }
     }
     
-    private func loadCoughData() {
+    private func setupAndLoad() {
+        coughTracker.standard = standard
         isLoadingData = true
-        viewModel?.fetchCoughData { success in
+        
+        Task {
+            await coughTracker.loadCoughEvents()
             isLoadingData = false
-            if !success {
-                // Handle error case if needed
-                print("Failed to load cough data")
-            }
         }
     }
 
@@ -73,7 +75,7 @@ struct CoughReportView: View {
         let dailyData = coughTracker.generateDailyReportData()
         let weeklyData = coughTracker.generateWeeklyReportData()
         let monthlyData = coughTracker.generateMonthlyReportData()
-        if viewModel != nil, !isLoadingData {
+        if !isLoadingData {
             return VStack(spacing: 10) {
                 ReportCard(title: "Daily Report", percentage: dailyData.percentage, peakTime: dailyData.peakTime)
                 ReportCard(title: "Weekly Report", percentage: weeklyData.percentage, peakTime: weeklyData.peakTime)
@@ -214,9 +216,6 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 #Preview {
     CoughReportView(
-        presentingAccount: .constant(false),
-        viewModel: .constant(CoughDetectionViewModel(
-            standard: CoughSyncStandard()
-        ))
+        presentingAccount: .constant(false)
     )
 }
