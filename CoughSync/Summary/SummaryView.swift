@@ -126,8 +126,6 @@ struct SummaryView: View {
                 Text("coughs")
                     .font(.footnote)
                     .foregroundColor(.blue)
-            }
-            HStack {
                 Spacer()
                 statusCircle(geometry: geometry)
             }

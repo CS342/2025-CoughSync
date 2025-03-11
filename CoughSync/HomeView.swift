@@ -45,8 +45,7 @@ struct HomeView: View {
 
             Tab("Report", systemImage: "chart.bar.doc.horizontal", value: .coughReport) {
                 CoughReportView(
-                    presentingAccount: $presentingAccount,
-                    viewModel: $viewModel
+                    presentingAccount: $presentingAccount
                 )
             }
             .customizationID("home.coughreport")

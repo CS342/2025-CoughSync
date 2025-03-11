@@ -157,11 +157,21 @@ class CoughTracker: ObservableObject {
      */
     func generateDailyReportData() -> (percentage: Double, peakTime: String) {
         let calendar = Calendar.current
-        let today = Date()
-        let yesterday = calendar.date(byAdding: .day, value: -1, to: today) ?? Date()
         
-        let todayCoughs = getCoughsBetweenDates(startDate: today, endDate: today)
-        let yesterdayCoughs = getCoughsBetweenDates(startDate: yesterday, endDate: yesterday)
+        // Get current date
+        let now = Date()
+        
+        // Create start and end of today (00:00:00 to 23:59:59)
+        let todayStart = calendar.startOfDay(for: now)
+        let todayEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: todayStart) ?? Date()
+        
+        // Create start and end of yesterday (00:00:00 to 23:59:59)
+        let yesterdayStart = calendar.date(byAdding: .day, value: -1, to: todayStart) ?? Date()
+        let yesterdayEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: yesterdayStart) ?? Date()
+        
+        // Get coughs for the full 24-hour periods
+        let todayCoughs = getCoughsBetweenDates(startDate: todayStart, endDate: todayEnd)
+        let yesterdayCoughs = getCoughsBetweenDates(startDate: yesterdayStart, endDate: yesterdayEnd)
         
         let percentageChange = calculatePercentageChange(
             currentPeriodCoughs: todayCoughs,
@@ -179,18 +189,25 @@ class CoughTracker: ObservableObject {
      */
     func generateWeeklyReportData() -> (percentage: Double, peakTime: String) {
         let calendar = Calendar.current
+        var calendarWithMonday = calendar
+        calendarWithMonday.firstWeekday = 2  // Set Monday as the first day of week (1 is Sunday, 2 is Monday)
+        
         let today = Date()
         
-        // Current week
-        let startOfCurrentWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) ?? Date()
-        let endOfCurrentWeek = calendar.date(byAdding: .day, value: 6, to: startOfCurrentWeek) ?? Date()
+        // Current week - Monday 00:00 to Sunday 23:59:59
+        let startOfCurrentWeek = calendarWithMonday.date(
+            from: calendarWithMonday.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
+        ) ?? Date()
+        let endOfCurrentWeek = calendarWithMonday.date(byAdding: .day, value: 6, to: startOfCurrentWeek) ?? Date()
+        let endOfCurrentWeekFinal = calendarWithMonday.date(bySettingHour: 23, minute: 59, second: 59, of: endOfCurrentWeek) ?? Date()
         
-        // Previous week
-        let startOfPreviousWeek = calendar.date(byAdding: .day, value: -7, to: startOfCurrentWeek) ?? Date()
-        let endOfPreviousWeek = calendar.date(byAdding: .day, value: -1, to: startOfCurrentWeek) ?? Date()
+        // Previous week - Monday 00:00 to Sunday 23:59:59
+        let startOfPreviousWeek = calendarWithMonday.date(byAdding: .weekOfYear, value: -1, to: startOfCurrentWeek) ?? Date()
+        let endOfPreviousWeek = calendarWithMonday.date(byAdding: .day, value: 6, to: startOfPreviousWeek) ?? Date()
+        let endOfPreviousWeekFinal = calendarWithMonday.date(bySettingHour: 23, minute: 59, second: 59, of: endOfPreviousWeek) ?? Date()
         
-        let currentWeekCoughs = getCoughsBetweenDates(startDate: startOfCurrentWeek, endDate: endOfCurrentWeek)
-        let previousWeekCoughs = getCoughsBetweenDates(startDate: startOfPreviousWeek, endDate: endOfPreviousWeek)
+        let currentWeekCoughs = getCoughsBetweenDates(startDate: startOfCurrentWeek, endDate: endOfCurrentWeekFinal)
+        let previousWeekCoughs = getCoughsBetweenDates(startDate: startOfPreviousWeek, endDate: endOfPreviousWeekFinal)
         
         let percentageChange = calculatePercentageChange(
             currentPeriodCoughs: currentWeekCoughs,
@@ -210,13 +227,15 @@ class CoughTracker: ObservableObject {
         let calendar = Calendar.current
         let today = Date()
         
-        // Current month
+        // Current month - 1st day 00:00 to last day 23:59:59
         let startOfCurrentMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: today)) ?? Date()
-        let endOfCurrentMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfCurrentMonth) ?? Date()
+        let nextMonth = calendar.date(byAdding: .month, value: 1, to: startOfCurrentMonth) ?? Date()
+        let startOfNextMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: nextMonth)) ?? Date()
+        let endOfCurrentMonth = calendar.date(byAdding: .second, value: -1, to: startOfNextMonth) ?? Date()
         
-        // Previous month
+        // Previous month - 1st day 00:00 to last day 23:59:59
         let startOfPreviousMonth = calendar.date(byAdding: .month, value: -1, to: startOfCurrentMonth) ?? Date()
-        let endOfPreviousMonth = calendar.date(byAdding: .day, value: -1, to: startOfCurrentMonth) ?? Date()
+        let endOfPreviousMonth = calendar.date(byAdding: .second, value: -1, to: startOfCurrentMonth) ?? Date()
         
         let currentMonthCoughs = getCoughsBetweenDates(startDate: startOfCurrentMonth, endDate: endOfCurrentMonth)
         let previousMonthCoughs = getCoughsBetweenDates(startDate: startOfPreviousMonth, endDate: endOfPreviousMonth)
@@ -229,5 +248,4 @@ class CoughTracker: ObservableObject {
         let peakTime = findPeakCoughingTime(coughs: currentMonthCoughs, periodType: "monthly")
         
         return (percentageChange, peakTime)
-    }
-}
+    }}
