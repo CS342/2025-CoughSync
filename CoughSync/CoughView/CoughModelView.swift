@@ -6,21 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-//  CoughModelView.swift
-//  CoughSync
-//
-//  Created by Ethan Bell on 12/2/2025.
-//
-
 import Spezi
 import SwiftUI
 
-/// A view that displays the cough detection model and user interface.
-///
-/// This view provides a user interface for starting and stopping cough detection
-/// and displays the current status of the detection process.
 struct CoughModelView: View {
     @Binding var viewModel: CoughDetectionViewModel?
+    @State private var showChargingReminder = false
     
     var body: some View {
         VStack {
@@ -30,15 +21,19 @@ struct CoughModelView: View {
             microphoneButton()
                 .animation(.easeInOut(duration: 0.3), value: viewModel?.detectionStarted)
                 .padding(.bottom, 50)
-            
             Spacer()
         }
         .frame(maxHeight: .infinity, alignment: .bottom)
+        .alert("Keep Your Phone Plugged In", isPresented: $showChargingReminder) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("For accurate cough tracking throughout the night, please keep your phone plugged in and charging.")
+        }
     }
 
     @ViewBuilder
     private func detectionStatusView() -> some View {
-        ZStack { // this keeps elements in stack without shifting layout
+        ZStack {
             if viewModel?.detectionStarted == false {
                 ContentUnavailableView(
                     "Ready for bed?",
@@ -52,7 +47,7 @@ struct CoughModelView: View {
                     description: Text("""
                     Tap below to stop detecting coughs.
                     Tracking for \(elapsedTimeString(since: viewModel?.detectionStatedDate ?? Date()))
-                """)
+                    """)
                 )
             } else {
                 VStack {
@@ -63,11 +58,11 @@ struct CoughModelView: View {
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity) // keep everything centred
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(.systemBackground).opacity(0.8))
             }
         }
-        .frame(height: 193) // keeps button fixed
+        .frame(height: 193)
     }
     
     private func microphoneButton() -> some View {
@@ -79,7 +74,7 @@ struct CoughModelView: View {
                 .foregroundColor(.white)
                 .frame(width: 80, height: 80)
                 .background(viewModel?.detectionStarted == true ? Color.red.gradient : Color.blue.gradient)
-                .clipShape(Circle()) // circle might be more visually appealing?
+                .clipShape(Circle())
                 .shadow(radius: 5)
                 .padding(.top, 10)
         }
@@ -101,6 +96,7 @@ struct CoughModelView: View {
         if viewModel?.detectionStarted == true {
             viewModel?.startListening()
             viewModel?.detectionStatedDate = Date()
+            showChargingReminder = true // Show the alert when tracking starts
         } else {
             viewModel?.stopListening()
         }
