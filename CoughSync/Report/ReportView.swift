@@ -40,7 +40,7 @@ struct CoughReportView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                     } else {
-                        ProgressView("Loading cough data...")
+                        ProgressView("Loading report...")
                             .padding()
                     }
                 }

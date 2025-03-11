@@ -27,7 +27,7 @@ struct CoughModelView: View {
         .alert("Keep Your Phone Plugged In", isPresented: $showChargingReminder) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("For accurate cough tracking throughout the night, please keep your phone plugged in and charging.")
+            Text("For accurate cough tracking throughout the night, please keep your phone plugged in and charging close to your bed")
         }
     }
 
