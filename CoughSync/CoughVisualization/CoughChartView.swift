@@ -172,7 +172,7 @@ struct CoughChartView: View {
         case .weekly:
             return .dateTime.weekday()
         case .monthly:
-            return .dateTime.day()
+            return .dateTime.month().day()
         }
     }
     
