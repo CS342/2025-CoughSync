@@ -23,11 +23,11 @@ struct ReportCard: View {
     }
 
     private var percentageSymbol: String {
-        percentage >= 0 ? "arrow.up" : "arrow.down"
+        percentage > 0 ? "arrow.up" : percentage < 0 ? "arrow.down" : "minus"
     }
     
     private var percentageColor: Color {
-        percentage >= 0 ? Color.orange : Color.blue
+        percentage > 0 ? Color.orange : Color.blue
     }
 
     var body: some View {

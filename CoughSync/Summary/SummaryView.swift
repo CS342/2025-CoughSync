@@ -5,7 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
 //
 //  SummaryView.swift
 //  CoughSync
@@ -186,7 +185,7 @@ struct SummaryView: View {
     @ViewBuilder
     private func statusCircle(geometry: GeometryProxy) -> some View {
         let change = viewModel?.coughCount ?? 0 - previousCoughCount
-        let color: Color = change > 0 ? .yellow : (change < 0 ? .green : .blue)
+        let color: Color = change > 0 ? .orange : (change < 0 ? .green : .blue)
         let trendSymbol = change > 0 ? "↑" : (change < 0 ? "↓" : "–")
         
         Circle()
