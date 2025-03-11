@@ -177,6 +177,9 @@
     "Decrease in coughs" : {
 
     },
+    "Email Report" : {
+
+    },
     "Get Started" : {
 
     },
@@ -419,6 +422,9 @@
     "Ready for bed?" : {
 
     },
+    "Save as" : {
+
+    },
     "Schedule" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -429,6 +435,9 @@
           }
         }
       }
+    },
+    "Share Report" : {
+
     },
     "Spezi Modules" : {
       "extractionState" : "stale",

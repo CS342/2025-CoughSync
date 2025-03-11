@@ -9,9 +9,7 @@
 import Charts
 import SwiftUI
 
-/// A view that displays cough frequency trends over time.
-///
-/// This view displays cough frequency trends over the past week, month, and year.
+
 struct FrequencyView: View {
     let dailyCoughs = CoughReportData.getDailyCoughs()
     let weeklyCoughs = CoughReportData.getWeeklyCoughs()

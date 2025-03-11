@@ -9,13 +9,11 @@
 import Charts
 import SwiftUI
 
-/// A chart that displays a trend of cough counts over time.
 struct CoughTrendChart: View {
     let title: String
     let data: [Int]
     let xLabels: [String]
-    let chartHeight: CGFloat // New parameter for dynamic height
-
+    let chartHeight: CGFloat
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
