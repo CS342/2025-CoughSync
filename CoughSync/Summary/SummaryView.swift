@@ -47,8 +47,8 @@ struct SummaryView: View {
                     }
                 }
                 .onAppear {
-                    // Initialize viewModel here when environment is available
-                    loadCoughData()
+                    // Initial load with loading indicator
+                    initialLoadCoughData()
                 }
                 .onDisappear {
                     stopData()
@@ -72,7 +72,8 @@ struct SummaryView: View {
                     }
                 }
                 .refreshable {
-                    loadCoughData()
+                    // For manual refresh, show loading indicator
+                    initialLoadCoughData()
                 }
             }
         }
@@ -97,16 +98,13 @@ struct SummaryView: View {
                     CoughModelView(viewModel: $viewModel)
                 }
                 .padding()
-                // reducing effect of flashing screen when loading data
-                .opacity(isLoadingData ? 0.5 : 1)
             }
-            // Using ZStack to avoid flashing during reloads- progress bar effect
+            // Only show loading indicator during initial load
             if isLoadingData {
-            // Show a loading indicator or placeholder
-            ProgressView("Loading cough data...")
-                .padding()
-                .background(Color.white.opacity(0.8))
-                .cornerRadius(10)
+                ProgressView("Loading cough data...")
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(10)
             }
         }
     }
@@ -198,7 +196,8 @@ struct SummaryView: View {
             .accessibilityLabel(Text(change > 0 ? "Increase in coughs" : "Decrease in coughs"))
     }
     
-    private func loadCoughData() {
+    // Initial load with loading indicator
+    private func initialLoadCoughData() {
         isLoadingData = true
         previousCoughCount = viewModel?.coughCount ?? 0
         viewModel?.fetchCoughData { success in
@@ -210,11 +209,20 @@ struct SummaryView: View {
         }
     }
     
+    // Background data refresh without UI loading state
+    private func backgroundLoadCoughData() {
+        previousCoughCount = viewModel?.coughCount ?? 0
+        viewModel?.fetchCoughData { _ in
+            // We don't update isLoadingData so the UI remains responsive
+            // Background fetch completes silently
+        }
+    }
+    
     private func reloadData() {
         stopData()
         timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
             DispatchQueue.main.async {
-                loadCoughData()
+                backgroundLoadCoughData()
             }
         }
     }
