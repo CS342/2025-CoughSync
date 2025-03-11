@@ -32,26 +32,14 @@ struct SummaryView: View {
     @Binding var viewModel: CoughDetectionViewModel?
     @State private var previousCoughCount: Int = 0
     @State private var isLoadingData: Bool = true
+    @State private var isRecording: Bool = true
+    @State private var timer: Timer?
     
     // MARK: - Body
     var body: some View {
         GeometryReader {geometry in
             NavigationStack {
-                ScrollView {
-                    if let viewModel = viewModel, !isLoadingData {
-                        VStack(spacing: geometry.size.height * 0.02) {
-                            coughSummaryCard(geometry: geometry)
-                            coughStats(geometry: geometry)
-                            Divider()
-                            CoughModelView(viewModel: $viewModel)
-                        }
-                        .padding()
-                    } else {
-                        // Show a loading indicator or placeholder
-                        ProgressView("Loading cough data...")
-                            .padding()
-                    }
-                }
+                viewContent(geometry: geometry)
                 .navigationTitle("Summary")
                 .toolbar {
                     if account != nil {
@@ -61,10 +49,27 @@ struct SummaryView: View {
                 .onAppear {
                     // Initialize viewModel here when environment is available
                     loadCoughData()
-                    previousCoughCount = viewModel?.coughCount ?? 0
+                }
+                .onDisappear {
+                    stopData()
+                }
+                .onChange(of: viewModel?.detectionStarted) { _, newCount in
+                    if newCount == true {
+                        isRecording = true
+                        reloadData()
+                    } else {
+                        isRecording = false
+                        stopData()
+                    }
                 }
                 .onChange(of: viewModel?.coughCount) { oldValue, _ in
                     previousCoughCount = oldValue ?? 0
+                }
+
+                .onAppear {
+                    if isRecording == true {
+                        reloadData()
+                    }
                 }
                 .refreshable {
                     loadCoughData()
@@ -79,6 +84,31 @@ struct SummaryView: View {
     ) {
         self._presentingAccount = presentingAccount
         self._viewModel = viewModel
+    }
+    
+    @ViewBuilder
+    private func viewContent(geometry: GeometryProxy) -> some View {
+        ZStack {
+            if let viewModel = viewModel, !isLoadingData {
+                VStack(spacing: geometry.size.height * 0.02) {
+                    coughSummaryCard(geometry: geometry)
+                    coughStats(geometry: geometry)
+                    Divider()
+                    CoughModelView(viewModel: $viewModel)
+                }
+                .padding()
+                // reducing effect of flashing screen when loading data
+                .opacity(isLoadingData ? 0.5 : 1)
+            }
+            // Using ZStack to avoid flashing during reloads- progress bar effect
+            if isLoadingData {
+            // Show a loading indicator or placeholder
+            ProgressView("Loading cough data...")
+                .padding()
+                .background(Color.white.opacity(0.8))
+                .cornerRadius(10)
+            }
+        }
     }
     
     @ViewBuilder
@@ -172,6 +202,7 @@ struct SummaryView: View {
     
     private func loadCoughData() {
         isLoadingData = true
+        previousCoughCount = viewModel?.coughCount ?? 0
         viewModel?.fetchCoughData { success in
             isLoadingData = false
             if !success {
@@ -179,6 +210,20 @@ struct SummaryView: View {
                 print("Failed to load cough data")
             }
         }
+    }
+    
+    private func reloadData() {
+        stopData()
+        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
+            DispatchQueue.main.async {
+                loadCoughData()
+            }
+        }
+    }
+    
+    private func stopData() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 
