@@ -80,6 +80,8 @@
 		492A12F42D7A644B00B7C2DD /* TabNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12F32D7A644B00B7C2DD /* TabNavigationTests.swift */; };
 		492A131B2D7A9AA500B7C2DD /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A13192D7A9AA500B7C2DD /* SummaryView.swift */; };
 		49A731FC2D7D09C10073AC02 /* CoughSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A731FB2D7D09C10073AC02 /* CoughSyncTests.swift */; };
+		49A732212D7F5A750073AC02 /* CoughChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A732202D7F5A750073AC02 /* CoughChartType.swift */; };
+		49A732222D7F5A750073AC02 /* CoughChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A732202D7F5A750073AC02 /* CoughChartType.swift */; };
 		49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */; };
 		49F06F5B2D533E7B00A7E170 /* CoughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */; };
 		49F06F5F2D53468400A7E170 /* CoughClassifier.mlmodel.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */; };
@@ -176,6 +178,7 @@
 		492A12F32D7A644B00B7C2DD /* TabNavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationTests.swift; sourceTree = "<group>"; };
 		492A13192D7A9AA500B7C2DD /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		49A731FB2D7D09C10073AC02 /* CoughSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTests.swift; sourceTree = "<group>"; };
+		49A732202D7F5A750073AC02 /* CoughChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughChartType.swift; sourceTree = "<group>"; };
 		49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughBurdenQuestionnaire.json.license; sourceTree = "<group>"; };
 		49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoughClassifier.mlmodel; sourceTree = "<group>"; };
 		49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughClassifier.mlmodel.license; sourceTree = "<group>"; };
@@ -361,6 +364,7 @@
 				492A12DA2D7A31FF00B7C2DD /* CoughChartView.swift */,
 				492A12DC2D7A31FF00B7C2DD /* CoughTracker.swift */,
 				492A12DD2D7A31FF00B7C2DD /* CoughTrackerView.swift */,
+				49A732202D7F5A750073AC02 /* CoughChartType.swift */,
 			);
 			path = CoughVisualization;
 			sourceTree = "<group>";
@@ -690,6 +694,7 @@
 				492A12D52D7A31FB00B7C2DD /* CoughReportData.swift in Sources */,
 				492A12D62D7A31FB00B7C2DD /* FrequencyView.swift in Sources */,
 				492A12D72D7A31FB00B7C2DD /* ReportCard.swift in Sources */,
+				49A732212D7F5A750073AC02 /* CoughChartType.swift in Sources */,
 				492A12D82D7A31FB00B7C2DD /* ReportView.swift in Sources */,
 				492A12D92D7A31FB00B7C2DD /* TrendChart.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
@@ -716,6 +721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				492A12BA2D7A2C2800B7C2DD /* CoughTests.swift in Sources */,
+				49A732222D7F5A750073AC02 /* CoughChartType.swift in Sources */,
 				492A12E82D7A485B00B7C2DD /* CoughClass.swift in Sources */,
 				492A12EB2D7A612000B7C2DD /* QuestionnaireTypeTests.swift in Sources */,
 				49A731FC2D7D09C10073AC02 /* CoughSyncTests.swift in Sources */,

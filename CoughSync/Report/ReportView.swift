@@ -6,19 +6,24 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziAccount
 import SwiftUI
 import UIKit
 import MessageUI
 
 struct CoughReportView: View {
+    @Environment(Account.self) private var account: Account?
+    @StateObject private var coughTracker = CoughTracker()
+    @Binding var presentingAccount: Bool
+    @Binding var viewModel: CoughDetectionViewModel?
+    @State private var isLoadingData: Bool = true
     @State private var isSharing = false
     @State private var isEmailPresented = false
     @State private var pdfURL: URL?
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                headerView()
                 ScrollView {
                     reportCards()
                     shareButton()
@@ -26,8 +31,27 @@ struct CoughReportView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
             }
-            .navigationBarTitleDisplayMode(.large)
+            .onAppear {
+                loadCoughData()
+            }
+            .navigationTitle("Report")
             .padding(.horizontal)
+            .toolbar {
+                if account != nil {
+                    AccountButton(isPresented: $presentingAccount)
+                }
+            }
+        }
+    }
+    
+    private func loadCoughData() {
+        isLoadingData = true
+        viewModel?.fetchCoughData { success in
+            isLoadingData = false
+            if !success {
+                // Handle error case if needed
+                print("Failed to load cough data")
+            }
         }
         .sheet(isPresented: Binding(
             get: { pdfURL != nil && isSharing },
@@ -46,23 +70,30 @@ struct CoughReportView: View {
         }
     }
 
-    private func headerView() -> some View {
-        Text("Cough Report")
-            .font(.largeTitle.bold())
-    }
-
     private func reportCards() -> some View {
+        let dailyData = coughTracker.generateDailyReportData()
+        let weeklyData = coughTracker.generateWeeklyReportData()
+        let monthlyData = coughTracker.generateMonthlyReportData()
         VStack(spacing: 15) {
-            ReportCard(title: "Daily Report", percentage: 12.5, peakTime: "8:00 PM - 10:00 PM")
-            ReportCard(title: "Weekly Report", percentage: -8.3, peakTime: "Wednesday 9:00 AM - 11:00 AM")
-            ReportCard(title: "Monthly Report", percentage: 5.2, peakTime: "January 15 at 7:00 PM - 9:00 PM")
+            if viewModel != nil, !isLoadingData {
+                VStack(spacing: 10) {
+                    ReportCard(title: "Daily Report", percentage: dailyData.percentage, peakTime: dailyData.peakTime)
+                    ReportCard(title: "Weekly Report", percentage: weeklyData.percentage, peakTime: weeklyData.peakTime)
+                    ReportCard(title: "Monthly Report", percentage: monthlyData.percentage, peakTime: monthlyData.peakTime)
 
-            NavigationLink(destination: FrequencyView()) {
-                Text("View Cough Frequency Trends →")
-                    .font(.headline)
-                    .foregroundColor(.blue)
+                    NavigationLink(destination: CoughTrackerView()) {
+                        Text("View Cough Frequency Trends →")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    }
+                    .padding(.top, 10)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+            } else {
+                ProgressView("Loading cough data...")
+                    .padding()
             }
-            .padding(.top, 10)
         }
     }
 
@@ -185,5 +216,10 @@ struct ShareSheet: UIViewControllerRepresentable {
 }
 
 #Preview {
-    CoughReportView()
+    CoughReportView(
+        presentingAccount: .constant(false),
+        viewModel: .constant(CoughDetectionViewModel(
+            standard: CoughSyncStandard()
+        ))
+    )
 }
