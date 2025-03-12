@@ -90,7 +90,8 @@ struct CoughChartView: View {
     var maxCoughCount: Int {
         let maxHourly = groupedCoughsHourly.map(\.count).max() ?? 5
         let maxWeekly = groupedCoughsWeekly.map(\.count).max() ?? 5
-        return max(maxHourly, maxWeekly) + 5
+        let maxMonthly = groupedCoughsMonthly.map(\.count).max() ?? 5
+        return max(maxHourly, maxWeekly, maxMonthly) + 5
     }
 
     var body: some View {
