@@ -1,30 +1,42 @@
+//
+// This source file is part of the CoughSync based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2025 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
 import MessageUI
 import SpeziAccount
 import SwiftUI
 import UIKit
 
+class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+    var parent: MailView
+
+    init(_ parent: MailView) {
+        self.parent = parent
+    }
+
+    func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error: Error?
+    ) {
+        // Capture self weakly to avoid reference cycles
+        let parent = self.parent
+        
+        // Use Task instead of DispatchQueue
+        Task { @MainActor in
+            parent.completion?(result)
+            controller.dismiss(animated: true)
+        }
+    }
+}
+
 struct MailView: UIViewControllerRepresentable {
     var completion: ((MFMailComposeResult) -> Void)?
     let pdfURL: URL
-    
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        var parent: MailView
-
-        init(_ parent: MailView) {
-            self.parent = parent
-        }
-
-        func mailComposeController(
-            _ controller: MFMailComposeViewController,
-            didFinishWith result: MFMailComposeResult,
-            error: Error?
-        ) {
-            DispatchQueue.main.async {
-                self.parent.completion?(result)
-                controller.dismiss(animated: true)
-            }
-        }
-    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
