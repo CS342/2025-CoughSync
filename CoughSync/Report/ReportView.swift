@@ -50,35 +50,6 @@ struct CoughReportView: View {
                     ReportCard(title: "Weekly Report", percentage: weeklyData.percentage, peakTime: weeklyData.peakTime)
                     ReportCard(title: "Monthly Report", percentage: monthlyData.percentage, peakTime: monthlyData.peakTime)
 
-                            NavigationLink(destination: CoughTrackerView()) {
-                                Text("View Cough Frequency Trends →")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
-                            }
-                            .padding(.top, 10)
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                    } else {
-                        ProgressView("Loading report...")
-                            .padding()
-                    }
-                }
-            }
-            .onAppear {
-                loadCoughData()
-            }
-            .navigationTitle("Report")
-            .padding(.horizontal)
-            .toolbar {
-                if account != nil {
-                    AccountButton(isPresented: $presentingAccount)
-                }
-            }
-        }
-    }
-    
-    private func loadCoughData() {
                     NavigationLink(destination: CoughTrackerView()) {
                         Text("View Cough Frequency Trends →")
                             .font(.headline)
