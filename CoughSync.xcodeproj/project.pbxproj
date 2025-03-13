@@ -104,6 +104,8 @@
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
+		AEB950442D82BF8D001DEB11 /* PDFDrawingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB950432D82BF8D001DEB11 /* PDFDrawingHelpers.swift */; };
+		AEB950462D82BFA1001DEB11 /* PDFReportGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB950452D82BFA1001DEB11 /* PDFReportGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +197,8 @@
 		A9A3DCC72C75CB9A00FC9B69 /* FirebaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfiguration.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
+		AEB950432D82BF8D001DEB11 /* PDFDrawingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDrawingHelpers.swift; sourceTree = "<group>"; };
+		AEB950452D82BFA1001DEB11 /* PDFReportGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReportGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,8 @@
 				492A12D12D7A31FB00B7C2DD /* ReportCard.swift */,
 				492A12D22D7A31FB00B7C2DD /* ReportView.swift */,
 				492A12D32D7A31FB00B7C2DD /* TrendChart.swift */,
+				AEB950432D82BF8D001DEB11 /* PDFDrawingHelpers.swift */,
+				AEB950452D82BFA1001DEB11 /* PDFReportGenerator.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -675,7 +681,9 @@
 				492A12C72D7A31F300B7C2DD /* CoughAnalysisManager.swift in Sources */,
 				492A12C82D7A31F300B7C2DD /* CoughClass.swift in Sources */,
 				492A12C92D7A31F300B7C2DD /* CoughDetectionConfiguration.swift in Sources */,
+				AEB950462D82BFA1001DEB11 /* PDFReportGenerator.swift in Sources */,
 				492A12CA2D7A31F300B7C2DD /* CoughDetectionViewModel.swift in Sources */,
+				AEB950442D82BF8D001DEB11 /* PDFDrawingHelpers.swift in Sources */,
 				492A12CB2D7A31F300B7C2DD /* ResultsObserver.swift in Sources */,
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
