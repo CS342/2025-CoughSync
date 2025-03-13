@@ -24,21 +24,21 @@ CoughSync is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem
 
 ## CoughSync Features
 
-The CoughSync application focuses on simplicity. We want our users to know that the application works and requires minimal effort from their end. In the end, users want to understand their cough symptoms better, but not spend a lot of time in the application.
+CoughSync is designed with simplicity in mind. We want users to gain valuable insights into their cough patterns with minimal effort. Our goal is to provide meaningful data while keeping the experience seamless and non-intrusive.
 
-For that purpose, our application focuses on three main features.
+To achieve this, CoughSync focuses on three core features:
 
 ### Cough Detection
 
-The application uses a bespoke time series cough detector that tracks bedtime coughing using a machine learning model under the hood. This cough data is processed and pushed to Firebase for secure persistent storage.
+CoughSync leverages a custom-built time series cough detection model to track bedtime coughing using machine learning. The detected cough events are securely stored in Firebase for seamless and persistent data access.
 
 ### Quality of Life Feedback
 
-CoughSync not only captures the quantitivate aspects of user coughs. Instead, it takes inspiration from already existing questionnaires from medical institutions. With that, CoughSync collects quality of life data at the onboarding process and once every week. This data is then pushed to Firebase for secure storage.
+Beyond just numbers, CoughSync integrates medically inspired questionnaires to assess the impact of coughing on daily life. Users provide feedback during onboarding and then once a week, ensuring a holistic view of their condition. This data is securely stored in Firebase.
 
 ### Cough Report
 
-In this functionality, we collect the cough data pushed to Firebase and show it in three different graphs: daily, weekly and monthly. We allow the user to export this data for them to share with their doctors.
+Users can visualize their cough trends through interactive daily, weekly, and monthly graphs. The app also allows easy data export, enabling users to share their insights with healthcare professionals.
 
 <table>
   <tr>
