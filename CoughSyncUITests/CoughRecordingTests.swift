@@ -26,7 +26,7 @@ final class CoughRecordingTests: XCTestCase {
     }
     
     @MainActor
-    func testTabNavigation() async throws {
+    func testcoughRecording() async throws {
         let app = XCUIApplication()
         
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 2.0))
