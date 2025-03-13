@@ -63,7 +63,7 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
     </td>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20In-dark.png?raw=true" width="250"/>
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20in-dark.png?raw=true" width="250"/>
         <p><strong>Check In (Dark)</strong></p>
       </div>
     </td>
