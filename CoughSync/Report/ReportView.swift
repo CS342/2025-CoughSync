@@ -271,7 +271,7 @@ struct CoughReportView: View {
     
     /// Retrieves all chart data needed for the PDF
     private func getChartData() -> PDFReportData.ChartData {
-        return PDFReportData.ChartData(
+        PDFReportData.ChartData(
             daily: CoughReportData.getDailyCoughs(),
             weekly: CoughReportData.getWeeklyCoughs(),
             monthly: CoughReportData.getMonthlyCoughs()

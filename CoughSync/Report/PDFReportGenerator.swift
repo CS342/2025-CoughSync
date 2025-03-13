@@ -5,15 +5,13 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
-import UIKit
 import SwiftUI
+import UIKit
 
 // MARK: - PDF Data Models
 
 /// PDF report components data structure
-struct PDFReportData {
-    /// Data for report cards
+enum PDFReportData {
     struct ReportCardData {
         let percentage: Double
         let peakTime: String
@@ -37,7 +35,7 @@ struct PDFReportData {
 // MARK: - PDF Generator
 
 /// Generates PDF reports for cough data
-struct PDFReportGenerator {
+enum PDFReportGenerator {
     /// Generates the PDF document
     static func generatePDF(reportData: PDFReportData.Report, chartData: PDFReportData.ChartData) -> Data {
         // Create PDF document with standard page size
