@@ -44,7 +44,7 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
   <tr>
     <td>
       <div align="center">
-        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Summary.png" width="250"/>
+        <img src="[https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Summary.png](https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report2.png?raw=true)" width="250"/>
         <p><strong>Summary</strong></p>
       </div>
     </td>
