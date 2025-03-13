@@ -240,7 +240,6 @@ class CoughSyncTests: XCTestCase {
         // Get the getReportData and getChartData methods
         if let getReportData = mirror.descendant("getReportData") as? () -> PDFReportData.Report,
            let getChartData = mirror.descendant("getChartData") as? () -> PDFReportData.ChartData {
-            
             // Call the methods
             let reportData = getReportData()
             let chartData = getChartData()
