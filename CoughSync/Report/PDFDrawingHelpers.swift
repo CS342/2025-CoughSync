@@ -282,9 +282,8 @@ extension PDFDrawingHelpers {
         data: [Int],
         horizontalStep: CGFloat
     ) {
-        if data.count <= 1 {
-            return
-        }
+        if data.count <= 1 { return }
+        
         let maxValue = data.max() ?? 100
         let linePath = UIBezierPath()
         let pointRadius: CGFloat = 3
