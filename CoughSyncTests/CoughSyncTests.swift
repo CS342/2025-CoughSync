@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-@testable import CoughSync
 import XCTest
+@testable import CoughSync
 
 
 class CoughSyncTests: XCTestCase {
@@ -231,30 +231,37 @@ class CoughSyncTests: XCTestCase {
     // MARK: - CoughReportView PDF Functions Tests
     
     func testReportViewPDFFunctions() {
-        // Create a view model with test data
-        let view = CoughReportView(presentingAccount: .constant(false))
+        // Create test report data
+        let reportData = PDFReportData.Report(
+            daily: PDFReportData.ReportCardData(percentage: 12.5, peakTime: "8:00 PM - 10:00 PM"),
+            weekly: PDFReportData.ReportCardData(percentage: -5.2, peakTime: "9:00 AM - 11:00 AM"),
+            monthly: PDFReportData.ReportCardData(percentage: 20.1, peakTime: "7:00 PM - 9:00 PM")
+        )
         
-        // Test PDF data generation through mirror to access private members
-        let mirror = Mirror(reflecting: view)
+        // Create test chart data
+        let chartData = PDFReportData.ChartData(
+            daily: [10, 15, 20, 25, 30, 20, 15],
+            weekly: [50, 60, 70, 55],
+            monthly: [200, 250, 300, 280, 220, 240, 260, 270, 290, 300, 280, 250]
+        )
         
-        // Get the getReportData and getChartData methods
-        if let getReportData = mirror.descendant("getReportData") as? () -> PDFReportData.Report,
-           let getChartData = mirror.descendant("getChartData") as? () -> PDFReportData.ChartData {
-            // Call the methods
-            let reportData = getReportData()
-            let chartData = getChartData()
-            
-            // Verify the report data structure
-            XCTAssertNotNil(reportData.daily, "Report should have daily data")
-            XCTAssertNotNil(reportData.weekly, "Report should have weekly data")
-            XCTAssertNotNil(reportData.monthly, "Report should have monthly data")
-            
-            // Verify the chart data structure
-            XCTAssertEqual(chartData.daily.count, 7, "Daily chart should have 7 data points")
-            XCTAssertEqual(chartData.weekly.count, 4, "Weekly chart should have 4 data points")
-            XCTAssertEqual(chartData.monthly.count, 12, "Monthly chart should have 12 data points")
-        } else {
-            XCTFail("Could not access the PDF data generation methods")
+        // Test PDF generation directly
+        let pdfData = PDFReportGenerator.generatePDF(reportData: reportData, chartData: chartData)
+        
+        // Verify PDF data is generated
+        XCTAssertGreaterThan(pdfData.count, 0, "PDF data should not be empty")
+        
+        // Test that we can save the PDF data
+        let url = PDFReportGenerator.savePDF(pdfData)
+        XCTAssertNotNil(url, "Should be able to save PDF to a URL")
+        
+        // Clean up the test file if it exists
+        if let url = url {
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                print("Error cleaning up test PDF file: \(error)")
+            }
         }
     }
 }
