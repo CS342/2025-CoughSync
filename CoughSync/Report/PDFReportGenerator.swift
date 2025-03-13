@@ -6,27 +6,27 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
+import PDFKit
 import UIKit
-import SwiftUI
 
-// MARK: - PDF Data Models
-
-/// PDF report components data structure
-struct PDFReportData {
-    /// Data for report cards
-    struct ReportCardData {
-        let percentage: Double
-        let peakTime: String
-    }
-    
-    /// Data for a full report
+// MARK: - Report Data Models
+/// Namespace for PDF report data models
+enum PDFReportData {
+    /// Represents the complete report data
     struct Report {
         let daily: ReportCardData
         let weekly: ReportCardData
         let monthly: ReportCardData
     }
     
-    /// Data for chart components
+    /// Represents a report card's data
+    struct ReportCardData {
+        let percentage: Double
+        let peakTime: String
+    }
+    
+    /// Contains chart data for the report
     struct ChartData {
         let daily: [Int]
         let weekly: [Int]
@@ -35,57 +35,119 @@ struct PDFReportData {
 }
 
 // MARK: - PDF Generator
-
-/// Generates PDF reports for cough data
-struct PDFReportGenerator {
-    /// Generates the PDF document
+/// Generator for PDF reports
+enum PDFReportGenerator {
+    // MARK: - Public API
+    
+    /// Generates a PDF report from the provided data
     static func generatePDF(reportData: PDFReportData.Report, chartData: PDFReportData.ChartData) -> Data {
-        // Create PDF document with standard page size
-        let pageRect = CGRect(x: 0, y: 0, width: 612, height: 792) // Standard US Letter
-        let pdfRenderer = UIGraphicsPDFRenderer(bounds: pageRect)
+        // Create PDF document with standard US Letter size (8.5 x 11 inches)
+        let pageRect = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect)
         
-        return pdfRenderer.pdfData { context in
-            // First page - Report summary
-            context.beginPage()
+        return renderer.pdfData { context in
+            // Generate first page with summary report cards
+            generateFirstPage(context: context, reportData: reportData, chartData: chartData)
             
-            // Draw header
-            let yPosition = PDFDrawingHelpers.drawHeader(in: pageRect)
-            
-            // Draw report cards
-            let afterCardsPosition = drawReportCards(
-                in: context.pdfContextBounds,
-                startYPosition: yPosition,
-                reportData: reportData
-            )
-            
-            // Draw chart section title
-            let chartsSectionY = PDFDrawingHelpers.drawSectionTitle(
-                in: pageRect,
-                at: afterCardsPosition + 40,
-                title: "Cough Trends"
-            )
-            
-            // Draw trend charts
-            drawTrendCharts(
-                in: context,
-                pageRect: pageRect,
-                startYPosition: chartsSectionY,
-                chartData: chartData
-            )
-            
-            // Add footer
-            PDFDrawingHelpers.drawFooter(in: pageRect)
+            // Generate second page with additional charts
+            generateSecondPage(context: context, chartData: chartData)
         }
     }
     
-    /// Draws the report cards in the PDF
+    /// Saves PDF data to a temporary file and returns the URL
+    static func savePDF(_ pdfData: Data) -> URL? {
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport-\(timestamp).pdf")
+        
+        do {
+            try pdfData.write(to: tempURL)
+            print("PDF saved to: \(tempURL)")
+            return tempURL
+        } catch {
+            print("Error saving PDF: \(error)")
+            return nil
+        }
+    }
+    
+    // MARK: - Private Helpers
+    
+    /// Generates the first page of the PDF with report cards and daily chart
+    private static func generateFirstPage(
+        context: UIGraphicsPDFRendererContext,
+        reportData: PDFReportData.Report,
+        chartData: PDFReportData.ChartData
+    ) {
+        context.beginPage()
+        let currentPage = context.pdfContextBounds
+        
+        // Draw header section
+        var yPosition = PDFDrawingHelpers.drawHeader(in: currentPage)
+        
+        // Draw report cards section
+        yPosition = drawReportCards(in: currentPage, at: yPosition, reportData: reportData)
+        
+        // Draw trend charts section title
+        yPosition = PDFDrawingHelpers.drawSectionTitle(
+            in: currentPage,
+            at: yPosition + 40,
+            title: "Cough Trends Analysis"
+        )
+        
+        // Draw daily trend chart
+        PDFDrawingHelpers.drawTrendChart(
+            in: currentPage,
+            at: yPosition,
+            title: "Daily Coughs (Past Week)",
+            data: chartData.daily,
+            xLabels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        )
+        
+        // Add footer
+        PDFDrawingHelpers.drawFooter(in: currentPage)
+    }
+    
+    /// Generates the second page of the PDF with weekly and monthly charts
+    private static func generateSecondPage(
+        context: UIGraphicsPDFRendererContext,
+        chartData: PDFReportData.ChartData
+    ) {
+        context.beginPage()
+        let currentPage = context.pdfContextBounds
+        
+        // Initial Y position on the new page
+        var yPosition: CGFloat = 50
+        
+        // Draw weekly trend chart
+        yPosition = PDFDrawingHelpers.drawTrendChart(
+            in: currentPage,
+            at: yPosition,
+            title: "Weekly Coughs (Past Month)",
+            data: chartData.weekly,
+            xLabels: ["Week 1", "Week 2", "Week 3", "Week 4"]
+        )
+        
+        // Draw monthly trend chart
+        PDFDrawingHelpers.drawTrendChart(
+            in: currentPage,
+            at: yPosition + 20,
+            title: "Monthly Coughs (Past Year)",
+            data: chartData.monthly,
+            xLabels: getMonthLabels()
+        )
+        
+        // Add footer
+        PDFDrawingHelpers.drawFooter(in: currentPage)
+    }
+    
+    /// Helper to draw all three report cards
     private static func drawReportCards(
         in rect: CGRect,
-        startYPosition: CGFloat,
+        at startY: CGFloat,
         reportData: PDFReportData.Report
     ) -> CGFloat {
-        var yPosition = startYPosition
+        var yPosition = startY + 20
         
+        // Draw daily report card
         yPosition = PDFDrawingHelpers.drawReportCard(
             in: rect,
             at: yPosition,
@@ -94,6 +156,7 @@ struct PDFReportGenerator {
             peakTime: reportData.daily.peakTime
         )
         
+        // Draw weekly report card
         yPosition = PDFDrawingHelpers.drawReportCard(
             in: rect,
             at: yPosition + 20,
@@ -102,6 +165,7 @@ struct PDFReportGenerator {
             peakTime: reportData.weekly.peakTime
         )
         
+        // Draw monthly report card
         yPosition = PDFDrawingHelpers.drawReportCard(
             in: rect,
             at: yPosition + 20,
@@ -110,71 +174,14 @@ struct PDFReportGenerator {
             peakTime: reportData.monthly.peakTime
         )
         
-        return yPosition // Return Y position after all cards
+        return yPosition
     }
     
-    /// Draws trend charts in the PDF
-    private static func drawTrendCharts(
-        in context: UIGraphicsPDFRendererContext,
-        pageRect: CGRect,
-        startYPosition: CGFloat,
-        chartData: PDFReportData.ChartData
-    ) {
-        var yPosition = startYPosition
-        
-        // Draw Daily Trend Chart
-        yPosition = PDFDrawingHelpers.drawTrendChart(
-            in: context.pdfContextBounds,
-            at: yPosition,
-            title: "Daily Coughs (Past Week)",
-            data: chartData.daily,
-            xLabels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        )
-        
-        // Check if we need a new page for the next chart
-        if yPosition > pageRect.height - 200 {
-            context.beginPage()
-            yPosition = 50
-        }
-        
-        // Draw Weekly Trend Chart
-        yPosition = PDFDrawingHelpers.drawTrendChart(
-            in: context.pdfContextBounds,
-            at: yPosition + 30,
-            title: "Weekly Coughs (Past Month)",
-            data: chartData.weekly,
-            xLabels: ["Week 1", "Week 2", "Week 3", "Week 4"]
-        )
-        
-        // Check if we need a new page for the next chart
-        if yPosition > pageRect.height - 200 {
-            context.beginPage()
-            yPosition = 50
-        }
-        
-        // Draw Monthly Trend Chart
-        PDFDrawingHelpers.drawTrendChart(
-            in: context.pdfContextBounds,
-            at: yPosition + 30,
-            title: "Monthly Coughs (Past Year)",
-            data: chartData.monthly,
-            xLabels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        )
-    }
-    
-    /// Saves the PDF data to a temporary file
-    static func savePDF(_ data: Data) -> URL? {
-        // Generate a unique filename to avoid caching issues
-        let timestamp = Int(Date().timeIntervalSince1970)
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport-\(timestamp).pdf")
-
-        do {
-            try data.write(to: tempURL)
-            print("PDF successfully generated at: \(tempURL)")
-            return tempURL
-        } catch {
-            print("Failed to save PDF: \(error.localizedDescription)")
-            return nil
-        }
+    /// Returns month labels for x-axis of monthly chart
+    private static func getMonthLabels() -> [String] {
+        [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ]
     }
 }

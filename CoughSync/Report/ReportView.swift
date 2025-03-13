@@ -69,45 +69,48 @@ struct ShareSheet: UIViewControllerRepresentable {
     var items: [Any]
     
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        // Handle PDF URL if present
         if let pdfURL = items.first as? URL {
-            // Ensure the URL is accessible
-            let activityVC = UIActivityViewController(
-                activityItems: [pdfURL],
-                applicationActivities: nil
-            )
-            
-            return activityVC
-        }
-        // For data items
-        else if let pdfData = items.first as? Data {
-            let timestamp = Int(Date().timeIntervalSince1970)
-            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport-\(timestamp).pdf")
-            
-            do {
-                try pdfData.write(to: tempURL)
-                print("PDF data written to: \(tempURL)")
-                
-                let activityVC = UIActivityViewController(
-                    activityItems: [tempURL],
-                    applicationActivities: nil
-                )
-                
-                return activityVC
-            } catch {
-                print("Error writing PDF: \(error)")
-            }
+            return createShareViewController(with: pdfURL)
+        } else if let pdfData = items.first as? Data {
+            return handlePDFData(pdfData)
         }
         
-        // Fallback
+        // Fallback for any other content
         return UIActivityViewController(
             activityItems: items,
             applicationActivities: nil
         )
     }
     
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        // Nothing to do here
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+    
+    // MARK: - Private Helpers
+    
+    /// Creates a share view controller for a PDF URL
+    private func createShareViewController(with url: URL) -> UIActivityViewController {
+        UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: nil
+        )
+    }
+    
+    /// Handles PDF data by writing to temp file and sharing
+    private func handlePDFData(_ data: Data) -> UIActivityViewController {
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport-\(timestamp).pdf")
+        
+        do {
+            try data.write(to: tempURL)
+            print("PDF data written to: \(tempURL)")
+            return createShareViewController(with: tempURL)
+        } catch {
+            print("Error writing PDF: \(error)")
+            // Fallback in case of error
+            return UIActivityViewController(
+                activityItems: [],
+                applicationActivities: nil
+            )
+        }
     }
 }
 
@@ -271,7 +274,7 @@ struct CoughReportView: View {
     
     /// Retrieves all chart data needed for the PDF
     private func getChartData() -> PDFReportData.ChartData {
-        return PDFReportData.ChartData(
+        PDFReportData.ChartData(
             daily: CoughReportData.getDailyCoughs(),
             weekly: CoughReportData.getWeeklyCoughs(),
             monthly: CoughReportData.getMonthlyCoughs()

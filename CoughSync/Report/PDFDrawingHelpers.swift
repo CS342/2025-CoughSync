@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 /// Contains PDF drawing functionality for CoughSync reports
-struct PDFDrawingHelpers {
+enum PDFDrawingHelpers {
     /// Draws a report card in the PDF document
     static func drawReportCard(
         in rect: CGRect,
