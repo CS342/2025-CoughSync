@@ -5,9 +5,8 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
-import UIKit
 import SwiftUI
+import UIKit
 
 /// Contains PDF drawing functionality for CoughSync reports
 enum PDFDrawingHelpers {
@@ -283,8 +282,9 @@ extension PDFDrawingHelpers {
         data: [Int],
         horizontalStep: CGFloat
     ) {
-        if data.count <= 1 { return }
-        
+        if data.count <= 1 {
+            return
+        }
         let maxValue = data.max() ?? 100
         let linePath = UIBezierPath()
         let pointRadius: CGFloat = 3
