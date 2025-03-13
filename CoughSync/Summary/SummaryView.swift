@@ -5,7 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 //
-//
 //  SummaryView.swift
 //  CoughSync
 //
