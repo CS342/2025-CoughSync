@@ -6,13 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
-
 import SwiftUI
 
 struct ReportCard: View {
     let title: String
     let percentage: Double
     let peakTime: String
+    
+    @Environment(\.colorScheme) private var colorScheme
 
     private var percentageText: String {
         percentage >= 0 ? "\(String(format: "%.1f", percentage))%" : "\(String(format: "%.1f", percentage * -1))%"
@@ -64,10 +65,13 @@ struct ReportCard: View {
             .frame(height: 30)
         }
         .padding(15)
-        .background(RoundedRectangle(cornerRadius: 14).fill(Color.white))
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(Color(UIColor.systemBackground))
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 3)
+                .stroke(Color(UIColor.separator), lineWidth: 3)
         )
         .frame(height: 150)
         .frame(width: 350)
@@ -76,5 +80,11 @@ struct ReportCard: View {
 }
 
 #Preview {
-    ReportCard(title: "Daily Report", percentage: 12.5, peakTime: "Hello hello hello I am cool 8:00 PM - 10:00 PM")
+    Group {
+        ReportCard(title: "Daily Report", percentage: 12.5, peakTime: "8:00 PM - 10:00 PM")
+            .preferredColorScheme(.light)
+        
+        ReportCard(title: "Weekly Report", percentage: -5.2, peakTime: "Monday 2:00 PM - 4:00 PM")
+            .preferredColorScheme(.dark)
+    }
 }
