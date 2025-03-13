@@ -5,31 +5,16 @@
 //
 // SPDX-License-Identifier: MIT
 //
-<<<<<<< HEAD
 
 import Foundation
 import PDFKit
+import SwiftUI
 import UIKit
 
 // MARK: - Report Data Models
 /// Namespace for PDF report data models
 enum PDFReportData {
     /// Represents the complete report data
-=======
-import SwiftUI
-import UIKit
-
-// MARK: - PDF Data Models
-
-/// PDF report components data structure
-enum PDFReportData {
-    struct ReportCardData {
-        let percentage: Double
-        let peakTime: String
-    }
-    
-    /// Data for a full report
->>>>>>> 1a0f434d7073639d9f79084431ae2d167bf1e6f3
     struct Report {
         let daily: ReportCardData
         let weekly: ReportCardData
@@ -51,18 +36,11 @@ enum PDFReportData {
 }
 
 // MARK: - PDF Generator
-<<<<<<< HEAD
 /// Generator for PDF reports
 enum PDFReportGenerator {
     // MARK: - Public API
     
     /// Generates a PDF report from the provided data
-=======
-
-/// Generates PDF reports for cough data
-enum PDFReportGenerator {
-    /// Generates the PDF document
->>>>>>> 1a0f434d7073639d9f79084431ae2d167bf1e6f3
     static func generatePDF(reportData: PDFReportData.Report, chartData: PDFReportData.ChartData) -> Data {
         // Create PDF document with standard US Letter size (8.5 x 11 inches)
         let pageRect = CGRect(x: 0, y: 0, width: 612, height: 792)
