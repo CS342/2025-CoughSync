@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// A data source for cough report data.
+
 enum CoughReportData {
     // Fake data for now (replace with actual logic later)
     static func getDailyCoughs() -> [Int] {

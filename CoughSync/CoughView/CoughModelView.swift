@@ -5,6 +5,11 @@
 //
 // SPDX-License-Identifier: MIT
 //
+//  CoughModelView.swift
+//  CoughSync
+//
+//  Created by Ethan Bell on 12/2/2025.
+//
 
 import Spezi
 import SwiftUI

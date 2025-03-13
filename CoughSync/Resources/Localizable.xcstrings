@@ -168,6 +168,9 @@
     "Decrease in coughs" : {
 
     },
+    "Email Report" : {
+    
+    },
     "For accurate cough tracking throughout the night, please keep your phone plugged in and charging close to your bed" : {
 
     },
@@ -419,6 +422,9 @@
     "Ready for bed?" : {
 
     },
+    "Save as" : {
+
+    },
     "Report" : {
 
     },
@@ -432,6 +438,9 @@
           }
         }
       }
+    },
+    "Share Report" : {
+
     },
     "Spezi Modules" : {
       "extractionState" : "stale",

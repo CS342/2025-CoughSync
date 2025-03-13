@@ -6,13 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-//  ReportCard.swift
-//  CoughSync
-//
 
 import SwiftUI
 
-/// A card that displays a summary of a report.
 struct ReportCard: View {
     let title: String
     let percentage: Double

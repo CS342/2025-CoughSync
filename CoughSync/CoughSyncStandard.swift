@@ -97,9 +97,6 @@ actor CoughSyncStandard: Standard,
         }
     }
     
-    /// Stores the given consent form in the user's document directory with a unique timestamped filename.
-    ///
-    /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.
     @MainActor
     func store(consent: ConsentDocumentExport) async throws {
         let formatter = DateFormatter()
@@ -183,7 +180,6 @@ actor CoughSyncStandard: Standard,
         }
     }
     
-    /// Fetches the count of cough events that occurred today
     func fetchTodayCoughCount() async throws -> Int {
         if FeatureFlags.disableFirebase {
             logger.debug("Firebase disabled - returning dummy today cough count")
@@ -207,7 +203,6 @@ actor CoughSyncStandard: Standard,
         }
     }
     
-    /// Fetches the average daily cough count for the past week
     func fetchWeeklyAverageCoughCount() async throws -> Int {
         if FeatureFlags.disableFirebase {
             logger.debug("Firebase disabled - returning dummy weekly average")
@@ -220,7 +215,6 @@ actor CoughSyncStandard: Standard,
         return try await fetchAverageCoughCount(from: weekAgo, to: today)
     }
     
-    /// Fetches the average daily cough count for the past month
     func fetchMonthlyAverageCoughCount() async throws -> Int {
         if FeatureFlags.disableFirebase {
             logger.debug("Firebase disabled - returning dummy monthly average")
@@ -233,7 +227,6 @@ actor CoughSyncStandard: Standard,
         return try await fetchAverageCoughCount(from: monthAgo, to: today)
     }
     
-    /// Helper method to calculate average cough count between two dates
     private func fetchAverageCoughCount(from startDate: Date, to endDate: Date) async throws -> Int {
         do {
             let coughEvents = try await fetchCoughEventsInRange(from: startDate, to: endDate)
@@ -255,7 +248,6 @@ actor CoughSyncStandard: Standard,
         }
     }
     
-    /// Helper method to fetch cough events within a specific date range
     private func fetchCoughEventsInRange(from startDate: Date, to endDate: Date) async throws -> [CoughEvent] {
         if FeatureFlags.disableFirebase {
             return []
