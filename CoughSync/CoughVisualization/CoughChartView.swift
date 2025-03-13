@@ -88,9 +88,35 @@ struct CoughChartView: View {
     }
 
     var maxCoughCount: Int {
-        let maxHourly = groupedCoughsHourly.map(\.count).max() ?? 5
-        let maxWeekly = groupedCoughsWeekly.map(\.count).max() ?? 5
-        return max(maxHourly, maxWeekly) + 5
+        var val = 0
+        switch coughChartType {
+        case .daily:
+            val = groupedCoughsHourly.map(\.count).max() ?? 5
+        case .weekly:
+            val = groupedCoughsWeekly.map(\.count).max() ?? 5
+        case .monthly:
+            val = groupedCoughsMonthly.map(\.count).max() ?? 5
+        }
+        return val + 5
+    }
+    
+    var meanCoughCount: Double {
+        var val: Double = 0
+        switch coughChartType {
+        case .daily:
+            let totalCoughs = Double(groupedCoughsHourly.reduce(0, { $0 + $1.count }))
+            let totalHours = Double(groupedCoughsHourly.count)
+            val = totalHours > 0 ? totalCoughs / totalHours : 0
+        case .weekly:
+            let totalCoughs = Double(groupedCoughsWeekly.reduce(0, { $0 + $1.count }))
+            let totalWeeks = Double(groupedCoughsWeekly.count)
+            val = totalWeeks > 0 ? totalCoughs / totalWeeks : 0
+        case .monthly:
+            let totalCoughs = Double(groupedCoughsMonthly.reduce(0, { $0 + $1.count }))
+            let totalMonths = Double(groupedCoughsMonthly.count)
+            val = totalMonths > 0 ? totalCoughs / totalMonths : 0
+        }
+        return val
     }
 
     var body: some View {
@@ -120,7 +146,7 @@ struct CoughChartView: View {
                 .foregroundStyle(.blue)
             }
 
-            RuleMark(y: .value("Threshold", 5))
+            RuleMark(y: .value("Threshold", meanCoughCount))
                 .foregroundStyle(.primary)
                 .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
         }
