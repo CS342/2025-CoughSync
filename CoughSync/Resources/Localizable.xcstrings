@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "    Tap below to stop detecting coughs.\n    Tracking for %@" : {
-
-    },
     "%@ " : {
 
     },
@@ -171,6 +168,9 @@
     "Decrease in coughs" : {
 
     },
+    "For accurate cough tracking throughout the night, please keep your phone plugged in and charging close to your bed" : {
+
+    },
     "Get Started" : {
 
     },
@@ -314,6 +314,9 @@
         }
       }
     },
+    "Keep Your Phone Plugged In" : {
+
+    },
     "Learn More" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -381,6 +384,9 @@
           }
         }
       }
+    },
+    "OK" : {
+
     },
     "Onboarding" : {
       "extractionState" : "stale",
@@ -483,6 +489,9 @@
       }
     },
     "Tap below to begin detecting nighttime coughs." : {
+
+    },
+    "Tap below to stop detecting coughs.\nTracking for %@" : {
 
     },
     "Tell us about your cough every week." : {
