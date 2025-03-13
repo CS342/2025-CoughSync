@@ -40,6 +40,37 @@ CoughSync not only captures the quantitivate aspects of user coughs. Instead, it
 
 In this functionality, we collect the cough data pushed to Firebase and show it in three different graphs: daily, weekly and monthly. We allow the user to export this data for them to share with their doctors.
 
+<table>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Summary.png" width="250"/>
+        <p><strong>Summary</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Check In.png" width="250"/>
+        <p><strong>Check In</strong></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report.png" width="250"/>
+        <p><strong>Report</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report2.png" width="250"/>
+        <p><strong>Detailed Report</strong></p>
+      </div>
+    </td>
+  </tr>
+</table>
+
 
 
 *Provide a comprehensive description of your application, including figures showing the application. You can learn more on how to structure a README in the [Stanford Spezi Documentation Guide](https://swiftpackageindex.com/stanfordspezi/spezi/documentation/spezi/documentation-guide)*
