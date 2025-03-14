@@ -43,13 +43,13 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
   <tr>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Summary.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Summary.png?raw=true" width="250"/>
         <p><strong>Summary (Light)</strong></p>
       </div>
     </td>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Summary-dark.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Summary-dark.png?raw=true" width="250"/>
         <p><strong>Summary (Dark)</strong></p>
       </div>
     </td>
@@ -57,13 +57,13 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
   <tr>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20In.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Check%20In.png?raw=true" width="250"/>
         <p><strong>Check In (Light)</strong></p>
       </div>
     </td>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20in-dark.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Check%20in-dark.png?raw=true" width="250"/>
         <p><strong>Check In (Dark)</strong></p>
       </div>
     </td>
@@ -71,13 +71,13 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
   <tr>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report.png?raw=true" width="250"/>
         <p><strong>Report (Light)</strong></p>
       </div>
     </td>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report-dark.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report-dark.png?raw=true" width="250"/>
         <p><strong>Report (Dark)</strong></p>
       </div>
     </td>
@@ -85,13 +85,13 @@ Users can visualize their cough trends through interactive daily, weekly, and mo
   <tr>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report2.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report2.png?raw=true" width="250"/>
         <p><strong>Detailed Report (Light)</strong></p>
       </div>
     </td>
     <td>
       <div align="center">
-        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report2-dark.png?raw=true" width="250"/>
+        <img src="https://raw.githubusercontent.com/CS342/2025-CoughSync/main/Resources/Report2-dark.png?raw=true" width="250"/>
         <p><strong>Detailed Report (Dark)</strong></p>
       </div>
     </td>
