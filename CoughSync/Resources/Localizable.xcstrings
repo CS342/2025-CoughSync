@@ -128,16 +128,10 @@
     "Cough Sync" : {
 
     },
-    "Cough Trends" : {
-
-    },
     "Coughing Tracking" : {
 
     },
     "coughs" : {
-
-    },
-    "Coughs" : {
 
     },
     "coughs/d" : {
@@ -169,7 +163,7 @@
 
     },
     "Email Report" : {
-    
+
     },
     "For accurate cough tracking throughout the night, please keep your phone plugged in and charging close to your bed" : {
 
@@ -422,10 +416,10 @@
     "Ready for bed?" : {
 
     },
-    "Save as" : {
+    "Report" : {
 
     },
-    "Report" : {
+    "Save as" : {
 
     },
     "Schedule" : {
