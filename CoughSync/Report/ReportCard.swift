@@ -12,8 +12,6 @@ struct ReportCard: View {
     let title: String
     let percentage: Double
     let peakTime: String
-    
-    @Environment(\.colorScheme) private var colorScheme
 
     private var percentageText: String {
         percentage >= 0 ? "\(String(format: "%.1f", percentage))%" : "\(String(format: "%.1f", percentage * -1))%"
