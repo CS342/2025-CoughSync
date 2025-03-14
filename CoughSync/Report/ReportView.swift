@@ -11,6 +11,8 @@ import SpeziAccount
 import SwiftUI
 import UIKit
 
+// MARK: - Mail View Coordinator
+
 class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
     var parent: MailView
 
@@ -33,6 +35,8 @@ class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         }
     }
 }
+
+// MARK: - Mail View
 
 struct MailView: UIViewControllerRepresentable {
     var completion: ((MFMailComposeResult) -> Void)?
@@ -58,15 +62,59 @@ struct MailView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {}
 }
 
+// MARK: - Share Sheet
+
+/// A view that wraps UIActivityViewController for sharing items
 struct ShareSheet: UIViewControllerRepresentable {
-    let activityItems: [Any]
-
+    var items: [Any]
+    
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        if let pdfURL = items.first as? URL {
+            return createShareViewController(with: pdfURL)
+        } else if let pdfData = items.first as? Data {
+            return handlePDFData(pdfData)
+        }
+        
+        // Fallback for any other content
+        return UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil
+        )
     }
-
+    
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+    
+    // MARK: - Private Helpers
+    
+    /// Creates a share view controller for a PDF URL
+    private func createShareViewController(with url: URL) -> UIActivityViewController {
+        UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: nil
+        )
+    }
+    
+    /// Handles PDF data by writing to temp file and sharing
+    private func handlePDFData(_ data: Data) -> UIActivityViewController {
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport-\(timestamp).pdf")
+        
+        do {
+            try data.write(to: tempURL)
+            print("PDF data written to: \(tempURL)")
+            return createShareViewController(with: tempURL)
+        } catch {
+            print("Error writing PDF: \(error)")
+            // Fallback in case of error
+            return UIActivityViewController(
+                activityItems: [],
+                applicationActivities: nil
+            )
+        }
+    }
 }
+
+// MARK: - Main View
 
 struct CoughReportView: View {
     @Environment(Account.self) private var account: Account?
@@ -101,7 +149,7 @@ struct CoughReportView: View {
                 set: { _ in isSharing = false }
             )) {
                 if let pdfURL = pdfURL {
-                    ShareSheet(activityItems: [pdfURL])
+                    ShareSheet(items: [pdfURL])
                 }
             }
             .sheet(isPresented: $isEmailPresented) {
@@ -168,6 +216,12 @@ struct CoughReportView: View {
             }) {
                 Label("Email Report", systemImage: "envelope")
             }
+            
+            Button(action: {
+                exportToPDF(directShare: true)
+            }) {
+                Label("Direct Share PDF", systemImage: "doc.text")
+            }
         } label: {
             Label("Share Report", systemImage: "square.and.arrow.up")
                 .font(.headline)
@@ -180,41 +234,51 @@ struct CoughReportView: View {
         .padding()
     }
 
-    private func exportToPDF(forEmail: Bool = false) {
-        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 612, height: 792))
-
-        let data = pdfRenderer.pdfData { context in
-            context.beginPage()
-
-            let hostingController = UIHostingController(rootView: reportCards())
-            let targetSize = CGSize(width: 612, height: 792)
-            hostingController.view.bounds = CGRect(origin: .zero, size: targetSize)
-            hostingController.view.backgroundColor = .white
-
-            let rootVC = UIApplication.shared.connectedScenes
-                .compactMap { $0 as? UIWindowScene }
-                .flatMap { $0.windows }
-                .first?.rootViewController
-
-            rootVC?.addChild(hostingController)
-            hostingController.view.frame = CGRect(origin: .zero, size: targetSize)
-            rootVC?.view.addSubview(hostingController.view)
-
-            hostingController.view.drawHierarchy(in: hostingController.view.bounds, afterScreenUpdates: true)
-            hostingController.view.removeFromSuperview()
-            hostingController.removeFromParent()
+    private func exportToPDF(forEmail: Bool = false, directShare: Bool = false) {
+        // Clear any cached PDF
+        self.pdfURL = nil
+        
+        // Get data needed for PDF generation
+        let reportData = getReportData()
+        let chartData = getChartData()
+        
+        // Generate PDF document using the helper
+        let data = PDFReportGenerator.generatePDF(reportData: reportData, chartData: chartData)
+        
+        // Save PDF to temp file and share
+        if let url = PDFReportGenerator.savePDF(data) {
+            pdfURL = url
+            
+            // Present sharing options
+            if directShare {
+                self.isSharing = true
+            } else {
+                self.isEmailPresented = forEmail
+                self.isSharing = !forEmail
+            }
         }
-
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("CoughReport.pdf")
-
-        do {
-            try data.write(to: tempURL)
-            pdfURL = tempURL
-            isEmailPresented = forEmail
-            isSharing = !forEmail
-        } catch {
-            print("Failed to save PDF: \(error.localizedDescription)")
-        }
+    }
+    
+    /// Retrieves all report data needed for the PDF
+    private func getReportData() -> PDFReportData.Report {
+        let dailyData = coughTracker.generateDailyReportData()
+        let weeklyData = coughTracker.generateWeeklyReportData()
+        let monthlyData = coughTracker.generateMonthlyReportData()
+        
+        return PDFReportData.Report(
+            daily: PDFReportData.ReportCardData(percentage: dailyData.percentage, peakTime: dailyData.peakTime),
+            weekly: PDFReportData.ReportCardData(percentage: weeklyData.percentage, peakTime: weeklyData.peakTime),
+            monthly: PDFReportData.ReportCardData(percentage: monthlyData.percentage, peakTime: monthlyData.peakTime)
+        )
+    }
+    
+    /// Retrieves all chart data needed for the PDF
+    private func getChartData() -> PDFReportData.ChartData {
+        PDFReportData.ChartData(
+            daily: CoughReportData.getDailyCoughs(),
+            weekly: CoughReportData.getWeeklyCoughs(),
+            monthly: CoughReportData.getMonthlyCoughs()
+        )
     }
 }
 

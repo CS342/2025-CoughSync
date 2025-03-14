@@ -168,8 +168,11 @@
     "Decrease in coughs" : {
 
     },
+    "Direct Share PDF" : {
+
+    },
     "Email Report" : {
-    
+
     },
     "For accurate cough tracking throughout the night, please keep your phone plugged in and charging close to your bed" : {
 
@@ -426,6 +429,9 @@
 
     },
     "Report" : {
+
+    },
+    "Save as" : {
 
     },
     "Schedule" : {
