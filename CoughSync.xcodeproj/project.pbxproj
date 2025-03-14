@@ -64,11 +64,8 @@
 		492A12CA2D7A31F300B7C2DD /* CoughDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12C42D7A31F300B7C2DD /* CoughDetectionViewModel.swift */; };
 		492A12CB2D7A31F300B7C2DD /* ResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12C52D7A31F300B7C2DD /* ResultsObserver.swift */; };
 		492A12CE2D7A31F600B7C2DD /* CoughModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12CC2D7A31F600B7C2DD /* CoughModelView.swift */; };
-		492A12D52D7A31FB00B7C2DD /* CoughReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12CF2D7A31FB00B7C2DD /* CoughReportData.swift */; };
-		492A12D62D7A31FB00B7C2DD /* FrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12D02D7A31FB00B7C2DD /* FrequencyView.swift */; };
 		492A12D72D7A31FB00B7C2DD /* ReportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12D12D7A31FB00B7C2DD /* ReportCard.swift */; };
 		492A12D82D7A31FB00B7C2DD /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12D22D7A31FB00B7C2DD /* ReportView.swift */; };
-		492A12D92D7A31FB00B7C2DD /* TrendChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12D32D7A31FB00B7C2DD /* TrendChart.swift */; };
 		492A12DF2D7A31FF00B7C2DD /* CoughChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12DA2D7A31FF00B7C2DD /* CoughChartView.swift */; };
 		492A12E12D7A31FF00B7C2DD /* CoughTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12DC2D7A31FF00B7C2DD /* CoughTracker.swift */; };
 		492A12E22D7A31FF00B7C2DD /* CoughTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A12DD2D7A31FF00B7C2DD /* CoughTrackerView.swift */; };
@@ -82,6 +79,7 @@
 		49A731FC2D7D09C10073AC02 /* CoughSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A731FB2D7D09C10073AC02 /* CoughSyncTests.swift */; };
 		49A732212D7F5A750073AC02 /* CoughChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A732202D7F5A750073AC02 /* CoughChartType.swift */; };
 		49A732222D7F5A750073AC02 /* CoughChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A732202D7F5A750073AC02 /* CoughChartType.swift */; };
+		49A732502D8344CE0073AC02 /* ReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7324F2D8344CE0073AC02 /* ReportTests.swift */; };
 		49F06F512D4EDE1500A7E170 /* CoughBurdenQuestionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */; };
 		49F06F5B2D533E7B00A7E170 /* CoughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */; };
 		49F06F5F2D53468400A7E170 /* CoughClassifier.mlmodel.license in Resources */ = {isa = PBXBuildFile; fileRef = 49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */; };
@@ -165,11 +163,8 @@
 		492A12C42D7A31F300B7C2DD /* CoughDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughDetectionViewModel.swift; sourceTree = "<group>"; };
 		492A12C52D7A31F300B7C2DD /* ResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsObserver.swift; sourceTree = "<group>"; };
 		492A12CC2D7A31F600B7C2DD /* CoughModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughModelView.swift; sourceTree = "<group>"; };
-		492A12CF2D7A31FB00B7C2DD /* CoughReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughReportData.swift; sourceTree = "<group>"; };
-		492A12D02D7A31FB00B7C2DD /* FrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyView.swift; sourceTree = "<group>"; };
 		492A12D12D7A31FB00B7C2DD /* ReportCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCard.swift; sourceTree = "<group>"; };
 		492A12D22D7A31FB00B7C2DD /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		492A12D32D7A31FB00B7C2DD /* TrendChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendChart.swift; sourceTree = "<group>"; };
 		492A12DA2D7A31FF00B7C2DD /* CoughChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughChartView.swift; sourceTree = "<group>"; };
 		492A12DC2D7A31FF00B7C2DD /* CoughTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughTracker.swift; sourceTree = "<group>"; };
 		492A12DD2D7A31FF00B7C2DD /* CoughTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughTrackerView.swift; sourceTree = "<group>"; };
@@ -179,6 +174,7 @@
 		492A13192D7A9AA500B7C2DD /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		49A731FB2D7D09C10073AC02 /* CoughSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughSyncTests.swift; sourceTree = "<group>"; };
 		49A732202D7F5A750073AC02 /* CoughChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoughChartType.swift; sourceTree = "<group>"; };
+		49A7324F2D8344CE0073AC02 /* ReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTests.swift; sourceTree = "<group>"; };
 		49F06F502D4EDDF700A7E170 /* CoughBurdenQuestionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughBurdenQuestionnaire.json.license; sourceTree = "<group>"; };
 		49F06F5A2D533E7B00A7E170 /* CoughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoughClassifier.mlmodel; sourceTree = "<group>"; };
 		49F06F5E2D53465E00A7E170 /* CoughClassifier.mlmodel.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoughClassifier.mlmodel.license; sourceTree = "<group>"; };
@@ -349,11 +345,8 @@
 		492A12D42D7A31FB00B7C2DD /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				492A12CF2D7A31FB00B7C2DD /* CoughReportData.swift */,
-				492A12D02D7A31FB00B7C2DD /* FrequencyView.swift */,
 				492A12D12D7A31FB00B7C2DD /* ReportCard.swift */,
 				492A12D22D7A31FB00B7C2DD /* ReportView.swift */,
-				492A12D32D7A31FB00B7C2DD /* TrendChart.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -442,6 +435,7 @@
 				653A256B28338800005D4D48 /* SchedulerTests.swift */,
 				5680DD3D2AB8CD84004E6D4A /* ContributionsTest.swift */,
 				492A12F32D7A644B00B7C2DD /* TabNavigationTests.swift */,
+				49A7324F2D8344CE0073AC02 /* ReportTests.swift */,
 			);
 			path = CoughSyncUITests;
 			sourceTree = "<group>";
@@ -691,12 +685,9 @@
 				2FF53D8D2A8729D600042B76 /* CoughSyncStandard.swift in Sources */,
 				492A12C02D7A31EA00B7C2DD /* QuestionnaireType.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
-				492A12D52D7A31FB00B7C2DD /* CoughReportData.swift in Sources */,
-				492A12D62D7A31FB00B7C2DD /* FrequencyView.swift in Sources */,
 				492A12D72D7A31FB00B7C2DD /* ReportCard.swift in Sources */,
 				49A732212D7F5A750073AC02 /* CoughChartType.swift in Sources */,
 				492A12D82D7A31FB00B7C2DD /* ReportView.swift in Sources */,
-				492A12D92D7A31FB00B7C2DD /* TrendChart.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* CoughSyncTestingSetup.swift in Sources */,
 				492A12CE2D7A31F600B7C2DD /* CoughModelView.swift in Sources */,
@@ -736,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680DD3E2AB8CD84004E6D4A /* ContributionsTest.swift in Sources */,
+				49A732502D8344CE0073AC02 /* ReportTests.swift in Sources */,
 				492A12F42D7A644B00B7C2DD /* TabNavigationTests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* OnboardingTests.swift in Sources */,
 				653A256C28338800005D4D48 /* SchedulerTests.swift in Sources */,

@@ -24,25 +24,83 @@ CoughSync is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem
 
 ## CoughSync Features
 
-CoughSync is an application designed to track nighttime coughs. It utilizes a self-trained machine learning model to classify coughs from user-recorded audio. Users are encouraged to start audio tracking before bed, keeping their phone bedside while recording.
+CoughSync is designed with simplicity in mind. We want users to gain valuable insights into their cough patterns with minimal effort. Our goal is to provide meaningful data while keeping the experience seamless and non-intrusive.
 
-The app provides real-time cough counting and presents detailed data analysis, including trends in cough frequency (daily, weekly, and monthly), changes over time, and charts showing when coughs occur throughout the night.
+To achieve this, CoughSync focuses on three core features:
 
-To assess the impact of coughing on quality of life, users complete a weekly questionnaire. Additionally, the app can generate a comprehensive report of cough data, which can be used for personal insights or shared with a physician for further evaluation.
+### Cough Detection
 
-By collecting this novel data, CoughSync offers valuable insights to medical practitioners, enhancing the understanding of cough patterns and their role in diagnosis and treatment.
+CoughSync leverages a custom-built time series cough detection model to track bedtime coughing using machine learning. The detected cough events are securely stored in Firebase for seamless and persistent data access.
 
-![image](https://github.com/user-attachments/assets/63ae28ba-58be-4973-b2ad-e1e1dbe72298)
-![image](https://github.com/user-attachments/assets/d12f9cd1-1dfa-4648-85e1-edb929d01dfd)
-![image](https://github.com/user-attachments/assets/eaf4c138-05d2-4663-b4aa-8ee7200d9cfe)
-![image](https://github.com/user-attachments/assets/f559b2aa-2239-4434-8bd6-3eb03fa3d323)
-![image](https://github.com/user-attachments/assets/2196879f-74d4-471b-b9ed-58e58ec4ffdb)
-![image](https://github.com/user-attachments/assets/43b341f1-b24e-468e-9ce6-3236981d3723)
+### Quality of Life Feedback
+
+Beyond just numbers, CoughSync integrates medically inspired questionnaires to assess the impact of coughing on daily life. Users provide feedback during onboarding and then once a week, ensuring a holistic view of their condition. This data is securely stored in Firebase.
+
+### Cough Report
+
+Users can visualize their cough trends through interactive daily, weekly, and monthly graphs. The app also allows easy data export, enabling users to share their insights with healthcare professionals.
+<table>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Summary.png?raw=true" width="250"/>
+        <p><strong>Summary (Light)</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Summary-dark.png?raw=true" width="250"/>
+        <p><strong>Summary (Dark)</strong></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20In.png?raw=true" width="250"/>
+        <p><strong>Check In (Light)</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Check%20in-dark.png?raw=true" width="250"/>
+        <p><strong>Check In (Dark)</strong></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report.png?raw=true" width="250"/>
+        <p><strong>Report (Light)</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report-dark.png?raw=true" width="250"/>
+        <p><strong>Report (Dark)</strong></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report2.png?raw=true" width="250"/>
+        <p><strong>Detailed Report (Light)</strong></p>
+      </div>
+    </td>
+    <td>
+      <div align="center">
+        <img src="https://github.com/CS342/2025-CoughSync/blob/documentation/Resources/Report2-dark.png?raw=true" width="250"/>
+        <p><strong>Detailed Report (Dark)</strong></p>
+      </div>
+    </td>
+  </tr>
+</table>
 
 
 
-
-
+*Provide a comprehensive description of your application, including figures showing the application. You can learn more on how to structure a README in the [Stanford Spezi Documentation Guide](https://swiftpackageindex.com/stanfordspezi/spezi/documentation/spezi/documentation-guide)*
 
 > [!NOTE]  
 > Do you want to learn more about the Stanford Spezi Template Application and how to use, extend, and modify this application? Check out the [Stanford Spezi Template Application documentation](https://stanfordspezi.github.io/SpeziTemplateApplication)
