@@ -24,7 +24,25 @@ CoughSync is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem
 
 ## CoughSync Features
 
-*Provide a comprehensive description of your application, including figures showing the application. You can learn more on how to structure a README in the [Stanford Spezi Documentation Guide](https://swiftpackageindex.com/stanfordspezi/spezi/documentation/spezi/documentation-guide)*
+CoughSync is an application designed to track nighttime coughs. It utilizes a self-trained machine learning model to classify coughs from user-recorded audio. Users are encouraged to start audio tracking before bed, keeping their phone bedside while recording.
+
+The app provides real-time cough counting and presents detailed data analysis, including trends in cough frequency (daily, weekly, and monthly), changes over time, and charts showing when coughs occur throughout the night.
+
+To assess the impact of coughing on quality of life, users complete a weekly questionnaire. Additionally, the app can generate a comprehensive report of cough data, which can be used for personal insights or shared with a physician for further evaluation.
+
+By collecting this novel data, CoughSync offers valuable insights to medical practitioners, enhancing the understanding of cough patterns and their role in diagnosis and treatment.
+
+![image](https://github.com/user-attachments/assets/63ae28ba-58be-4973-b2ad-e1e1dbe72298)
+![image](https://github.com/user-attachments/assets/d12f9cd1-1dfa-4648-85e1-edb929d01dfd)
+![image](https://github.com/user-attachments/assets/eaf4c138-05d2-4663-b4aa-8ee7200d9cfe)
+![image](https://github.com/user-attachments/assets/f559b2aa-2239-4434-8bd6-3eb03fa3d323)
+![image](https://github.com/user-attachments/assets/2196879f-74d4-471b-b9ed-58e58ec4ffdb)
+![image](https://github.com/user-attachments/assets/43b341f1-b24e-468e-9ce6-3236981d3723)
+
+
+
+
+
 
 > [!NOTE]  
 > Do you want to learn more about the Stanford Spezi Template Application and how to use, extend, and modify this application? Check out the [Stanford Spezi Template Application documentation](https://stanfordspezi.github.io/SpeziTemplateApplication)
