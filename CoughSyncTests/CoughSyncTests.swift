@@ -151,7 +151,7 @@ class CoughSyncTests: XCTestCase {
         // Skip test in CI environment
         if isRunningInCI() {
             print("Skipping PDF generation test in CI environment")
-            return
+            return // Ensure early return
         }
         
         // Create test data
@@ -191,7 +191,7 @@ class CoughSyncTests: XCTestCase {
         // Skip test in CI environment
         if isRunningInCI() {
             print("Skipping PDF drawing test in CI environment")
-            return
+            return // Ensure early return
         }
         
         // We need a graphics context to test drawing, so we'll create a minimal PDF context
@@ -246,7 +246,7 @@ class CoughSyncTests: XCTestCase {
         // Skip test in CI environment
         if isRunningInCI() {
             print("Skipping Report View PDF functions test in CI environment")
-            return
+            return // Ensure early return
         }
         
         // Create test report data
@@ -306,6 +306,16 @@ class CoughSyncTests: XCTestCase {
         
         // Add this specific check for GitHub Actions runners which might not set CI=true
         if ProcessInfo.processInfo.environment["RUNNER_WORKSPACE"] != nil {
+            return true
+        }
+        
+        // Additional check for Xcode Cloud
+        if ProcessInfo.processInfo.environment["XCS"] != nil {
+            return true
+        }
+        
+        // Also check for Fastlane environment
+        if ProcessInfo.processInfo.environment["FASTLANE_LANE_NAME"] != nil {
             return true
         }
         
