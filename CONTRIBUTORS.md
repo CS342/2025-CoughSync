@@ -11,7 +11,10 @@ SPDX-License-Identifier: MIT
 CoughSync Contributors
 =================================
 
+* [Miguel Fuentes](https://github.com/MiguelAFH)
+* [Ethan Michael Bell](https://github.com/EthanRakutoBell)
+* [Jennifer Lew](https://github.com/jennleww)
+* [Aayush Jain](https://github.com/aajain2)
+* [Adrit Rao](https://github.com/adritrao)
 * [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
-* [Andreas Bauer](https://github.com/Supereg)
-* [Philipp Zagar](https://github.com/philippzagar)
-* [Nikolai Madlener](https://github.com/NikolaiMadlener)
+* [Vishnu Ravi](https://github.com/vishnuravi)
