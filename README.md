@@ -16,7 +16,7 @@ SPDX-License-Identifier: MIT
 
 
 This repository contains the CoughSync application.
-CoughSync is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication). It was built as part of the [Stanford Biodesign](https://biodesign.stanford.edu) Building for Digital Health course in collaboration with [Regeneron Development Innovation](https://www.regeneron.com/).
+CoughSync is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication). It was built as part of the [Stanford Biodesign](https://biodesign.stanford.edu) [Building for Digital Health course](https://cs342.stanford.edu) in collaboration with [Regeneron Development Innovation](https://www.regeneron.com/).
 
 > [!TIP]
 > Do you want to test the CoughSync application on your device? [You can download it on TestFlight](https://testflight.apple.com/join/2DKsMx2z).
